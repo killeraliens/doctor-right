@@ -55,3 +55,25 @@ button.ok {
 button.submit {
     background-color: rgb(20, 156, 111);
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+    margin: 15% auto;
+    width: 80%;
+}
+
+.hidden {
+    display: none;
+}

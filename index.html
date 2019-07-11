@@ -16,14 +16,16 @@
 <div class="container">
     <main>
         <form id="search-form" action="get">
-                <h1>Doctor Right</h1>
-                <h3>find my doctor match</h3>
-                <fieldset>
+                <fieldset id="step-one">
+                    <legend>
+                        <h1>Doctor Right</h1>
+                        <h3>find my doctor match</h3>
+                    </legend>
                     <label for="location">1. Enter your city & state, or zipcode</label>
-                    <input id="location" aria-label="Your location" type="text" placeholder="Your location">
-                    <button type="button" id="step-one" class="ok">ok</button>
+                    <input id="location" aria-label="Your location" type="text" placeholder="Your location" required>
+                    <button type="button" id="step-one-btn" class="ok">ok</button>
                 </fieldset>
-                <fieldset>
+                <fieldset id="step-two">
                     <label for="search-radius">2. Select a search radius</label>
                     <select name="search-radius" id="search-radius" >
                         <option value="5">5 miles</option>
@@ -31,23 +33,27 @@
                         <option value="25">25 miles</option>
                         <option value="50">50 miles</option>
                     </select>
-                    <button type="button" id="step-two" class="ok">ok</button>
-                </fieldset>
+<!--                    <button type="button" id="step-two-btn" class="ok">ok</button>-->
+                </fieldset id="step-three">
                 <fieldset>
                     <label for="search-term">3. What area is troubling you?</label>
-                    <input id="search-term" placeholder="enter a specialty keyword">
-                    <button type="button" id="step-three" class="ok">ok</button>
+                    <input id="search-term" placeholder="enter a specialty keyword" required>
+<!--                    <button type="button" id="step-three-btn" class="ok">ok</button>-->
                 </fieldset>
             <button type="submit" class="submit">Find Doctors</button>
         </form>
         <section id="results-section" class="hidden">
             <ul id="results-list"></ul>
         </section>
-        <p id="error-message" class="error-message"></p>
+        <aside id="modal" class="modal">
+            <div class="modal-content">
+                <p id="error-message" class="error-message"></p>
+                <span class="close">Close</span>
+            </div>
+        </aside>
     </main>
 </div>
 <script src="config.js"></script>
-<script src="states.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
