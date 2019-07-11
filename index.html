@@ -23,7 +23,7 @@
                     </legend>
                     <label for="location">1. Enter your city & state, or zipcode</label>
                     <input id="location" aria-label="Your location" type="text" placeholder="Your location" required>
-                    <button type="button" id="step-one-btn" class="ok">ok</button>
+<!--                    <button type="button" id="step-one-btn" class="next">next</button>-->
                 </fieldset>
                 <fieldset id="step-two">
                     <label for="search-radius">2. Select a search radius</label>
@@ -33,12 +33,12 @@
                         <option value="25">25 miles</option>
                         <option value="50">50 miles</option>
                     </select>
-<!--                    <button type="button" id="step-two-btn" class="ok">ok</button>-->
+<!--                    <button type="button" id="step-two-btn" class="next">next</button>-->
                 </fieldset id="step-three">
                 <fieldset>
                     <label for="search-term">3. What area is troubling you?</label>
                     <input id="search-term" placeholder="enter a specialty keyword" required>
-<!--                    <button type="button" id="step-three-btn" class="ok">ok</button>-->
+<!--                    <button type="button" id="step-three-btn" class="next">next</button>-->
                 </fieldset>
             <button type="submit" class="submit">Find Doctors</button>
         </form>
@@ -46,10 +46,7 @@
             <ul id="results-list"></ul>
         </section>
         <aside id="modal" class="modal">
-            <div class="modal-content">
-                <p id="error-message" class="error-message"></p>
-                <span class="close">Close</span>
-            </div>
+            <div id="modal-content" class="modal-content"></div>
         </aside>
     </main>
 </div>

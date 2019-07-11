@@ -17,18 +17,11 @@ function getGeocode() {
     $('#step-one-btn').on('click', (e) => {
 
         if ($('#location').val().length === 0) {
-            // const address = 'phoenix';
-            console.log($('#location').val() + ' this is zero');
-            renderMissingFieldError('city & state or zipcode');
+            renderModal(returnMessageString('Location cannot be blank'));
         } else {
-            // const address = $('#location').val();
-            console.log($('#location').val() + ' this has value');
-
-
-            const address = $('#location').val();
 
             const geoCodeParams = {
-                address: address,
+                address: $('#location').val(),
                 key: config.gmaps
             }
 
@@ -54,9 +47,23 @@ function getGeocode() {
     })
 }
 
-function renderMissingFieldError(field) {
+function renderModal(content) {
   $('#modal').css('display', 'block');
-  $('#error-message').text(`Please enter ${field}`);
+  $('#modal-content').html(
+    `<span id="modal-close" class="close">Close <i class="far fa-times-circle"></i></span>` + '\n' + content
+  );
+  handleModalClose();
 }
+
+function returnMessageString(message) {
+    return `<h3 class="modal-message">${message}</h3>`;
+}
+
+function handleModalClose() {
+  $('#modal').on('click', '#modal-close', (e) => {
+      $('#modal').css('display', 'none');
+  });
+}
+
 
 getGeocode();
