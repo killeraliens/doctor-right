@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Find the right doctor for you. Medical professional listings based on your location.">
-    <title>Doctor Right</title>
+    <title>Doctors Near Me</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -15,7 +15,7 @@
 <body>
 <div class="container">
     <main>
-        <form id="search-form" action="get">
+        <form id="start-form" action="get">
                 <fieldset id="step-one">
                     <legend>
                         <h1>Doctors Near Me</h1>
@@ -23,15 +23,15 @@
                     </legend>
                     <label for="location">1. Enter your city & state, or zipcode</label>
                     <input id="location" aria-label="Your location" type="text" placeholder="Your location" required>
-<!--                    <button type="button" id="step-one-btn" class="next">next</button>-->
+                    <!-- <button type="button" id="step-one-btn" class="next">next</button> -->
                 </fieldset>
                 <fieldset id="step-two">
                     <label for="search-radius">2. Select a search radius</label>
                     <select name="search-radius" id="search-radius" >
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
+                        <option value="5">5 miles</option>
+                        <option value="10">10 miles</option>
+                        <option value="25">25 miles</option>
+                        <option value="50">50 miles</option>
                     </select>
 <!--                    <button type="button" id="step-two-btn" class="next">next</button>-->
                 </fieldset id="step-three">
@@ -42,13 +42,14 @@
                 </fieldset>
             <button type="submit" class="submit">Find Doctors</button>
         </form>
+        <nav id="edit-results-nav" class="hidden"></nav>
         <section id="results-section" class="hidden">
             <ul id="results-list"></ul>
         </section>
-        <aside id="modal" class="modal">
-            <div id="modal-content" class="modal-content"></div>
-        </aside>
     </main>
+    <aside id="modal" class="modal">
+      <div id="modal-content" class="modal-content"></div>
+    </aside>
 </div>
 <script src="config.js"></script>
 <script src="main.js"></script>
