@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Find the right doctor for you. Medical professional listings based on your location.">
+    <title>Doctor Right</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <main>
+        <form id="search-form" action="get">
+                <h1>Doctor Right</h1>
+                <h3>find my doctor match</h3>
+                <fieldset>
+                    <label for="location">1. Enter your city & state, or zipcode</label>
+                    <input id="location" aria-label="Your location" type="text" placeholder="Your location">
+                    <button type="button" id="step-one" class="ok">ok</button>
+                </fieldset>
+                <fieldset>
+                    <label for="search-radius">2. Select a search radius</label>
+                    <select name="search-radius" id="search-radius" >
+                        <option value="5">5 miles</option>
+                        <option value="10" selected>10 miles</option>
+                        <option value="25">25 miles</option>
+                        <option value="50">50 miles</option>
+                    </select>
+                    <button type="button" id="step-two" class="ok">ok</button>
+                </fieldset>
+                <fieldset>
+                    <label for="search-term">3. What area is troubling you?</label>
+                    <input id="search-term" placeholder="enter a specialty keyword">
+                    <button type="button" id="step-three" class="ok">ok</button>
+                </fieldset>
+            <button type="submit" class="submit">Find Doctors</button>
+        </form>
+        <section id="results-section" class="hidden">
+            <ul id="results-list"></ul>
+        </section>
+        <p id="error-message" class="error-message"></p>
+    </main>
+</div>
+<script src="config.js"></script>
+<script src="states.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
