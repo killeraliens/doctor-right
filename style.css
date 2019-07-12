@@ -97,3 +97,7 @@ button.submit {
     right: 10px;
     top: 10px;
 }
+
+.hidden {
+  display: none;
+}
