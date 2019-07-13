@@ -117,6 +117,13 @@ button.submit {
   display: none;
 }
 
+button.params-btn {
+  color: darkslategrey;
+}
+
+i {
+  margin-right: 3px;
+}
 
 /* Results Section */
 
@@ -124,3 +131,9 @@ button.submit {
   display: none;
 }
 
+
+/* Doctor Listings */
+
+.avatar {
+  width: 50px;
+}

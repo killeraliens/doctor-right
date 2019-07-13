@@ -299,7 +299,41 @@ function getReverseGeocode(latLngStr) {
 
 // Result/Listing Components
 function renderListDoctors(responseJson) {
+  $('#list-doctors').html(returnListingsString(responseJson));
+  $('#section-results').css('display', 'block');
+}
 
+function returnListingsString(responseJson) {
+  return responseJson.data.map(doctor => {
+    let fullNameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
+    return `
+      <li>
+        <img class="avatar" src="${doctor.profile.image_url}" alt="${doctor.profile.slug}"></img>
+        <h3>${fullNameTitle}</h3>
+        <h5>${doctor.specialties[0].description} cnt.. ${doctor.specialties.length}</h5>
+        <p>
+          Locations Total (${doctor.practices.length}) <br>
+          Locations Near You (${whereLocationTrue(doctor.practices).length}): <br>
+          ${returnLocationsString(whereLocationTrue(doctor.practices))}
+        </p>
+        <span>${doctor.specialties[0].name}</span>
+      </li>
+    `;
+  }).join('\n');
+}
+
+// Card Helpers
+function whereLocationTrue(doctorPracticesArr) {
+  return doctorPracticesArr.filter(function(obj) {
+    return obj.within_search_area == true;
+  });
+}
+
+function returnLocationsString(locationsArr) {
+  return locationsArr.map(location => {
+      let address = location.visit_address;
+      return `<b>${location.name}</b>${address.street} ${address.city}, ${address.state} ${address.zip}<br>`;
+  }).join('\n');
 }
 
 
