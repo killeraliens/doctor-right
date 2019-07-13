@@ -155,8 +155,8 @@
 
 
 
-//Fetch Param Helpers
-const paramsObj = { //global default search params as a base better doctor api params
+//Fetch Helpers
+const paramsObj = { //global default 'state' of search params referenced in all API calls / param updates
     lat: 33.448376,
     lng: -112.074036,
     radius: 10,
@@ -170,7 +170,7 @@ function returnQueryString(params) {
 }
 
 
-// API Calls (use/update global paramsObj)
+// API Calls (utilize/update the global paramsObj)
 function getGeocode(address) {
 
     const geoCodeParams = {
@@ -236,7 +236,7 @@ function getBetterDoctor(form) {
           throw new Error(response.statusText);
         })
         .then(responseJson => {
-           $(`${form}`).addClass('hidden');
+           $(`${form}`).css('display','none');
            renderResultsPage(responseJson);
         })
         .catch(err => {
@@ -257,6 +257,24 @@ function renderResultsPage(responseJson) {
   renderListDoctors(responseJson);
 }
 
+
+
+// Nav Components
+async function renderNavParams() {
+  let formattedLocation = await getReverseGeocode(paramsObj.lat+','+paramsObj.lng);
+  $('#nav-params').html(returnParamsNavString(formattedLocation));
+  $('#nav-params').css('display', 'block');
+}
+
+ function returnParamsNavString(formattedLocation) {
+    return `
+      <div class="edit-params-container">
+        <button id="edit-location" class="params-btn"><i class="fas fa-map-marker"></i>${formattedLocation}</button>
+        <button id="edit-radius" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
+        <button id="edit-search-term" class="params-btn"><i class="fas fa-search"></i>${paramsObj.term}</button>
+      </div>
+    `;
+}
 
 //Helper API Call returns city and state string for location edit nav button
 function getReverseGeocode(latLngStr) {
@@ -279,18 +297,9 @@ function getReverseGeocode(latLngStr) {
     });
 }
 
+// Result/Listing Components
+function renderListDoctors(responseJson) {
 
-
-// Nav Components
-async function renderNavParams() {
-  let formattedLocation = await getReverseGeocode(paramsObj.lat+','+paramsObj.lng);
-  // const paramsBtns = returnParamBtnString(betterDoctorParams);
-  console.log(formattedLocation);
-  // $('#nav-params').removeClass('hidden').html(paramsBtns);
-}
-
-function returnParamBtnString(paramsObj) {
-   return Object.keys(paramsObj).map(key => `<button>${paramsObj[key]}</button>`).join('\n');
 }
 
 
@@ -312,10 +321,5 @@ function handleModalClose() {
 function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
-
-
-// async function timeTester() {
-//   setTimeout(function() { alert('hi')}, 6000);
-// }
 
 handleFormSubmit('#start-form');
