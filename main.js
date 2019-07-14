@@ -101,6 +101,9 @@ function renderResultsPage(responseJson) {
   console.log(responseJson);
 
   renderNavParams();
+  handleEditLocationButton();
+
+  $('#listings-title').text(`Medical Professionals Found Near You (${responseJson.data.length})`);
   renderListDoctors(responseJson);
 }
 
@@ -113,14 +116,28 @@ async function renderNavParams() {
   $('#nav-params').css('display', 'block');
 }
 
- function returnParamsNavString(formattedLocation) {
+function returnParamsNavString(formattedLocation) {
     return `
       <div class="edit-params-container">
-        <button id="edit-location" class="params-btn"><i class="fas fa-map-marker"></i>${formattedLocation}</button>
-        <button id="edit-radius" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
-        <button id="edit-search-term" class="params-btn"><i class="fas fa-search"></i>${paramsObj.term}</button>
+        <button id="edit-location-btn" class="params-btn"><i class="fas fa-map-marker"></i>${formattedLocation}</button>
+        <button id="edit-radius-btn" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
+        <button id="edit-search-term-btn" class="params-btn"><i class="fas fa-search"></i>${paramsObj.term}</button>
       </div>
     `;
+}
+
+// Nav Actions
+function handleEditLocationButton() {
+  $('#nav-params').on('click', '#edit-location-btn', function(e) {
+    e.preventDefault();
+    console.log('form should slide down');
+    $(`
+      <form id="edit-location-form" class="edit-params-form">
+        <input id="location-edit" aria-label="Edit your location" type="text" placeholder="City, State or Zipcode" >
+        <button type="submit" class="submit-btn">Find Doctors</button>
+      </form>
+    `).insertAfter($('#nav-params'));
+  })
 }
 
 //Helper API Call returns city and state string for location edit nav button
@@ -161,7 +178,8 @@ function returnListingsString(responseJson) {
         <img class="avatar" src="${doctor.profile.image_url}" alt="${doctor.profile.slug}"></img>
         <h3>${fullNameTitle}</h3>
         <p>${returnSpecialtiesString(specialtiesArr)}</p>
-        <h5>Locations Near You (${whereLocationTrue(practices).length})</h5>
+        <h5>Total practices for this professional (${practices.length})</h5>
+        <h5>Locations within your search radius (${whereLocationTrue(practices).length})</h5>
         ${returnLocationsString(whereLocationTrue(practices))}
         <span>${doctor.specialties[0].name}</span>
       </li>

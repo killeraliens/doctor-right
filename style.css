@@ -114,7 +114,7 @@ button.submit {
 
 #nav-params {
   display: none;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 
@@ -126,6 +126,11 @@ button.params-btn {
 i {
   margin-right: 3px;
 }
+
+.edit-params-form {
+  /* how to make the form slide down? */
+}
+
 
 /* Results Section */
 
