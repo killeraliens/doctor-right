@@ -154,17 +154,15 @@ function renderListDoctors(responseJson) {
 function returnListingsString(responseJson) {
   return responseJson.data.map(doctor => {
     let fullNameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
-    let practices = removeDuplicateLocations(doctor.practices)
+    let practices = removeDuplicateLocations(doctor.practices);
+    let specialtiesArr = doctor.specialties;
     return `
-      <li>
+      <li class="doctor-card">
         <img class="avatar" src="${doctor.profile.image_url}" alt="${doctor.profile.slug}"></img>
         <h3>${fullNameTitle}</h3>
-        <h5>${doctor.specialties[0].description} cnt.. ${doctor.specialties.length}</h5>
-        <span>
-          ${/*Locations Total (${practices.length}) <br>*/}
-          Locations Near You (${whereLocationTrue(practices).length}):
-        </span>
-        <ul class="address-list">${returnLocationsString(whereLocationTrue(practices))}</ul>
+        <p>${returnSpecialtiesString(specialtiesArr)}</p>
+        <h5>Locations Near You (${whereLocationTrue(practices).length})</h5>
+        ${returnLocationsString(whereLocationTrue(practices))}
         <span>${doctor.specialties[0].name}</span>
       </li>
     `;
@@ -198,23 +196,25 @@ function returnLocationsString(locationsArr) {
       let address = location.visit_address;
       let phonesArr = location.phones;
       return `
-      <li>
-        <b>${location.name}</b><br>${address.street} ${address.city}, ${address.state} ${address.zip}<br>
-        <ul class="inline-list">${formatPhones(phonesArr)}<ul>
-      </li>`;
+        <p><b>${location.name}</b><br>${address.street} ${address.city}, ${address.state} ${address.zip}</p>
+        <p>${formatPhones(phonesArr)}</p>
+      `;
   }).join('\n');
 }
 
 function formatPhones(phonesArr) {
   return phonesArr.map(phone => {
     if(phone.type == 'landline') {
-      return `<li><i class="fas fa-phone"></i><span>Tel</span> ${phone.number}</li>`;
-    } else {
-      return `<li><i class="fas fa-fax"></i><span>Fax</span> ${phone.number}</li>`;
+      return `<span><i class="fas fa-phone"></i>Tel</span> ${phone.number}<br>`;
+    } else if (phone.type == 'fax') {
+      return `<span><i class="fas fa-fax"></i>Fax</span> ${phone.number}<br>`;
     }
   }).join('\n');
 }
 
+function returnSpecialtiesString(specialtiesArr) {
+  return specialtiesArr.map(specialty => `${specialty.description}`).join(' ');
+}
 
 // Aside Modal Components
 function renderModal(content) {

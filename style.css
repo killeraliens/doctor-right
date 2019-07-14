@@ -113,9 +113,11 @@ button.submit {
 /* Nav */
 
 #nav-params {
-  height: 20vh;
   display: none;
+  margin-bottom: 20px;
 }
+
+
 
 button.params-btn {
   color: darkslategrey;
@@ -131,6 +133,17 @@ i {
   display: none;
 }
 
+ul.doctor-listings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.doctor-card {
+  margin-bottom: 40px;
+  padding: 10px;
+  background-color: #f7f7f7;
+}
 
 /* Doctor Listings */
 
