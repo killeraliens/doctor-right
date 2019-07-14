@@ -46,8 +46,17 @@
         <form id="edit-location-form" class="edit-params-form">
           <div class="flex">
             <input id="edit-location-input" aria-label="Edit your location" type="text" placeholder="City, State or Zipcode" >
-            <button type="submit" class="submit-btn">Find Doctors</button>
+            <button type="submit" class="submit-btn">Update Search</button>
           </div>
+        </form>
+        <form id="edit-radius-form" class="edit-params-form">
+          <select name="edit-search-radius" id="edit-search-radius">
+            <option value="5">5 miles</option>
+            <option value="10">10 miles</option>
+            <option value="25">25 miles</option>
+            <option value="50">50 miles</option>
+          </select>
+          <button type="submit" class="submit-btn">Update Search</button>
         </form>
         <section id="section-results">
             <h1 id="listings-title"></h1>

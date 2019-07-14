@@ -51,7 +51,6 @@ function handleStartFormSubmit() {
         await getAndSetParamsGeocode(address);
 
         const selectEl = document.getElementById("search-radius");
-
         const radius = selectEl.options[selectEl.selectedIndex].value;
         paramsObj.radius = radius;
 
@@ -103,6 +102,7 @@ async function renderResultsPage(responseJson) {
 
   await renderNavParams();
   handleEditLocationButton();
+  handleEditRadiusButton();
 
   $('#listings-title').text(
     `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} (${responseJson.data.length})`
@@ -122,11 +122,9 @@ async function renderNavParams() {
 
 function returnParamsNavString(formattedLocation) {
     return `
-      <div class="edit-params-container">
         <button id="edit-location-btn" class="params-btn"><i class="fas fa-map-marker"></i>${formattedLocation}</button>
         <button id="edit-radius-btn" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
         <button id="edit-search-term-btn" class="params-btn"><i class="fas fa-search"></i>${paramsObj.term}</button>
-      </div>
     `;
 }
 
@@ -152,6 +150,7 @@ function getReverseGeocode(latLngStr) {
     });
 }
 
+
 // Nav Actions
 function handleEditLocationButton() {
   $('#nav-params').on('click', '#edit-location-btn', function(e) {
@@ -176,6 +175,29 @@ function handleEditLocationForm() {
     }
   })
 }
+
+function handleEditRadiusButton() {
+  $('#nav-params').on('click', '#edit-radius-btn', function(e) {
+    e.preventDefault();
+      $(this).css('border', 'none');
+      $(this).css('background-color', 'Transparent');
+      $('#edit-radius-form').slideDown(100, 'linear');
+      handleEditRadiusForm();
+  })
+}
+
+function handleEditRadiusForm() {
+  $('#edit-radius-form').on('submit', (e) => {
+    e.preventDefault();
+    console.log('editing radius form submitted');
+    const selectEl = document.getElementById("edit-search-radius");
+    const radius = selectEl.options[selectEl.selectedIndex].value;
+    paramsObj.radius = radius;
+    getBetterDoctor('#edit-radius-form');
+
+  })
+}
+
 
 // Result/Listing Components
 function renderListDoctors(responseJson) {
