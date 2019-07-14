@@ -66,7 +66,7 @@ button.next {
     background-color: rgb(154, 145, 169);
 }
 
-button.submit {
+button.submit-btn {
     background-color: rgb(20, 156, 111);
 }
 
@@ -129,8 +129,12 @@ i {
 
 .edit-params-form {
   /* how to make the form slide down? */
+  display: none;
 }
 
+.flex {
+  display: flex;
+}
 
 /* Results Section */
 

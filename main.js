@@ -130,13 +130,7 @@ function returnParamsNavString(formattedLocation) {
 function handleEditLocationButton() {
   $('#nav-params').on('click', '#edit-location-btn', function(e) {
     e.preventDefault();
-    console.log('form should slide down');
-    $(`
-      <form id="edit-location-form" class="edit-params-form">
-        <input id="location-edit" aria-label="Edit your location" type="text" placeholder="City, State or Zipcode" >
-        <button type="submit" class="submit-btn">Find Doctors</button>
-      </form>
-    `).insertAfter($('#nav-params'));
+    $('#edit-location-form').slideToggle();
   })
 }
 
