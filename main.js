@@ -137,7 +137,8 @@ function getReverseGeocode(latLngStr) {
     .then(responseJson => {
       const city = responseJson.results[4].address_components[1].long_name;
       const stateAbb = responseJson.results[4].address_components[3].short_name;
-      return city + ', ' + stateAbb;
+      // return city + ', ' + stateAbb;
+      return city;
     })
     .catch(err => {
           renderModal(returnMessageString(err.message));
@@ -159,11 +160,11 @@ function returnListingsString(responseJson) {
         <img class="avatar" src="${doctor.profile.image_url}" alt="${doctor.profile.slug}"></img>
         <h3>${fullNameTitle}</h3>
         <h5>${doctor.specialties[0].description} cnt.. ${doctor.specialties.length}</h5>
-        <p>
-          Locations Total (${practices.length}) <br>
-          Locations Near You (${whereLocationTrue(practices).length}): <br>
-          ${returnLocationsString(whereLocationTrue(practices))}
-        </p>
+        <span>
+          ${/*Locations Total (${practices.length}) <br>*/}
+          Locations Near You (${whereLocationTrue(practices).length}):
+        </span>
+        <ul class="address-list">${returnLocationsString(whereLocationTrue(practices))}</ul>
         <span>${doctor.specialties[0].name}</span>
       </li>
     `;
@@ -195,7 +196,22 @@ function whereLocationTrue(doctorPracticesArr) {
 function returnLocationsString(locationsArr) {
   return locationsArr.map(location => {
       let address = location.visit_address;
-      return `<b>${location.name}</b>${address.street} ${address.city}, ${address.state} ${address.zip}<br>`;
+      let phonesArr = location.phones;
+      return `
+      <li>
+        <b>${location.name}</b><br>${address.street} ${address.city}, ${address.state} ${address.zip}<br>
+        <ul class="inline-list">${formatPhones(phonesArr)}<ul>
+      </li>`;
+  }).join('\n');
+}
+
+function formatPhones(phonesArr) {
+  return phonesArr.map(phone => {
+    if(phone.type == 'landline') {
+      return `<li><i class="fas fa-phone"></i><span>Tel</span> ${phone.number}</li>`;
+    } else {
+      return `<li><i class="fas fa-fax"></i><span>Fax</span> ${phone.number}</li>`;
+    }
   }).join('\n');
 }
 
