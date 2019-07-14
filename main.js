@@ -153,15 +153,16 @@ function renderListDoctors(responseJson) {
 function returnListingsString(responseJson) {
   return responseJson.data.map(doctor => {
     let fullNameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
+    let practices = removeDuplicateLocations(doctor.practices)
     return `
       <li>
         <img class="avatar" src="${doctor.profile.image_url}" alt="${doctor.profile.slug}"></img>
         <h3>${fullNameTitle}</h3>
         <h5>${doctor.specialties[0].description} cnt.. ${doctor.specialties.length}</h5>
         <p>
-          Locations Total (${doctor.practices.length}) <br>
-          Locations Near You (${whereLocationTrue(doctor.practices).length}): <br>
-          ${returnLocationsString(whereLocationTrue(doctor.practices))}
+          Locations Total (${practices.length}) <br>
+          Locations Near You (${whereLocationTrue(practices).length}): <br>
+          ${returnLocationsString(whereLocationTrue(practices))}
         </p>
         <span>${doctor.specialties[0].name}</span>
       </li>
@@ -170,6 +171,21 @@ function returnListingsString(responseJson) {
 }
 
 // Card Helpers
+function removeDuplicateLocations(doctorPracticesArr) {
+  let dict = {};
+  let reject = [];
+  let keep = [];
+  for (let i = 0; i < doctorPracticesArr.length; i++) {
+    if (doctorPracticesArr[i].visit_address.street in dict ) {
+       reject.push(doctorPracticesArr[i]);
+    } else {
+      dict[doctorPracticesArr[i].visit_address.street] = 1;
+      keep.push(doctorPracticesArr[i]);
+    }
+  }
+  return keep;
+}
+
 function whereLocationTrue(doctorPracticesArr) {
   return doctorPracticesArr.filter(function(obj) {
     return obj.within_search_area == true;
