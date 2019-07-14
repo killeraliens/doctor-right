@@ -22,9 +22,14 @@ a {
     color: darkslategrey;
 }
 
-.hidden {
+/*.hidden {
   display: none;
+}*/
+
+span {
+  font-weight: bold;
 }
+
 
 
 /* Forms*/

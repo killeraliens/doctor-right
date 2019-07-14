@@ -103,10 +103,15 @@ async function renderResultsPage(responseJson) {
   await renderNavParams();
   handleEditLocationButton();
   handleEditRadiusButton();
+  handleEditSearchTermButton();
 
   $('#listings-title').text(
-    `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} (${responseJson.data.length})`
-      );
+    `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
+   );
+  $('#listings-count-and-order-description').html(
+    `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
+    medical professionals containing the term <span>${paramsObj.term}</span> in order of locations closest to you.`
+  );
   renderListDoctors(responseJson);
 }
 
@@ -189,11 +194,35 @@ function handleEditRadiusButton() {
 function handleEditRadiusForm() {
   $('#edit-radius-form').on('submit', (e) => {
     e.preventDefault();
-    console.log('editing radius form submitted');
-    const selectEl = document.getElementById("edit-search-radius");
+
+    const selectEl = document.getElementById("edit-radius");
     const radius = selectEl.options[selectEl.selectedIndex].value;
     paramsObj.radius = radius;
     getBetterDoctor('#edit-radius-form');
+
+  })
+}
+
+function handleEditSearchTermButton() {
+  $('#nav-params').on('click', '#edit-search-term-btn', function(e) {
+    e.preventDefault();
+      $(this).css('border', 'none');
+      $(this).css('background-color', 'Transparent');
+      $('#edit-search-term-form').slideDown(100, 'linear');
+      handleEditSearchTermForm();
+  })
+}
+
+function handleEditSearchTermForm() {
+  $('#edit-search-term-form').on('submit', (e) => {
+    e.preventDefault();
+    console.log('editing search-term form submitted');
+    if ($('#edit-search-term').val() !== '') {
+      paramsObj.term = $('#edit-search-term').val();
+      getBetterDoctor('#edit-search-term-form');
+    } else {
+      renderModal(returnMessageString('You must enter a specialty keyword to search'));
+    }
 
   })
 }
