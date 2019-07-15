@@ -19,7 +19,7 @@ function returnQueryString(params) {
 
 // API Calls (utilize/update the global paramsObj)
 function getAndSetParamsGeocode(address) {
-
+    console.log(`getting geocode for ${address}`);
     const geoCodeParams = {
         address: encodeURIComponent(address),
         key: config.gmaps
@@ -50,6 +50,7 @@ function getAndSetParamsGeocode(address) {
 function handleStartFormSubmit() {
     $('#start-form').on('submit', async (e) => {
         e.preventDefault();
+        console.log('handling start form submit');
 
         const address = $('#location').val();
         paramsObj.usersInputLocation = $('#location').val();
@@ -66,7 +67,7 @@ function handleStartFormSubmit() {
 }
 
 function getBetterDoctor(form) {
-
+        console.log('calling better doctor api');
         const betterDoctorParams = {
             query: paramsObj.term,
             location:   paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius,
@@ -88,9 +89,9 @@ function getBetterDoctor(form) {
           throw new Error(response.statusText);
         })
         .then(responseJson => {
-           $(`${form}`).css('display','none');
-           $('.params-btn').removeClass('active-edit');
-           renderResultsPage(responseJson);
+          console.log(`hiding ${form} and rendering results page`);
+          $(`${form}`).css('display','none');
+          renderResultsPage(responseJson);
         })
         .catch(err => {
           renderModal(returnMessageString(err.message));
@@ -102,8 +103,7 @@ function getBetterDoctor(form) {
 async function renderResultsPage(responseJson) {
   console.log('global params at render>>>');
   console.log(paramsObj);
-  // console.log('bd params at render>>>');
-  // console.log(betterDoctorParams);
+  console.log('responseJson at render >>>');
   console.log(responseJson);
 
   await renderNavParams();
@@ -125,6 +125,7 @@ async function renderResultsPage(responseJson) {
 
 // Nav Components
 async function renderNavParams() {
+  console.log('rendering nav with reverse geo name');
   let formattedLocation = await getReverseGeocode(paramsObj.lat+','+paramsObj.lng);
   paramsObj.formattedLocation = formattedLocation;
   $('#nav-params').html(returnParamsNavString(formattedLocation));
@@ -141,6 +142,7 @@ function returnParamsNavString(formattedLocation) {
 
 //Helper API Call returns city and state string for location edit nav button
 function getReverseGeocode(latLngStr) {
+    console.log(`calling reverse geocode for ${latLngStr}`);
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLngStr}&key=${config.gmaps}`;
 
     return fetch(url)
@@ -151,17 +153,13 @@ function getReverseGeocode(latLngStr) {
       throw new Error(response.statusText);
     })
     .then(responseJson => {
-      console.log(responseJson);
       if (responseJson.results.length > 0) {
         const correctObj = responseJson.results[0];
         const addressComponentArr = correctObj.address_components;
         const correctObjCorrectComponent = findCityInReverseGeocodeResults(addressComponentArr);
-        console.log(correctObjCorrectComponent);
+        // console.log(correctObjCorrectComponent);
         const cityLocalityNeighborhood = correctObjCorrectComponent.long_name;
 
-        //const city = responseJson.results[4].address_components[1].long_name;
-        // const stateAbb = responseJson.results[4].address_components[3].short_name;
-        // return city + ', ' + stateAbb;
         return cityLocalityNeighborhood;
       } else {
         return paramsObj.usersInputLocation;
@@ -181,24 +179,25 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 
 // Nav Actions
 function handleEditLocationButton() {
-  $('#nav-params').on('click', '#edit-location-btn', function(e) {
+  $('#edit-location-btn').on('click' , function(e) {
     e.preventDefault();
+    console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
 
-      $('#edit-location-input').val('');
-      $('#edit-location-form').slideToggle(200
-      //   , function(){
-      //   hideOtherEditForms('#edit-location-form', '#edit-location-btn');
-      // }
-      );
+      $(this).toggleClass('active-edit');
+
       hideOtherEditForms('#edit-location-form', '#edit-location-btn');
       handleEditLocationForm();
-  })
+  });
 }
 
 function handleEditLocationForm() {
   $('#edit-location-form').on('submit', async (e) => {
     e.preventDefault();
+
+
+      console.log(`${$(this)} was SUBMITTED, calling getbetterdoctor function`);
     if ($('#edit-location-input').val() !== '') {
+
       const address = $('#edit-location-input').val();
       await getAndSetParamsGeocode(address);
       getBetterDoctor('#edit-location-form');
@@ -209,14 +208,12 @@ function handleEditLocationForm() {
 }
 
 function handleEditRadiusButton() {
-  $('#nav-params').on('click', '#edit-radius-btn', function(e) {
+  $('#edit-radius-btn').on('click', function(e) {
     e.preventDefault();
+      console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
 
-      $('#edit-radius-form').slideToggle(200
-      //   , function(){
-      //    hideOtherEditForms('#edit-radius-form', '#edit-radius-btn');
-      // }
-      );
+      $(this).toggleClass('active-edit');
+
       hideOtherEditForms('#edit-radius-form', '#edit-radius-btn');
       handleEditRadiusForm();
   })
@@ -225,6 +222,7 @@ function handleEditRadiusButton() {
 function handleEditRadiusForm() {
   $('#edit-radius-form').on('submit', (e) => {
     e.preventDefault();
+    console.log(`${$(this)} was SUBMITTED, calling getbetterdoctor function`);
 
     const selectEl = document.getElementById("edit-radius");
     const radius = selectEl.options[selectEl.selectedIndex].value;
@@ -235,16 +233,11 @@ function handleEditRadiusForm() {
 }
 
 function handleEditSearchTermButton() {
-  $('#nav-params').on('click', '#edit-search-term-btn', function(e) {
+  $('#edit-search-term-btn').on('click', function(e) {
     e.preventDefault();
+    console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
 
-      // hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
-      $('#edit-search-term-input').val('');
-      $('#edit-search-term-form').slideToggle(200
-      //   , function(){
-      //    hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
-      // }
-      );
+      $(this).toggleClass('active-edit');
       hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
       handleEditSearchTermForm();
   })
@@ -253,8 +246,10 @@ function handleEditSearchTermButton() {
 function handleEditSearchTermForm() {
   $('#edit-search-term-form').on('submit', (e) => {
     e.preventDefault();
-    console.log('editing search-term form submitted');
+
     if ($('#edit-search-term').val() !== '') {
+      console.log(`${$(this)} was SUBMITTED, calling getbetterdoctor function`);
+
       paramsObj.term = $('#edit-search-term-input').val();
       getBetterDoctor('#edit-search-term-form');
     } else {
@@ -269,24 +264,25 @@ function hideOtherEditForms(thisForm, thisBtn) {
   const otherForms = $('.edit-params-form').not($(thisForm));
   const otherBtns = $('.params-btn').not($(thisBtn));
   if ($(thisBtn).hasClass('active-edit')) {
-      $(thisBtn).removeClass('active-edit');
-    } else {
-      $(thisBtn).addClass('active-edit');
-      otherBtns.removeClass('active-edit');
-      otherForms.find('input').val('');
-      otherForms.css('display', 'none');
+      $(otherBtns).removeClass('active-edit');
+      $(otherForms).find('input').val('');
+      $(otherForms).css('display', 'none');
+      $(thisForm).slideDown(300, function() {
+        $(thisForm).find('input').val('');
+      });
   }
-
-
 }
 
 // Result/Listing Components
 function renderListDoctors(responseJson) {
+  console.log(`rendering List of doctors...`);
+
   $('#list-doctors').html(returnListingsString(responseJson));
   $('#section-results').css('display', 'block');
 }
 
 function returnListingsString(responseJson) {
+   console.log(`making li strings for each doctor`);
   return responseJson.data.map(doctor => {
     let fullNameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
     let practices = removeDuplicateLocations(doctor.practices);
