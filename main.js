@@ -5,7 +5,8 @@ const paramsObj = { //global default 'state' of search params referenced in all 
     lng: -112.074036,
     radius: 10,
     term: "heart",
-    formattedLocation: ""
+    formattedLocation: "",
+    usersInputLocation: ""
 };
 
 //Helpers for Fetching APIs
@@ -39,7 +40,10 @@ function getAndSetParamsGeocode(address) {
           paramsObj.lng = responseJson.results[0].geometry.location.lng;
       })
       .catch(err => {
-          renderModal(returnMessageString(err.message));
+          renderModal(returnMessageString(`
+            Sorry, we are having a hard time finding a location for "${paramsObj.usersInputLocation}".
+            You can re-enter your city & state or zipcode in the top menu to find doctors closest to you.
+          `));
       });
 }
 
@@ -48,6 +52,7 @@ function handleStartFormSubmit() {
         e.preventDefault();
 
         const address = $('#location').val();
+        paramsObj.usersInputLocation = $('#location').val();
         await getAndSetParamsGeocode(address);
 
         const selectEl = document.getElementById("search-radius");
@@ -145,14 +150,31 @@ function getReverseGeocode(latLngStr) {
       throw new Error(response.statusText);
     })
     .then(responseJson => {
-      const city = responseJson.results[4].address_components[1].long_name;
-      const stateAbb = responseJson.results[4].address_components[3].short_name;
-      // return city + ', ' + stateAbb;
-      return city;
+      console.log(responseJson);
+      if (responseJson.results.length > 0) {
+        const correctObj = responseJson.results[0];
+        const addressComponentArr = correctObj.address_components;
+        const correctObjCorrectComponent = findCityInReverseGeocodeResults(addressComponentArr);
+        console.log(correctObjCorrectComponent);
+        const cityLocalityNeighborhood = correctObjCorrectComponent.long_name;
+
+        //const city = responseJson.results[4].address_components[1].long_name;
+        // const stateAbb = responseJson.results[4].address_components[3].short_name;
+        // return city + ', ' + stateAbb;
+        return cityLocalityNeighborhood || paramsObj.usersInputLocation;
+      } else {
+        return paramsObj.usersInputLocation;
+      }
     })
     .catch(err => {
           renderModal(returnMessageString(err.message));
     });
+}
+
+function findCityInReverseGeocodeResults(addressComponentArr) {
+  return addressComponentArr.find(obj => {
+    return (obj.types[0] == 'locality') || (obj.types[0] == 'political') || (obj.types[0] == 'neighborhood');
+  })
 }
 
 
