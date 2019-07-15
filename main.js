@@ -195,7 +195,7 @@ function handleEditLocationForm() {
     e.preventDefault();
 
 
-      console.log(`${$(this)} was SUBMITTED, calling getbetterdoctor function`);
+      console.log(`${$(this)} #edit-location-form was SUBMITTED, calling getbetterdoctor function`);
     if ($('#edit-location-input').val() !== '') {
 
       const address = $('#edit-location-input').val();
@@ -222,7 +222,7 @@ function handleEditRadiusButton() {
 function handleEditRadiusForm() {
   $('#edit-radius-form').on('submit', (e) => {
     e.preventDefault();
-    console.log(`${$(this)} was SUBMITTED, calling getbetterdoctor function`);
+    console.log(`${$(this)} #edit-radius-form was SUBMITTED, calling getbetterdoctor function`);
 
     const selectEl = document.getElementById("edit-radius");
     const radius = selectEl.options[selectEl.selectedIndex].value;
@@ -248,7 +248,7 @@ function handleEditSearchTermForm() {
     e.preventDefault();
 
     if ($('#edit-search-term').val() !== '') {
-      console.log(`${$(this)} was SUBMITTED, calling getbetterdoctor function`);
+      console.log(`${$(this)} #edit-search-term-form was SUBMITTED, calling getbetterdoctor function`);
 
       paramsObj.term = $('#edit-search-term-input').val();
       getBetterDoctor('#edit-search-term-form');
