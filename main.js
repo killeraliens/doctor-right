@@ -89,6 +89,7 @@ function getBetterDoctor(form) {
         })
         .then(responseJson => {
            $(`${form}`).css('display','none');
+           $('.params-btn').removeClass('active-edit');
            renderResultsPage(responseJson);
         })
         .catch(err => {
@@ -161,7 +162,7 @@ function getReverseGeocode(latLngStr) {
         //const city = responseJson.results[4].address_components[1].long_name;
         // const stateAbb = responseJson.results[4].address_components[3].short_name;
         // return city + ', ' + stateAbb;
-        return cityLocalityNeighborhood || paramsObj.usersInputLocation;
+        return cityLocalityNeighborhood;
       } else {
         return paramsObj.usersInputLocation;
       }
@@ -173,7 +174,7 @@ function getReverseGeocode(latLngStr) {
 
 function findCityInReverseGeocodeResults(addressComponentArr) {
   return addressComponentArr.find(obj => {
-    return (obj.types[0] == 'locality') || (obj.types[0] == 'political') || (obj.types[0] == 'neighborhood');
+    return (obj.types[0] == 'locality') || (obj.types[0] == 'political');
   })
 }
 
@@ -182,10 +183,14 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 function handleEditLocationButton() {
   $('#nav-params').on('click', '#edit-location-btn', function(e) {
     e.preventDefault();
-    console.log()
-      $(this).css('border', 'none');
-      $(this).css('background-color', 'Transparent');
-      $('#edit-location-form').slideDown(100, 'linear');
+
+      $('#edit-location-input').val('');
+      $('#edit-location-form').slideToggle(200
+      //   , function(){
+      //   hideOtherEditForms('#edit-location-form', '#edit-location-btn');
+      // }
+      );
+      hideOtherEditForms('#edit-location-form', '#edit-location-btn');
       handleEditLocationForm();
   })
 }
@@ -206,9 +211,13 @@ function handleEditLocationForm() {
 function handleEditRadiusButton() {
   $('#nav-params').on('click', '#edit-radius-btn', function(e) {
     e.preventDefault();
-      $(this).css('border', 'none');
-      $(this).css('background-color', 'Transparent');
-      $('#edit-radius-form').slideDown(100, 'linear');
+
+      $('#edit-radius-form').slideToggle(200
+      //   , function(){
+      //    hideOtherEditForms('#edit-radius-form', '#edit-radius-btn');
+      // }
+      );
+      hideOtherEditForms('#edit-radius-form', '#edit-radius-btn');
       handleEditRadiusForm();
   })
 }
@@ -228,9 +237,15 @@ function handleEditRadiusForm() {
 function handleEditSearchTermButton() {
   $('#nav-params').on('click', '#edit-search-term-btn', function(e) {
     e.preventDefault();
-      $(this).css('border', 'none');
-      $(this).css('background-color', 'Transparent');
-      $('#edit-search-term-form').slideDown(100, 'linear');
+
+      // hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
+      $('#edit-search-term-input').val('');
+      $('#edit-search-term-form').slideToggle(200
+      //   , function(){
+      //    hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
+      // }
+      );
+      hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
       handleEditSearchTermForm();
   })
 }
@@ -240,7 +255,7 @@ function handleEditSearchTermForm() {
     e.preventDefault();
     console.log('editing search-term form submitted');
     if ($('#edit-search-term').val() !== '') {
-      paramsObj.term = $('#edit-search-term').val();
+      paramsObj.term = $('#edit-search-term-input').val();
       getBetterDoctor('#edit-search-term-form');
     } else {
       renderModal(returnMessageString('You must enter a specialty keyword to search'));
@@ -249,6 +264,21 @@ function handleEditSearchTermForm() {
   })
 }
 
+
+function hideOtherEditForms(thisForm, thisBtn) {
+  const otherForms = $('.edit-params-form').not($(thisForm));
+  const otherBtns = $('.params-btn').not($(thisBtn));
+  if ($(thisBtn).hasClass('active-edit')) {
+      $(thisBtn).removeClass('active-edit');
+    } else {
+      $(thisBtn).addClass('active-edit');
+      otherBtns.removeClass('active-edit');
+      otherForms.find('input').val('');
+      otherForms.css('display', 'none');
+  }
+
+
+}
 
 // Result/Listing Components
 function renderListDoctors(responseJson) {

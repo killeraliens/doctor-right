@@ -75,6 +75,11 @@ button.submit-btn {
     background-color: rgb(20, 156, 111);
 }
 
+.active-edit {
+  border: none;
+  background: Transparent;
+}
+
 
 /* Modal */
 .modal {
