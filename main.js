@@ -198,11 +198,11 @@ function handleEditLocationButton() {
 
 function returnEditLocationFormString() {
   return `
-    <form id="edit-location-form" class="edit-params-form">
-          <div class="flex">
-            <input id="edit-location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
-            <button type="submit" class="submit-btn">Update Search</button>
-          </div>
+    <form id="edit-location-form" class="edit-params-form ">
+      <div class="flex">
+        <input id="edit-location-input" class="add-before location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
+        <button type="submit" class="submit-btn">Find Doctors</button>
+      </div>
     </form>
   `;
 }
@@ -240,14 +240,16 @@ function handleEditRadiusButton() {
 
 function returnEditRadiusFormString() {
   return `
-    <form id="edit-radius-form" class="edit-params-form">
-          <select name="edit-radius" id="edit-radius">
-            <option value="5">5 miles</option>
-            <option value="10">10 miles</option>
-            <option value="25">25 miles</option>
-            <option value="50">50 miles</option>
-          </select>
-          <button type="submit" class="submit-btn">Update Search</button>
+    <form id="edit-radius-form" class="edit-params-form ">
+      <div class="flex">
+        <select name="edit-radius" id="edit-radius" class="add-before radius-input">
+          <option value="5">5 miles</option>
+          <option value="10">10 miles</option>
+          <option value="25">25 miles</option>
+          <option value="50">50 miles</option>
+        </select>
+        <button type="submit" class="submit-btn">Find Doctors</button>
+      </div>
     </form>
   `;
 }
@@ -282,8 +284,10 @@ function handleEditSearchTermButton() {
 function returnEditSearchTermFormString() {
   return `
     <form id="edit-search-term-form" class="edit-params-form">
-       <input id="edit-search-term-input" placeholder="Search term 'dental', 'Alzheimers', 'vision'" required>
-       <button type="submit" class="submit-btn">Update Search</button>
+      <div class="flex">
+       <input id="edit-search-term-input" class="add-before term-input" placeholder="Search specialties" required>
+       <button type="submit" class="submit-btn">Find Doctors</button>
+      </div>
     </form>
   `;
 }

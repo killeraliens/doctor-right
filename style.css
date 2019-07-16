@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i,700&display=swap');
 
 
 /* Global*/
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    /*font-family: 'Source Sans Pro', sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
     background-color: rgba(220, 220, 220, 0.6);
 }
 
@@ -30,6 +32,13 @@ span {
   font-weight: bold;
 }
 
+.flex {
+  display: flex;
+}
+
+h3 {
+  margin-top: 0px;
+}
 
 
 /* Forms*/
@@ -50,17 +59,53 @@ input, select {
     width: 100%;
     margin-bottom: 10px;
     background-color: white;
+    padding-left: 32px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-style:solid;
+    border-width: 1px;
+    border-color: lightgray;
 }
 
+#start-form input, #start-form select {
+  padding-left: 10px;
+}
+
+#start-form {
+  text-align: center;
+}
+
+span.before-content {
+  line-height: 0px;
+  position: relative;
+}
+
+i.before-content {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+
 button, input, select {
-    height: 30px;
-    padding: 0 10px;
+    height: 38px;
     outline: none;
+    font-size: 14px;
+    border-radius: 6px;
 }
 
 
 button {
     color: white;
+    padding: 0 16px;
+    white-space: nowrap;
 }
 
 button:hover {
@@ -73,6 +118,10 @@ button.next {
 
 button.submit-btn {
     background-color: rgb(20, 156, 111);
+}
+
+.edit-params-form > button {
+  margin-left: 10px;
 }
 
 .active-edit {
@@ -108,10 +157,36 @@ button.submit-btn {
     width: 80%;
 }
 
-
 /*.modal-message {*/
 /*    font-size: 18px;*/
 /*}*/
+#startform {
+  position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+#step-one, #step-two, #step-three {
+  display: none;
+}
+
+#step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
+  position: relative;
+    /*background-color: #fefefe;*/
+    margin: 0 auto;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 20px;
+    padding-top: 40px;
+    display: block;
+    /*width: 80%;*/
+}
 
 
 .close {
@@ -139,10 +214,6 @@ i {
 
 #edit-location-form, #edit-radius-form, #edit-search-term-form {
   display: none;
-}
-
-.flex {
-  display: flex;
 }
 
 /* Results Section */

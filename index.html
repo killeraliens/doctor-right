@@ -16,28 +16,40 @@
 <div class="container">
     <main>
         <form id="start-form" action="get">
-            <fieldset id="step-one">
+            <fieldset id="step-one" class="active-fieldset">
                 <legend>
                     <h1>Doctors Near Me</h1>
                     <h3>find local medical professionals</h3>
                 </legend>
-                <label for="location">1. Enter your location</label>
-                <input id="location" aria-label="Your location" type="text" placeholder="City & State, or Zipcode" required>
+                <i class="fas fa-map-marker"></i>
+                <label for="location">Enter your location</label>
+                <!-- <span class="before-content">
+                  <i class="fas fa-map-marker before-content"></i>
+                </span> -->
+                  <input id="location" class="add-before" aria-label="Enter your location" type="text" placeholder="City & State, or Zipcode" required>
                 <!-- <button type="button" id="step-one-btn" class="next">next</button> -->
             </fieldset>
             <fieldset id="step-two">
-                <label for="search-radius">2. Select a search radius</label>
-                <select name="search-radius" id="search-radius" >
+                <i class="far fa-dot-circle"></i>
+                <label for="search-radius">Select a search radius</label>
+                <!-- <span class="before-content">
+                  <i class="far fa-dot-circle before-content"></i>
+                </span> -->
+                <select name="search-radius" id="search-radius" class="add-before" aria-label="Select search radius">
                     <option value="5">5 miles</option>
                     <option value="10">10 miles</option>
                     <option value="25">25 miles</option>
                     <option value="50">50 miles</option>
                 </select>
 <!--                <button type="button" id="step-two-btn" class="next">next</button>-->
-            </fieldset id="step-three">
-            <fieldset>
-                <label for="search-term">3. What area is troubling you?</label>
-                <input id="search-term" placeholder="enter a specialty keyword" required>
+            </fieldset >
+            <fieldset id="step-three">
+                <i class="fas fa-search "></i>
+                <label for="search-term"> What type of doctor are you looking for?</label>
+                <!-- <span class="before-content">
+                  <i class="fas fa-search before-content"></i>
+                </span> -->
+                <input id="search-term" placeholder="Search specialties" class="add-before term-input"required>
 <!--                <button type="button" id="step-three-btn" class="next">next</button>-->
             </fieldset>
             <button type="submit" class="submit-btn">Find Doctors</button>
