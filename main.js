@@ -238,7 +238,7 @@ function handleEditRadiusButton() {
   })
 }
 
-returnEditRadiusFormString() {
+function returnEditRadiusFormString() {
   return `
     <form id="edit-radius-form" class="edit-params-form">
           <select name="edit-radius" id="edit-radius">
