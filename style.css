@@ -160,9 +160,9 @@ button.submit-btn {
 /*.modal-message {*/
 /*    font-size: 18px;*/
 /*}*/
-#startform {
+.start-form-fieldset-container {
   position: fixed;
-    z-index: 1;
+    /*z-index: -1;*/
     left: 0;
     top: 0;
     height: 100%;
@@ -174,9 +174,16 @@ button.submit-btn {
   display: none;
 }
 
+#step-one, #step-two, #step-three {
+  -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
 #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
   position: relative;
-    /*background-color: #fefefe;*/
+    background-color: #fefefe;
+    /*z-index: 10;*/
     margin: 0 auto;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -185,9 +192,12 @@ button.submit-btn {
     padding: 20px;
     padding-top: 40px;
     display: block;
-    /*width: 80%;*/
+
 }
 
+/*#start-form-submit-btn {
+  display: block;
+}*/
 
 .close {
     position: absolute;

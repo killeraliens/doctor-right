@@ -420,4 +420,10 @@ function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
 
+
+//Start Form Animation
+function handleStartFormStepOne() {
+
+}
+
 handleStartFormSubmit();

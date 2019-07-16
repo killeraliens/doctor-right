@@ -16,6 +16,8 @@
 <div class="container">
     <main>
         <form id="start-form" action="get">
+
+          <div class="start-form-fieldset-container">
             <fieldset id="step-one" class="active-fieldset">
                 <legend>
                     <h1>Doctors Near Me</h1>
@@ -27,9 +29,12 @@
                   <i class="fas fa-map-marker before-content"></i>
                 </span> -->
                   <input id="location" class="add-before" aria-label="Enter your location" type="text" placeholder="City & State, or Zipcode" required>
-                <!-- <button type="button" id="step-one-btn" class="next">next</button> -->
+                <button type="button" id="step-one-btn" class="next">next</button>
             </fieldset>
-            <fieldset id="step-two">
+          <!-- </div>
+
+          <div class="start-form-fieldset-container"> -->
+            <fieldset id="step-two" class="">
                 <i class="far fa-dot-circle"></i>
                 <label for="search-radius">Select a search radius</label>
                 <!-- <span class="before-content">
@@ -41,18 +46,22 @@
                     <option value="25">25 miles</option>
                     <option value="50">50 miles</option>
                 </select>
-<!--                <button type="button" id="step-two-btn" class="next">next</button>-->
+                <button type="button" id="step-two-btn" class="next">next</button>
             </fieldset >
-            <fieldset id="step-three">
+         <!--  </div>
+
+          <div class="start-form-fieldset-container"> -->
+            <fieldset id="step-three" class="">
                 <i class="fas fa-search "></i>
                 <label for="search-term"> What type of doctor are you looking for?</label>
                 <!-- <span class="before-content">
                   <i class="fas fa-search before-content"></i>
                 </span> -->
                 <input id="search-term" placeholder="Search specialties" class="add-before term-input"required>
-<!--                <button type="button" id="step-three-btn" class="next">next</button>-->
+                <!-- <button type="button" id="step-three-btn" class="next">next</button> -->
+            <button type="submit" id="start-form-submit-btn" class="submit-btn">Find Doctors</button>
             </fieldset>
-            <button type="submit" class="submit-btn">Find Doctors</button>
+          </div>
         </form>
 
         <nav id="nav-params"></nav>
