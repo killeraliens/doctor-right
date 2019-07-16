@@ -178,6 +178,10 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 
 
 // Nav Actions
+function injectThisForm(formString) {
+  $('#edit-form-container').html(formString);
+}
+
 function handleEditLocationButton() {
   $('#edit-location-btn').on('click' , function(e) {
     e.preventDefault();
@@ -185,9 +189,22 @@ function handleEditLocationButton() {
 
       $(this).toggleClass('active-edit');
 
+      injectThisForm(returnEditLocationFormString());
+
       hideOtherEditForms('#edit-location-form', '#edit-location-btn');
       handleEditLocationForm();
   });
+}
+
+function returnEditLocationFormString() {
+  return `
+    <form id="edit-location-form" class="edit-params-form">
+          <div class="flex">
+            <input id="edit-location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
+            <button type="submit" class="submit-btn">Update Search</button>
+          </div>
+    </form>
+  `;
 }
 
 function handleEditLocationForm() {
@@ -214,9 +231,25 @@ function handleEditRadiusButton() {
 
       $(this).toggleClass('active-edit');
 
+      injectThisForm(returnEditRadiusFormString());
+
       hideOtherEditForms('#edit-radius-form', '#edit-radius-btn');
       handleEditRadiusForm();
   })
+}
+
+returnEditRadiusFormString() {
+  return `
+    <form id="edit-radius-form" class="edit-params-form">
+          <select name="edit-radius" id="edit-radius">
+            <option value="5">5 miles</option>
+            <option value="10">10 miles</option>
+            <option value="25">25 miles</option>
+            <option value="50">50 miles</option>
+          </select>
+          <button type="submit" class="submit-btn">Update Search</button>
+    </form>
+  `;
 }
 
 function handleEditRadiusForm() {
@@ -238,9 +271,21 @@ function handleEditSearchTermButton() {
     console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
 
       $(this).toggleClass('active-edit');
+
+      injectThisForm(returnEditSearchTermFormString());
+
       hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
       handleEditSearchTermForm();
   })
+}
+
+function returnEditSearchTermFormString() {
+  return `
+    <form id="edit-search-term-form" class="edit-params-form">
+       <input id="edit-search-term-input" placeholder="Search term 'dental', 'Alzheimers', 'vision'" required>
+       <button type="submit" class="submit-btn">Update Search</button>
+    </form>
+  `;
 }
 
 function handleEditSearchTermForm() {
