@@ -420,10 +420,24 @@ function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
 
-
 //Start Form Animation
 function handleStartFormStepOne() {
+  $('#start-form').on('click', '#step-one-btn', function(e) {
 
+    if ( $('#location').val().length === 0 || $('#location').val() === ' ') {
+      renderModal(returnMessageString('You must enter an address, city & state, or zipcode.'));
+    } else {
+      $('#step-one').css({
+        transform: 'translateY(-150vh)'
+      });
+      $('#step-two').addClass('active-fieldset');
+      setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+
+      // handleStartFormStepTwo();
+    }
+
+  });
 }
 
+handleStartFormStepOne();
 handleStartFormSubmit();

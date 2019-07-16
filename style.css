@@ -167,32 +167,48 @@ button.submit-btn {
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
 }
 
-#step-one, #step-two, #step-three {
+/*#step-one, #step-two, #step-three {
   display: none;
+}*/
+
+#step-one.active-fieldset {
+  position: relative;
+
 }
 
-#step-one, #step-two, #step-three {
-  -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%);
+#step-two, #step-three {
+  /*position: absolute;*/
+  -webkit-transform: translateY(150vh);
+    -ms-transform: translateY(150vh);
+    transform: translateY(150vh);
+/*  transition-timing-function: ease-out;
+    transition: 10s;*/
+
 }
 
 #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
-  position: relative;
-    background-color: #fefefe;
-    /*z-index: 10;*/
+    position: relative;
+    /*background-color: #fefefe;*/
+    z-index: 10;
     margin: 0 auto;
     top: 50%;
+    transition-timing-function: ease;
+    transition: 1s;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     padding: 20px;
     padding-top: 40px;
-    display: block;
 
+}
+
+.done-fieldset {
+  height: 0;
+  padding: 0;
+  background-color: #fefefe;
 }
 
 /*#start-form-submit-btn {
