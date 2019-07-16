@@ -421,7 +421,7 @@ function returnMessageString(message) {
 }
 
 //Start Form Animation
-function handleStartFormStepOne() {
+function listenToStartFormStepOne() {
   $('#start-form').on('click', '#step-one-btn', function(e) {
 
     if ( $('#location').val().length === 0 || $('#location').val() === ' ') {
@@ -431,13 +431,31 @@ function handleStartFormStepOne() {
         transform: 'translateY(-150vh)'
       });
       $('#step-two').addClass('active-fieldset');
-      setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+      setTimeout(function() { $('#step-one').addClass('done-fieldset')}, 500);
 
-      // handleStartFormStepTwo();
+      listenToStartFormStepTwo();
     }
+  });
+}
+
+function listenToStartFormStepTwo() {
+  $('#start-form').on('click', '#step-two-btn', function(e) {
+
+
+      $('#step-two').css({
+        transform: 'translateY(-150vh)'
+      });
+      $('#step-three').addClass('active-fieldset');
+      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+      setTimeout(function() { $('#step-two').addClass('done-fieldset')}, 500);
+
+      // listenToStartFormStepThree();
 
   });
 }
 
-handleStartFormStepOne();
+
+
+listenToStartFormStepOne();
 handleStartFormSubmit();
