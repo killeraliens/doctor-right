@@ -59,7 +59,7 @@ input, select {
     width: 100%;
     margin-bottom: 10px;
     background-color: white;
-    padding-left: 32px;
+    padding-left: 34px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -83,9 +83,9 @@ span.before-content {
 
 i.before-content {
   position: absolute;
-  top: 6px;
+  top: 12px;
   left: 12px;
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.4;
 }
 
@@ -124,9 +124,21 @@ button.submit-btn {
   margin-left: 10px;
 }
 
-.active-edit {
+
+.params-btn {
   border: none;
   background: Transparent;
+  padding-left: 0;
+}
+
+.params-btn:focus, a:focus {
+ color: black;
+}
+
+.params-btn.active-edit {
+  /*border: none;
+  background: Transparent;*/
+  opacity: .4;
 }
 
 
