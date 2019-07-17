@@ -301,7 +301,7 @@ function returnEditSearchTermFormString() {
       </span>
       <div class="flex">
         <div class="autocomplete">
-          <input id="edit-search-term-input" class="add-before term-input" placeholder="Search specialties" required>
+          <input id="edit-search-term-input" class="add-before term-input" placeholder="Search by medical issue or type of doctor" required>
         </div>
        <button type="submit" class="submit-btn">Find Doctors</button>
       </div>
