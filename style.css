@@ -66,6 +66,7 @@ input, select {
     border-style:solid;
     border-width: 1px;
     border-color: lightgray;
+
 }
 
 #start-form input, #start-form select {
@@ -83,9 +84,9 @@ span.before-content {
 
 i.before-content {
   position: absolute;
-  top: 12px;
+  top: 10px;
   left: 12px;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.4;
 }
 
@@ -124,21 +125,28 @@ button.submit-btn {
   margin-left: 10px;
 }
 
+/*.edit-params-form {
+  text-align: center;
+}*/
 
 .params-btn {
   border: none;
   background: Transparent;
   padding-left: 0;
+  display: inline-block;
+  font-size: 12px;
 }
 
 .params-btn:focus, a:focus {
  color: black;
+
 }
 
 .params-btn.active-edit {
   /*border: none;
   background: Transparent;*/
-  opacity: .4;
+  /*display: none;*/
+  opacity: .5;
 }
 
 

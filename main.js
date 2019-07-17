@@ -209,7 +209,7 @@ function returnEditLocationFormString() {
       </span>
       <div class="flex">
         <input id="edit-location-input" class="add-before location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
-        <button type="submit" class="submit-btn">Find Doctors</button>
+        <button type="submit" class="submit-btn">Set Location</button>
       </div>
     </form>
   `;
@@ -259,7 +259,7 @@ function returnEditRadiusFormString() {
           <option value="25">25 miles</option>
           <option value="50">50 miles</option>
         </select>
-        <button type="submit" class="submit-btn">Find Doctors</button>
+        <button type="submit" class="submit-btn">Update Distance</button>
       </div>
     </form>
   `;
