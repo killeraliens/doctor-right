@@ -434,6 +434,7 @@ function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
 
+
 //Start Form Animation
 function listenToStartFormStepOne() {
   $('#start-form').on('click', '#step-one-btn', function(e) {
