@@ -93,6 +93,15 @@
         <section id="section-results">
             <h1 id="listings-title"></h1>
             <p id="listings-count-and-order-description"></p>
+            <form id="sort-order-form">
+              <fieldset>
+                <label for="sort-order">Results Sorted By</label>
+                <select name="sort-order" id="sort-order">
+                  <option value="best-match-asc">Best Match</option>
+                  <option value="distance-asc" selected="selected">Distance</option>
+                </select>
+              </fieldset>
+            </form>
             <ul id="list-doctors" class="doctor-listings"></ul>
         </section>
     </main>
