@@ -335,8 +335,10 @@ function hideOtherEditForms(thisForm, thisBtn) {
       $(otherForms).css('display', 'none');
       $(thisForm).slideDown(300, function() {
         $(thisForm).find('input').val('');
+        if ($(thisForm).attr('id') == 'edit-search-term-input') {
+          autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
+        }
       });
-      autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
   }
 }
 
