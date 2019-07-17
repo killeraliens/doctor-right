@@ -335,7 +335,9 @@ function hideOtherEditForms(thisForm, thisBtn) {
       $(otherForms).css('display', 'none');
       $(thisForm).slideDown(300, function() {
         $(thisForm).find('input').val('');
-        if ($(thisForm).attr('id') == 'edit-search-term-input') {
+        console.log($(thisForm).prop('id'));
+        if ($(thisForm).prop('id') == 'edit-search-term-form') {
+          console.log('autocomplete active');
           autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
         }
       });
