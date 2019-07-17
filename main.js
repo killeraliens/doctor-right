@@ -255,7 +255,7 @@ function returnEditRadiusFormString() {
       <div class="flex">
         <select name="edit-radius" id="edit-radius" class="add-before radius-input">
           <option value="5">5 miles</option>
-          <option value="10">10 miles</option>
+          <option value="10" selected="selected">10 miles</option>
           <option value="25">25 miles</option>
           <option value="50">50 miles</option>
         </select>
