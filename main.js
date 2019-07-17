@@ -142,8 +142,10 @@ function listenToFormIcons() {
     targetInput.trigger('focus');
 
     targetSelect.attr('size', 4);
+    targetSelect.css({height: "80px"});
     targetSelectOptions.on('click', function() {
       targetSelect.attr('size', 1);
+      targetSelect.css({height: "40px"});
     })
 
     // const optionToClick = document.querySelector('#edit-radius').children[2]; //choose any of the children
