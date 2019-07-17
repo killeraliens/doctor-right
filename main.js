@@ -288,18 +288,21 @@ function handleEditSearchTermButton() {
       injectThisForm(returnEditSearchTermFormString());
 
       hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
+      // autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
       handleEditSearchTermForm();
   })
 }
 
 function returnEditSearchTermFormString() {
   return `
-    <form id="edit-search-term-form" class="edit-params-form">
+    <form id="edit-search-term-form" class="edit-params-form" autocomplete="off">
       <span class="before-content">
         <i class="fas fa-search before-content"></i>
       </span>
       <div class="flex">
-       <input id="edit-search-term-input" class="add-before term-input" placeholder="Search specialties" required>
+        <div class="autocomplete">
+          <input id="edit-search-term-input" class="add-before term-input" placeholder="Search specialties" required>
+        </div>
        <button type="submit" class="submit-btn">Find Doctors</button>
       </div>
     </form>
@@ -333,6 +336,7 @@ function hideOtherEditForms(thisForm, thisBtn) {
       $(thisForm).slideDown(300, function() {
         $(thisForm).find('input').val('');
       });
+      autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
   }
 }
 

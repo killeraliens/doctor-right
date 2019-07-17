@@ -1,4 +1,35 @@
-const searchTermsAutocomplete = ["Heart", "Brain", "Foot", "head", "eyes", "internal", "Skin", "skin tags", "speech", "kidneys"];
+// const searchTermsAutocomplete = ["Heart", "Brain", "Foot", "head", "eyes", "internal", "Skin", "skin tags", "speech", "kidneys"];
+// const searchTermsAutocomplete = paramsObj.autocompleteArr;
+
+function returnAutocompleteTerms() {
+  const bdConditionsParams = {
+            user_key: config.betterDoc
+        };
+
+        const rootUrl = 'https://api.betterdoctor.com/2016-03-01/conditions?';
+        const url = rootUrl + returnQueryString(bdConditionsParams);
+
+        return fetch(url)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error(response.statusText);
+        })
+        .then(responseJson => {
+          console.log(`got those search terms`);
+          console.log(responseJson.data);
+          const termNamesArr = [];
+          responseJson.data.forEach(obj => termNamesArr.push(obj.name));
+          return termNamesArr;
+        })
+        .catch(err => {
+          renderModal(returnMessageString(err.message));
+        })
+}
+
+
+
 
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -97,4 +128,10 @@ document.addEventListener("click", function (e) {
 });
 }
 
-autocomplete(document.getElementById("search-term"), searchTermsAutocomplete);
+async function setGlobalAutoCompleteArr() {
+  paramsObj.autoSearchTerms = await returnAutocompleteTerms();
+  autocomplete(document.getElementById("search-term"), paramsObj.autoSearchTerms );
+}
+
+
+setGlobalAutoCompleteArr();
