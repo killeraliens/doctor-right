@@ -99,6 +99,7 @@ input, select {
     margin-bottom: 10px;
     background-color: white;
     padding-left: 34px;
+    /*text-indent: 34px;*/
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

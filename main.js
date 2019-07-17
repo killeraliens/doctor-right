@@ -116,10 +116,10 @@ async function renderResultsPage(responseJson) {
   handleEditRadiusButton();
   handleEditSearchTermButton();
 
-
   injectThisForm(returnEditSearchTermFormString());
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
   handleEditSearchTermForm();
+
 
 
   $('#listings-title').text(
@@ -132,6 +132,42 @@ async function renderResultsPage(responseJson) {
   renderListDoctors(responseJson);
 }
 
+function listenToFormIcons() {
+  const icons = $('.edit-params-form').find('span.before-content');
+
+  $(icons).on('click', function(e) {
+    const targetInput = $(this).closest('form').find('input');
+    const targetSelect = $(this).closest('form').find('select');
+    const targetSelectOptions = $(this).closest('form').find('option');
+    targetInput.trigger('focus');
+
+    targetSelect.attr('size', 4);
+    targetSelectOptions.on('click', function() {
+      targetSelect.attr('size', 1);
+    })
+
+    // const optionToClick = document.querySelector('#edit-radius').children[2]; //choose any of the children
+    // optionToClick.selected = true;
+    // simulateClick(optionToClick);
+
+
+    // function simulateClick(item) {
+    //   item.dispatchEvent(new PointerEvent('pointerdown', {bubbles: true}));
+    //   item.dispatchEvent(new MouseEvent('mousedown', {bubbles: true}));
+    //   item.dispatchEvent(new PointerEvent('pointerup', {bubbles: true}));
+    //   item.dispatchEvent(new MouseEvent('mouseup', {bubbles: true}));
+    //   item.dispatchEvent(new MouseEvent('mouseout', {bubbles: true}));
+    //   item.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+    //   item.dispatchEvent(new Event('change', {bubbles: true}));
+
+    //   return true;
+    // }
+
+
+
+  });
+}
+
 function handleChangeSortedBy() {
   $('#sort-order').on('change', function(e) {
     e.preventDefault();
@@ -142,21 +178,8 @@ function handleChangeSortedBy() {
     paramsObj.sort = sortMethod;
 
     getBetterDoctor('#sort-order-form');
-    //console.log(paramsObj);
-    //handleSortedByFormSubmit();
-    // $('#sort-order').submit();
-    // handleSortedByFormSubmit();
   });
 }
-
-// function handleSortedByFormSubmit() {
-//   $('#sort-order-form').on('submit', function(e) {
-//     e.preventDefault();
-//     console.log('#sort-order-form is being SUBMITTED, calling better doctor');
-
-//     getBetterDoctor('#sort-order-form');
-//   });
-// }
 
 // Nav Components
 async function renderNavParams() {
@@ -246,6 +269,7 @@ function returnEditLocationFormString() {
 }
 
 function handleEditLocationForm() {
+  listenToFormIcons();
   $('#edit-location-form').on('submit', async (e) => {
     e.preventDefault();
 
@@ -296,6 +320,7 @@ function returnEditRadiusFormString() {
 }
 
 function handleEditRadiusForm() {
+  listenToFormIcons();
   $('#edit-radius-form').on('submit', (e) => {
     e.preventDefault();
     console.log(`${$(this)} #edit-radius-form was SUBMITTED, calling getbetterdoctor function`);
@@ -340,6 +365,7 @@ function returnEditSearchTermFormString() {
 }
 
 function handleEditSearchTermForm() {
+  listenToFormIcons();
   $('#edit-search-term-form').on('submit', (e) => {
     e.preventDefault();
 
