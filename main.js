@@ -111,6 +111,11 @@ async function renderResultsPage(responseJson) {
   handleEditRadiusButton();
   handleEditSearchTermButton();
 
+  injectThisForm(returnEditSearchTermFormString());
+  hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
+  handleEditSearchTermForm();
+
+
   $('#listings-title').text(
     `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
    );
@@ -136,7 +141,7 @@ function returnParamsNavString(formattedLocation) {
     return `
         <button id="edit-location-btn" class="params-btn"><i class="fas fa-map-marker"></i>${formattedLocation}</button>
         <button id="edit-radius-btn" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
-        <button id="edit-search-term-btn" class="params-btn"><i class="fas fa-search"></i>${paramsObj.term}</button>
+        <button id="edit-search-term-btn" class="params-btn active-edit"><i class="fas fa-search"></i>${paramsObj.term}</button>
     `;
 }
 
@@ -198,11 +203,14 @@ function handleEditLocationButton() {
 
 function returnEditLocationFormString() {
   return `
-    <form id="edit-location-form" class="edit-params-form">
-          <div class="flex">
-            <input id="edit-location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
-            <button type="submit" class="submit-btn">Update Search</button>
-          </div>
+    <form id="edit-location-form" class="edit-params-form ">
+      <span class="before-content">
+        <i class="fas fa-map-marker before-content"></i>
+      </span>
+      <div class="flex">
+        <input id="edit-location-input" class="add-before location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
+        <button type="submit" class="submit-btn">Set Location</button>
+      </div>
     </form>
   `;
 }
@@ -240,14 +248,19 @@ function handleEditRadiusButton() {
 
 function returnEditRadiusFormString() {
   return `
-    <form id="edit-radius-form" class="edit-params-form">
-          <select name="edit-radius" id="edit-radius">
-            <option value="5">5 miles</option>
-            <option value="10">10 miles</option>
-            <option value="25">25 miles</option>
-            <option value="50">50 miles</option>
-          </select>
-          <button type="submit" class="submit-btn">Update Search</button>
+    <form id="edit-radius-form" class="edit-params-form ">
+      <span class="before-content">
+        <i class="far fa-dot-circle before-content"></i>
+      </span>
+      <div class="flex">
+        <select name="edit-radius" id="edit-radius" class="add-before radius-input">
+          <option value="5">5 miles</option>
+          <option value="10">10 miles</option>
+          <option value="25">25 miles</option>
+          <option value="50">50 miles</option>
+        </select>
+        <button type="submit" class="submit-btn">Update Distance</button>
+      </div>
     </form>
   `;
 }
@@ -282,8 +295,13 @@ function handleEditSearchTermButton() {
 function returnEditSearchTermFormString() {
   return `
     <form id="edit-search-term-form" class="edit-params-form">
-       <input id="edit-search-term-input" placeholder="Search term 'dental', 'Alzheimers', 'vision'" required>
-       <button type="submit" class="submit-btn">Update Search</button>
+      <span class="before-content">
+        <i class="fas fa-search before-content"></i>
+      </span>
+      <div class="flex">
+       <input id="edit-search-term-input" class="add-before term-input" placeholder="Search specialties" required>
+       <button type="submit" class="submit-btn">Find Doctors</button>
+      </div>
     </form>
   `;
 }
@@ -416,4 +434,52 @@ function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
 
+//Start Form Animation
+function listenToStartFormStepOne() {
+  $('#start-form').on('click', '#step-one-btn', function(e) {
+
+    if ( $('#location').val().length === 0 || $('#location').val() === ' ') {
+      renderModal(returnMessageString('You must enter an address, city & state, or zipcode.'));
+    } else {
+      $('#step-one').css({
+        transform: 'translateY(-150vh)'
+      });
+      $('#step-two').addClass('active-fieldset');
+      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+      setTimeout(function() { $('#step-one').addClass('done-fieldset')}, 500);
+
+      listenToStartFormStepTwo();
+    }
+  });
+}
+
+function listenToStartFormStepTwo() {
+  $('#start-form').on('click', '#step-two-btn', function(e) {
+
+
+      $('#step-two').css({
+        transform: 'translateY(-150vh)'
+      });
+      $('#step-three').addClass('active-fieldset');
+      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+      setTimeout(function() { $('#step-two').addClass('done-fieldset')}, 500);
+
+      listenToStartFormStepThree()
+  });
+}
+
+function listenToStartFormStepThree() {
+  $('#start-form-submit-btn').on('click', function(e) {
+    e.preventDefault();
+    if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
+      renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
+    } else {
+      $('#start-form').submit();
+    }
+  });
+
+}
+
+
+listenToStartFormStepOne();
 handleStartFormSubmit();
