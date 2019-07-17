@@ -474,7 +474,7 @@ function returnMessageString(message) {
 
 //Start Form Animation
 function listenToStartFormStepOne() {
-  $('#start-form').on('click blur', '#step-one-btn', function(e) {
+  $('#start-form').on('click ', '#step-one-btn', function(e) {
   // $('#step-one-btn').on('click keydown', function(e) {
 
     //console.log(e.code);
@@ -496,14 +496,14 @@ function listenToStartFormStepOne() {
 }
 
 function listenToStartFormStepTwo() {
-  $('#start-form').on('click blur', '#step-two-btn', function(e) {
+  $('#start-form').on('click ', '#step-two-btn', function(e) {
 
       $('#step-two').css({
         transform: 'translateY(-150vh)'
       });
       $('#step-three').addClass('active-fieldset');
       $('#step-three').removeAttr('disabled');
-      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+
       setTimeout(function() { $('#step-two').addClass('done-fieldset')}, 500);
 
       listenToStartFormStepThree()
@@ -511,11 +511,12 @@ function listenToStartFormStepTwo() {
 }
 
 function listenToStartFormStepThree() {
-  $('#start-form-submit-btn').on('click blur', function(e) {
+  $('#start-form-submit-btn').on('click ', function(e) {
     e.preventDefault();
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
     } else {
+      handleStartFormSubmit();
       $('#start-form').submit();
     }
   });
@@ -524,6 +525,5 @@ function listenToStartFormStepThree() {
 
 
 listenToStartFormStepOne();
-handleStartFormSubmit();
 handleChangeSortedBy();
 
