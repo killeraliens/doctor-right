@@ -1,5 +1,4 @@
-// const searchTermsAutocomplete = ["Heart", "Brain", "Foot", "head", "eyes", "internal", "Skin", "skin tags", "speech", "kidneys"];
-// const searchTermsAutocomplete = paramsObj.autocompleteArr;
+
 
 function returnAutocompleteTerms() {
   const bdConditionsParams = {
@@ -134,4 +133,4 @@ async function setGlobalAutoCompleteArr() {
 }
 
 
-setGlobalAutoCompleteArr();
+//setGlobalAutoCompleteArr();

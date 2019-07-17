@@ -42,8 +42,8 @@ button {
     white-space: nowrap;
 }
 
-button:hover {
-    opacity: .6;
+button:hover, button:focus {
+    opacity: .5;
 }
 
 
@@ -51,7 +51,6 @@ button:hover {
 
 .autocomplete {
   position: relative;
-  /*display: inline-block;*/
   width: 100%;
 }
 
@@ -107,6 +106,10 @@ input, select {
     border-width: 1px;
     border-color: lightgray;
 
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
 }
 
 #start-form input, #start-form select {
@@ -279,6 +282,10 @@ button.submit-btn {
 
 button.params-btn {
   color: darkslategrey;
+}
+
+button.params-btn:focus {
+  opacity: .4;
 }
 
 i {

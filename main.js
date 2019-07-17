@@ -288,7 +288,7 @@ function handleEditSearchTermButton() {
       injectThisForm(returnEditSearchTermFormString());
 
       hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
-      // autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
+
       handleEditSearchTermForm();
   })
 }
@@ -337,8 +337,8 @@ function hideOtherEditForms(thisForm, thisBtn) {
         $(thisForm).find('input').val('');
         console.log($(thisForm).prop('id'));
         if ($(thisForm).prop('id') == 'edit-search-term-form') {
-          console.log('autocomplete active');
-          autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
+          //console.log('autocomplete active');
+          //autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
         }
       });
   }
@@ -445,7 +445,11 @@ function returnMessageString(message) {
 
 //Start Form Animation
 function listenToStartFormStepOne() {
-  $('#start-form').on('click', '#step-one-btn', function(e) {
+  // $('#start-form').on('click', '#step-one-btn', function(e) {
+  $('#step-one-btn').on('click keydown', function(e) {
+
+    console.log(e.code);
+
 
     if ( $('#location').val().length === 0 || $('#location').val() === ' ') {
       renderModal(returnMessageString('You must enter an address, city & state, or zipcode.'));
