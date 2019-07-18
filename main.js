@@ -268,8 +268,8 @@ function returnEditLocationFormString() {
         <i class="fas fa-map-marker before-content"></i>
       </span>
       <div class="flex">
-        <input id="edit-location-input" class="add-before location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
-        <button type="submit" class="submit-btn">Set Location</button>
+        <input id="edit-location-input" class="add-before location-input" aria-label="Update Location" type="text" placeholder="City & State or Zipcode" >
+        <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
   `;
@@ -320,7 +320,7 @@ function returnEditRadiusFormString() {
           <option value="25">25 miles</option>
           <option value="50">50 miles</option>
         </select>
-        <button type="submit" class="submit-btn">Update Distance</button>
+        <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
   `;
@@ -365,7 +365,7 @@ function returnEditSearchTermFormString() {
         <div class="autocomplete">
           <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
         </div>
-       <button type="submit" class="submit-btn">Find Doctors</button>
+       <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
   `;
