@@ -463,6 +463,56 @@ li.doctor-card {
 }
 
 #map {
-  height: 600px;
-  width: 400px;
+  height: 100%;
+  width: 100%;
 }
+
+#map-container {
+    height: 40vh;
+    width: 100%;
+}
+
+.map-listings-wrap {
+  flex-direction: column-reverse;
+
+}
+
+footer {
+  display: none;
+  padding: 0px 120px;
+  padding-top: 32px;
+  padding-bottom: 38px;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
+
+
+
+@media (min-width: 599px) {
+  .map-listings-wrap {
+    flex-direction: row;
+  }
+
+  #map-container {
+    height: 80vh;
+    width: 60%;
+  }
+
+  ul.doctor-listings {
+    width: 40%;
+    height: 80vh;
+    overflow: scroll;
+  }
+
+
+}
+/*
+@media (min-width: 899px) {
+  #map {
+    height: 400px;
+    width: 60%;
+  }*/
+
+}
+

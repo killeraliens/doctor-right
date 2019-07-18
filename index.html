@@ -93,21 +93,28 @@
                 </div>
               </fieldset>
             </form>
-            <ul id="list-doctors" class="doctor-listings"></ul>
+            <div class="map-listings-wrap flex">
+              <ul id="list-doctors" class="doctor-listings"></ul>
+              <aside id="map-container">
+                <div id="map"></div>
+              </aside>
+            </div>
         </section>
     </main>
-        <aside id="map-container">
-          <!-- <div id="map"></div> -->
-        </aside>
     <aside id="modal" class="modal">
       <div id="modal-content" class="modal-content"></div>
     </aside>
+     <footer>
+        <div id="footer-content">
+          <p>This site does not collect or store any of your data.<br>Doctor data powered by Better Doctor. Site by killeraliens</p>
+        </div>
+    </footer>
 <!-- </div> -->
 <script type="text/javascript" src="config.js"></script>
 
 <script type="text/javascript" src="main.js"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw&callback=initMap"
-    async defer></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw&callback=initMap"
+    async defer></script>
 <script type="text/javascript" src="autocomplete.js"></script>
 </body>
 </html>

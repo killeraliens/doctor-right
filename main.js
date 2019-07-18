@@ -412,6 +412,9 @@ function renderListDoctors(responseJson) {
   console.log(`rendering List of doctors...`);
   $('#list-doctors').html(returnListingsString(responseJson));
   $('#section-results').css('display', 'block');
+  // $('#footer-content').css('display', 'block');
+  $('footer').css('display', 'block');
+
 }
 
 function returnListingsString(responseJson) {
