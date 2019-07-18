@@ -9,13 +9,13 @@ function Doctor(imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, special
   this.practicesTrueStr = returnLocationsString(this.practicesTrueArr);
   this.specialtiesDesc = returnSpecialtiesDescriptionString(this.specialtiesArr);
   this.specialtiesName = returnSpecialtiesNameString(this.specialtiesArr)
-  // this.practicesGeocodesArr = getGeodeOfPractices(this.practicesTrueArr);
+  this.practicesGeocodesArr = renderMarkersForPractices(this.practicesTrueArr);
 }
 
 function generateDoctorsArr(responseJson) {
 
   return responseJson.data.map(doctor => {
-    console.log('making a NEW Doctor..')
+    // console.log('making a NEW Doctor..');
     let imgUrl = doctor.profile.image_url;
     let slug = doctor.profile.slug;
     let nameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
@@ -32,10 +32,8 @@ function generateDoctorsArr(responseJson) {
       specialtiesArr
     );
 
-
   })
 }
-
 
 function returnListingsString(doctorsArr) {
    //console.log(`making li strings for each doctor`);
@@ -53,6 +51,8 @@ function returnListingsString(doctorsArr) {
     `;
   }).join('\n');
 }
+
+
 
 // Doctor Helpers
 function removeDuplicateLocations(doctorPracticesArr) {
@@ -104,3 +104,11 @@ function returnSpecialtiesDescriptionString(specialtiesArr) {
 function returnSpecialtiesNameString(specialtiesArr) {
   return specialtiesArr.map(specialty => `${specialty.name}`).join(', ');
 }
+
+async function renderMarkersForPractices(practicesTrueArr) {
+  console.log(practicesTrueArr);
+
+}
+
+
+

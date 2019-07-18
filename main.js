@@ -122,7 +122,7 @@ async function renderResultsPage(responseJson) {
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
   handleEditSearchTermForm();
 
-  listendToOrderFormIcon();
+  listenToOrderFormIcon();
 
   $('#listings-title').text(
     `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
@@ -134,6 +134,7 @@ async function renderResultsPage(responseJson) {
 
   const doctors = generateDoctorsArr(responseJson);
   renderListDoctors(doctors);
+  renderMarkers(doctors);
 
   $('footer').css('display', 'block');
 }
@@ -144,7 +145,12 @@ function renderListDoctors(doctors) {
   console.log(`rendering List of doctors...`);
   $('#list-doctors').html(returnListingsString(doctors));
   $('#section-results').css('display', 'block');
+}
 
+function renderMarkers(doctors) {
+    doctors.forEach(doctor => {
+      doctor.renderMarkersForPractices;
+    });
 }
 
 
@@ -162,7 +168,7 @@ function listenToFormIcons() {
   });
 }
 
-function listendToOrderFormIcon() {
+function listenToOrderFormIcon() {
   const icons = $('#sort-order-form').find('i.before-content');
 
   $(icons).on('click', function(e) {
