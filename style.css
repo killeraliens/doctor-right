@@ -136,7 +136,7 @@ input:focus, select:focus {
 
 @media (min-width: 599px) {
   #start-form input, #start-form select, .edit-params-form input, .edit-params-form select, .edit-params-form .autocomplete {
-    width: 400px;
+    width: 390px;
   }
 
 }
