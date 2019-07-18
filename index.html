@@ -14,7 +14,7 @@
 </head>
 <body>
 <!-- <div class="container"> -->
-    <main>
+
         <form id="start-form" action="get" autocomplete="off">
           <div class="start-form-fieldset-container">
 
@@ -68,29 +68,12 @@
         </form>
 
 
-        <nav id="nav-params"></nav>
-        <section id="edit-form-container"></section>
-       <!--  <form id="edit-location-form" class="edit-params-form">
-          <div class="flex">
-            <input id="edit-location-input" aria-label="Edit your location" type="text" placeholder="City & State or Zipcode" >
-            <button type="submit" class="submit-btn">Update Search</button>
-          </div>
-        </form>
-
-        <form id="edit-radius-form" class="edit-params-form">
-          <select name="edit-radius" id="edit-radius">
-            <option value="5">5 miles</option>
-            <option value="10">10 miles</option>
-            <option value="25">25 miles</option>
-            <option value="50">50 miles</option>
-          </select>
-          <button type="submit" class="submit-btn">Update Search</button>
-        </form>
-
-        <form id="edit-search-term-form" class="edit-params-form">
-          <input id="edit-search-term-input" placeholder="Search term 'dental', 'Alzheimers', 'vision'" required>
-          <button type="submit" class="submit-btn">Update Search</button>
-        </form> -->
+    <nav>
+      <section id="nav-params"></section>
+      <section id="edit-form-container"></section>
+    </nav>
+    <main>
+        <!-- <section id="edit-form-container"></section> -->
 
         <section id="section-results">
             <h1 id="listings-title"></h1>
@@ -107,12 +90,18 @@
             <ul id="list-doctors" class="doctor-listings"></ul>
         </section>
     </main>
+        <aside id="map-container">
+          <!-- <div id="map"></div> -->
+        </aside>
     <aside id="modal" class="modal">
       <div id="modal-content" class="modal-content"></div>
     </aside>
 <!-- </div> -->
 <script type="text/javascript" src="config.js"></script>
+
 <script type="text/javascript" src="main.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw&callback=initMap"
+    async defer></script> -->
 <script type="text/javascript" src="autocomplete.js"></script>
 </body>
 </html>

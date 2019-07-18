@@ -116,6 +116,8 @@ async function renderResultsPage(responseJson) {
   handleEditRadiusButton();
   handleEditSearchTermButton();
 
+
+
   injectThisForm(returnEditSearchTermFormString());
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
   handleEditSearchTermForm();
@@ -347,7 +349,7 @@ function returnEditSearchTermFormString() {
       </span>
       <div class="flex">
         <div class="autocomplete">
-          <input id="edit-search-term-input" class="add-before term-input" placeholder="Search by medical issue or type of doctor" required>
+          <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
         </div>
        <button type="submit" class="submit-btn">Find Doctors</button>
       </div>
@@ -541,7 +543,51 @@ function listenToStartFormStepThree() {
 
 }
 
+function renderMap() {
+  $('#map-container').html('<div id="map"></div>');
+
+}
+
+
+//Map!!!!
+
+
+function initMap() {
+  var map;
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
+
+
+function getMapFromGoogle() {
+
+    const mapParams = {
+      key: config.gmaps,
+      callback: 'initMap'
+    }
+
+    const rootUrl = "http://maps.googleapis.com/maps/api/js?";
+    const url = rootUrl + returnQueryString(mapParams);
+
+        fetch(url, {'mode': 'no-cors'})
+        .then(response => {
+          if (response.ok) {
+            return response;
+          }
+          throw new Error(response.statusText);
+        })
+        .then(responseJson => {
+          console.log(responseJson);
+
+        })
+        .catch(err => {
+          renderModal(returnMessageString(err.message));
+        });
+}
 
 listenToStartFormStepOne();
 handleChangeSortedBy();
-
+// getMapFromGoogle();
+// renderMap();

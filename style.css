@@ -36,10 +36,20 @@ h3 {
   margin-top: 0px;
 }
 
+button, input, select {
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
 button {
     color: white;
     padding: 0 16px;
     white-space: nowrap;
+    outline: Transparent;
+    font-size: 12px;
+    display: inline-block;
 }
 
 button:hover, button:focus {
@@ -125,7 +135,7 @@ input:focus, select:focus {
 
 
 @media (min-width: 599px) {
-  #start-form input, #start-form select {
+  #start-form input, #start-form select, .edit-params-form input, .edit-params-form select, .edit-params-form .autocomplete {
     width: 420px;
   }
 
@@ -180,13 +190,6 @@ i.before-content {
 }*/
 
 
-button, input, select {
-    height: 40px;
-    outline: none;
-    font-size: 14px;
-    border-radius: 6px;
-}
-
 
 button.next {
     background-color: rgb(154, 145, 169);
@@ -198,13 +201,34 @@ button.submit-btn {
 
 
 
-.edit-params-form > button {
-  margin-left: 10px;
+.edit-params-form .submit-btn {
+  /*margin-left: 10px;*/
+  margin: 0 auto;
+  display: inline-block;
+  /*margin-left: 0;*/
 }
 
-/*.edit-params-form {
-  text-align: center;
-}*/
+.edit-params-form div.flex {
+  flex-direction: column;
+}
+
+
+@media (min-width: 599px) {
+  .edit-params-form .submit-btn {
+    margin-left: 10px;
+  }
+
+  .edit-params-form div.flex {
+    flex-direction: row;
+  }
+
+  #edit-form-container {
+    display: flex;
+    justify-content: center;
+    transition: all .1s ease;
+  }
+
+}
 
 .params-btn {
   border: none;
@@ -359,4 +383,9 @@ li.doctor-card {
 
 .avatar {
   width: 50px;
+}
+
+#map {
+  height: 600px;
+  width: 400px;
 }
