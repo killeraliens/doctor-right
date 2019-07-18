@@ -122,7 +122,7 @@ async function renderResultsPage(responseJson) {
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
   handleEditSearchTermForm();
 
-
+  listendToOrderFormIcon();
 
   $('#listings-title').text(
     `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
@@ -144,20 +144,34 @@ function listenToFormIcons() {
     const targetSelect = $(this).closest('form').find('select');
     const targetSelectOptions = $(this).closest('form').find('option');
     selectDropdownExtension(targetSelect, targetSelectOptions);
+    icons.css('z-index', 22);
+  });
+}
 
+function listendToOrderFormIcon() {
+  const icons = $('#sort-order-form').find('i.before-content');
+
+  $(icons).on('click', function(e) {
+
+    const targetSelect = $(this).closest('form').find('select');
+
+    const targetSelectOptions = $(this).closest('form').find('option');
+    selectDropdownExtension(targetSelect, targetSelectOptions);
+    icons.css('z-index', 22);
   });
 }
 
 //Select dropdown helper, use within event
 function selectDropdownExtension(targetSelect, targetSelectOptions) {
   let pxHeight = (targetSelectOptions.length * 26) + 'px';
-
+    targetSelect.css('z-index', 22);
     targetSelect.attr('size', targetSelectOptions.length);
     targetSelect.css({height: pxHeight });
     targetSelectOptions.css({padding: '4px'});
     targetSelectOptions.on('click', function() {
       targetSelect.attr('size', 1);
       targetSelect.css({height: "40px"});
+      targetSelect.css('z-index', 20);
     });
 }
 
