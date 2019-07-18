@@ -9,7 +9,7 @@ function Doctor(imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, special
   this.practicesTrueStr = returnLocationsString(this.practicesTrueArr);
   this.specialtiesDesc = returnSpecialtiesDescriptionString(this.specialtiesArr);
   this.specialtiesName = returnSpecialtiesNameString(this.specialtiesArr)
-  this.practicesGeocodesArr = renderMarkersForPractices(this.practicesTrueArr);
+  this.makeMarkers = makeMarkers(this.practicesTrueArr);
 }
 
 function generateDoctorsArr(responseJson) {
@@ -105,8 +105,17 @@ function returnSpecialtiesNameString(specialtiesArr) {
   return specialtiesArr.map(specialty => `${specialty.name}`).join(', ');
 }
 
-async function renderMarkersForPractices(practicesTrueArr) {
-  console.log(practicesTrueArr);
+function makeMarkers(practicesTrueArr) {
+  //console.log(practicesTrueArr);
+  return practicesTrueArr.map(practice => {
+
+    return new google.maps.Marker({
+      position: {lat: practice.lat, lng: practice.lon},
+      title: practice.name
+    });
+    //console.log({position: practice.lat+ ',' + practice.lon, title: practice.name})
+
+  })
 
 }
 

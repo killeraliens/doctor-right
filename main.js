@@ -134,7 +134,8 @@ async function renderResultsPage(responseJson) {
 
   const doctors = generateDoctorsArr(responseJson);
   renderListDoctors(doctors);
-  renderMarkers(doctors);
+  renderDoctorMarkers(doctors);
+
 
   $('footer').css('display', 'block');
 }
@@ -147,11 +148,11 @@ function renderListDoctors(doctors) {
   $('#section-results').css('display', 'block');
 }
 
-function renderMarkers(doctors) {
-    doctors.forEach(doctor => {
-      doctor.renderMarkersForPractices;
-    });
-}
+// function renderMarkers(doctors) {
+//     doctors.forEach(doctor => {
+//       doctor.renderMarkersForPractices;
+//     });
+// }
 
 
 function listenToFormIcons() {
@@ -510,42 +511,61 @@ function renderMap() {
 //Map!!!!
 
 
+
+var map;
 function initMap() {
-  var map;
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
+    center: {lat: 33.448376, lng: -112.074036},
     zoom: 8
   });
+
+}
+
+// function renderDoctorMarkers(doctors) {
+//   let markers = returnAllDoctorMarkersArr(doctors);
+//   markers.forEach(marker => {
+//     marker.setMap(map);
+//   })
+// }
+
+
+function renderDoctorMarkers(doctors) {
+    doctors.forEach(doctor => {
+      doctor.makeMarkers.forEach(marker => {
+        marker.setMap(map);
+      })
+
+    });
 }
 
 
-function getMapFromGoogle() {
+// function getMapFromGoogle() {
 
-    const mapParams = {
-      key: config.gmaps,
-      callback: 'initMap'
-    }
+//     const mapParams = {
+//       key: config.gmaps,
+//       callback: 'initMap'
+//     }
 
-    const rootUrl = "http://maps.googleapis.com/maps/api/js?";
-    const url = rootUrl + returnQueryString(mapParams);
+//     const rootUrl = "http://maps.googleapis.com/maps/api/js?";
+//     const url = rootUrl + returnQueryString(mapParams);
 
-        fetch(url, {'mode': 'no-cors'})
-        .then(response => {
-          if (response.ok) {
-            return response;
-          }
-          throw new Error(response.statusText);
-        })
-        .then(responseJson => {
-          console.log(responseJson);
+//         fetch(url, {'mode': 'no-cors'})
+//         .then(response => {
+//           if (response.ok) {
+//             return response;
+//           }
+//           throw new Error(response.statusText);
+//         })
+//         .then(responseJson => {
+//           console.log(responseJson);
 
-        })
-        .catch(err => {
-          renderModal(returnMessageString(err.message));
-        });
-}
+//         })
+//         .catch(err => {
+//           renderModal(returnMessageString(err.message));
+//         });
+// }
 
 listenToStartFormStepOne();
 handleChangeSortedBy();
 // getMapFromGoogle();
-// renderMap();
+
