@@ -528,13 +528,14 @@ function listenToStartFormStepTwo() {
 }
 
 function listenToStartFormStepThree() {
-  $('#start-form-submit-btn').on('click ', function(e) {
+  $('#start-form-submit-btn').on('click blur', function(e) {
     e.preventDefault();
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
     } else {
       handleStartFormSubmit();
       $('#start-form').submit();
+      $(this).unbind();
     }
   });
 
