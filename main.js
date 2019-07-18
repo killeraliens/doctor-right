@@ -137,37 +137,26 @@ function listenToFormIcons() {
 
   $(icons).on('click', function(e) {
     const targetInput = $(this).closest('form').find('input');
-    const targetSelect = $(this).closest('form').find('select');
-    const targetSelectOptions = $(this).closest('form').find('option');
     targetInput.trigger('focus');
 
-    targetSelect.attr('size', 4);
-    targetSelect.css({height: "80px"});
+    const targetSelect = $(this).closest('form').find('select');
+    const targetSelectOptions = $(this).closest('form').find('option');
+    selectDropdownExtension(targetSelect, targetSelectOptions);
+
+  });
+}
+
+//Select dropdown helper, use within event
+function selectDropdownExtension(targetSelect, targetSelectOptions) {
+  let pxHeight = (targetSelectOptions.length * 26) + 'px';
+
+    targetSelect.attr('size', targetSelectOptions.length);
+    targetSelect.css({height: pxHeight });
+    targetSelectOptions.css({padding: '4px'});
     targetSelectOptions.on('click', function() {
       targetSelect.attr('size', 1);
       targetSelect.css({height: "40px"});
-    })
-
-    // const optionToClick = document.querySelector('#edit-radius').children[2]; //choose any of the children
-    // optionToClick.selected = true;
-    // simulateClick(optionToClick);
-
-
-    // function simulateClick(item) {
-    //   item.dispatchEvent(new PointerEvent('pointerdown', {bubbles: true}));
-    //   item.dispatchEvent(new MouseEvent('mousedown', {bubbles: true}));
-    //   item.dispatchEvent(new PointerEvent('pointerup', {bubbles: true}));
-    //   item.dispatchEvent(new MouseEvent('mouseup', {bubbles: true}));
-    //   item.dispatchEvent(new MouseEvent('mouseout', {bubbles: true}));
-    //   item.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-    //   item.dispatchEvent(new Event('change', {bubbles: true}));
-
-    //   return true;
-    // }
-
-
-
-  });
+    });
 }
 
 function handleChangeSortedBy() {
