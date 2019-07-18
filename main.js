@@ -410,7 +410,8 @@ function hideOtherEditForms(thisForm, thisBtn) {
 // Result/Listing Components
 function renderListDoctors(responseJson) {
   console.log(`rendering List of doctors...`);
-  $('#list-doctors').html(returnListingsString(responseJson));
+  const doctors = generateDoctorsArr(responseJson);
+  $('#list-doctors').html(returnListingsString(doctors));
   $('#section-results').css('display', 'block');
   $('footer').css('display', 'block');
 

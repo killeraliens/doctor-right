@@ -12,8 +12,7 @@ function Doctor(imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, special
   // this.practicesGeocodesArr = getGeodeOfPractices(this.practicesTrueArr);
 }
 
-// function generateDoctorsArr(responseJson) {
-function returnListingsString(responseJson) {
+function generateDoctorsArr(responseJson) {
 
   return responseJson.data.map(doctor => {
     console.log('making a NEW Doctor..')
@@ -23,45 +22,39 @@ function returnListingsString(responseJson) {
     let practices = removeDuplicateLocations(doctor.practices);
     let practicesTrue = whereLocationTrue(practices);
     let specialtiesArr = doctor.specialties;
-    // let practicesTrueStr = returnLocationsString(practicesTrue);
-    // let specialtiesDescString = returnSpecialtiesDescriptionString(specialtiesArr);
-    // let specialtiesNameString = returnSpecialtiesNameString(specialtiesArr);
 
-    console.log(
-    new Doctor(
+    return new Doctor(
       imgUrl,
       slug,
       nameTitle,
       practices,
       practicesTrue,
       specialtiesArr
-    )
     );
+
 
   })
 }
 
-// function returnListingsString(responseJson) {
-//    //console.log(`making li strings for each doctor`);
-//   return responseJson.data.map(doctor => {
-//     let fullNameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
-//     let practices = removeDuplicateLocations(doctor.practices);
-//     let specialtiesArr = doctor.specialties;
-//     return `
-//       <li class="doctor-card">
-//         <img class="avatar" src="${doctor.profile.image_url}" alt="${doctor.profile.slug}"></img>
-//         <h3>${fullNameTitle}</h3>
-//         <p>${returnSpecialtiesDescriptionString(specialtiesArr)}</p>
-//         <h5>Total practices for this professional (${practices.length})</h5>
-//         <h5>Locations within your search radius (${whereLocationTrue(practices).length})</h5>
-//         ${returnLocationsString(whereLocationTrue(practices))}
-//         <span>${returnSpecialtiesNameString(specialtiesArr)}</span>
-//       </li>
-//     `;
-//   }).join('\n');
-// }
 
-// Card Helpers
+function returnListingsString(doctorsArr) {
+   //console.log(`making li strings for each doctor`);
+  return doctorsArr.map(doctor => {
+    return `
+      <li class="doctor-card">
+        <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
+        <h3>${doctor.nameTitle}</h3>
+        <p>${doctor.specialtiesDesc}</p>
+        <h5>Total practices for this professional (${doctor.practicesArr.length})</h5>
+        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})</h5>
+        ${doctor.practicesTrueStr}
+        <span>${doctor.specialtiesName}</span>
+      </li>
+    `;
+  }).join('\n');
+}
+
+// Doctor Helpers
 function removeDuplicateLocations(doctorPracticesArr) {
   let dict = {};
   let reject = [];
