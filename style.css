@@ -46,6 +46,7 @@ button, input, select {
     outline: none;
     font-size: 14px;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 button {
@@ -132,6 +133,7 @@ input:focus, select:focus {
 
 .edit-params-form input, .edit-params-form select{
   padding-left: 34px;
+  border-radius: 6px 0 0 6px;
 }
 
 #start-form input, #start-form select {
@@ -198,15 +200,15 @@ i.before-content {
   height: 40px;
   width: 280px;
   top: -15px;
-  left: -163px;
+  left: -28px;
   margin: 0px;
-
+  cursor: pointer;
   /*padding-top: 10px;*/
   text-align: right;
   /*background-color: rgba(0, 0, 0, .5);*/
 }
 
-#sort-order-form span.before-content:hover,  #sort-order-form i.before-content:hover ~ #sort-order-form label {
+#sort-order-form i.before-content:hover ~ #sort-order-form label {
   opacity: .5;
 }
 /*.fa-caret-down {
@@ -283,7 +285,8 @@ button.submit-btn {
   }*/
 
   .edit-params-form .submit-btn {
-    margin-left: 6px;
+    /*margin-left: 6px;*/
+    border-radius: 0 6px 6px 0;
   }
 
   #edit-form-container {
@@ -360,10 +363,10 @@ button.submit-btn {
 
 
 
-#step-one.active-fieldset {
+/*#step-one.active-fieldset {
   position: relative;
 
-}
+}*/
 
 #step-one, #step-two, #step-three {
   /*position: absolute;*/
@@ -401,6 +404,7 @@ button.submit-btn {
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
 }
 
 /* Nav */
