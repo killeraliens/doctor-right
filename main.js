@@ -129,9 +129,18 @@ async function renderResultsPage(responseJson) {
   $('#listings-title').text(
     `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
    );
+
+  function returnlistingsDescriptionTail() {
+    if (paramsObj.sort == 'distance-asc') {
+      return `in order of locations closest to you.`;
+    } else if (paramsObj.sort == 'best-match-asc') {
+      return `in order of best match`;
+    }
+  }
+
   $('#listings-count-and-order-description').html(
     `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
-    medical professionals containing the term <span>${paramsObj.term}</span> in order of locations closest to you.`
+    medical professionals containing the term <span>${paramsObj.term}</span> ${returnlistingsDescriptionTail()}`
   );
 
   const doctors = generateDoctorsArr(responseJson);
