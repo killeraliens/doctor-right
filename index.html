@@ -13,7 +13,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- <div class="container"> -->
+
 
         <form id="start-form" action="get" autocomplete="off">
           <div class="start-form-fieldset-container">
@@ -31,9 +31,9 @@
                   <br>
                 <button type="button" id="step-one-btn" class="next">next</button>
             </fieldset>
-          <!-- </div>
 
-          <div class="start-form-fieldset-container"> -->
+
+
             <fieldset id="step-two" class="non-active" disabled>
                 <i class="far fa-dot-circle"></i>
                 <label for="search-radius"><h3>Select a search radius</h3></label>
@@ -49,9 +49,8 @@
                 <br>
                 <button type="button" id="step-two-btn" class="next">next</button>
             </fieldset >
-         <!--  </div>
 
-          <div class="start-form-fieldset-container"> -->
+
             <fieldset id="step-three" class="non-active" disabled>
               <i class="fas fa-search "></i>
               <label for="search-term"><h3>What type of doctor are you looking for?</h3>Enter a medical issue, problem area, or type of medical professional.</label>
@@ -70,19 +69,7 @@
 
     <nav>
       <section id="nav-params"></section>
-      <section id="edit-form-container">
- <!--        <form id="edit-search-term-form" class="edit-params-form" autocomplete="off">
-          <span class="before-content">
-            <i class="fas fa-search before-content"></i>
-          </span>
-          <div class="flex">
-            <div class="autocomplete">
-              <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
-            </div>
-           <button type="submit" class="submit-btn">Go</button>
-          </div>
-        </form> -->
-      </section>
+      <section id="edit-form-container"></section>
     </nav>
     <main>
         <!-- <section id="edit-form-container"></section> -->
@@ -121,13 +108,14 @@
           <p>This site does not collect or store any of your data.<br>Doctor data powered by Better Doctor. Site by killeraliens</p>
         </div>
     </footer>
-<!-- </div> -->
+
 <script type="text/javascript" src="config.js"></script>
 
 <script type="text/javascript" src="doctors.js"></script>
 <script type="text/javascript" src="main.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw&callback=initMap"
-    async defer></script>
 <script type="text/javascript" src="autocomplete.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw&callback=initMap"
+    async defer></script> -->
 </body>
 </html>

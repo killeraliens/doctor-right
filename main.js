@@ -1,5 +1,5 @@
 
-//Global Results State
+//Global State and Map
 const paramsObj = { //global default 'state' of search params referenced in all API calls / param updates
     lat: 33.448376,
     lng: -112.074036,
@@ -11,6 +11,8 @@ const paramsObj = { //global default 'state' of search params referenced in all 
 };
 
 var map;
+
+
 
 //Helpers for Fetching APIs
 function returnQueryString(params) {
@@ -126,17 +128,11 @@ async function renderResultsPage(responseJson) {
 
   listenToOrderFormIcon();
 
+
   $('#listings-title').text(
     `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
    );
 
-  function returnlistingsDescriptionTail() {
-    if (paramsObj.sort == 'distance-asc') {
-      return `in order of locations closest to you.`;
-    } else if (paramsObj.sort == 'best-match-asc') {
-      return `in order of best match`;
-    }
-  }
 
   $('#listings-count-and-order-description').html(
     `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
@@ -145,7 +141,10 @@ async function renderResultsPage(responseJson) {
 
   const doctors = generateDoctorsArr(responseJson);
   renderListDoctors(doctors);
+
+  initMap();
   renderDoctorMarkers(doctors);
+
 
 
   $('footer').css('display', 'block');
@@ -153,11 +152,22 @@ async function renderResultsPage(responseJson) {
 
 
 // Result/Listing Components
+
+function returnlistingsDescriptionTail() {
+    if (paramsObj.sort == 'distance-asc') {
+      return `in order of locations closest to you.`;
+    } else if (paramsObj.sort == 'best-match-asc') {
+      return `in order of best match`;
+    }
+}
+
+
 function renderListDoctors(doctors) {
   console.log(`rendering List of doctors...`);
   $('#list-doctors').html(returnListingsString(doctors));
   $('#section-results').css('display', 'block');
 }
+
 
 
 function listenToFormIcons() {
@@ -187,7 +197,7 @@ function listenToOrderFormIcon() {
   });
 }
 
-//Select dropdown helper, use within event
+    //Helper for select element expansion, use within event
 function selectDropdownExtension(targetSelect, targetSelectOptions) {
   let pxHeight = (targetSelectOptions.length * 26) + 'px';
     targetSelect.css('z-index', 22);
@@ -201,18 +211,7 @@ function selectDropdownExtension(targetSelect, targetSelectOptions) {
     });
 }
 
-function handleChangeSortedBy() {
-  $('#sort-order').on('change', function(e) {
-    e.preventDefault();
-    //console.log(`${$(this)} #sort-order select was CHANGED, setting params and submitting form`);
 
-    const selectEl = document.getElementById("sort-order");
-    const sortMethod = selectEl.options[selectEl.selectedIndex].value;
-    paramsObj.sort = sortMethod;
-
-    getBetterDoctor('#sort-order-form');
-  });
-}
 
 // Nav Components
 async function renderNavParams() {
@@ -268,7 +267,21 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 }
 
 
+
 // Nav Actions
+function handleChangeSortedBy() {
+  $('#sort-order').on('change', function(e) {
+    e.preventDefault();
+    //console.log(`${$(this)} #sort-order select was CHANGED, setting params and submitting form`);
+
+    const selectEl = document.getElementById("sort-order");
+    const sortMethod = selectEl.options[selectEl.selectedIndex].value;
+    paramsObj.sort = sortMethod;
+
+    getBetterDoctor('#sort-order-form');
+  });
+}
+
 function renderThisForm(formString) {
   $('#edit-form-container').html(formString);
 }
@@ -504,21 +517,24 @@ function listenToStartFormStepThree() {
 
 }
 
-function renderMap() {
-  $('#map-container').html('<div id="map"></div>');
-
-}
-
 
 //Map!!!!
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: paramsObj.lat, lng: paramsObj.lng},
-    zoom: paramsObj.radius
+    zoom: determineZoom()
     // gestureHandling: 'greedy'
   });
 
+}
+
+function determineZoom() {
+  if (Number(paramsObj.radius) <= 10 ) {
+    return 11;
+  } else {
+    return 9;
+  }
 }
 
 function renderDoctorMarkers(doctors) {
@@ -544,5 +560,5 @@ function listenToMarker(doctor, marker) {
 
 listenToStartFormStepOne();
 handleChangeSortedBy();
-// getMapFromGoogle();
+
 
