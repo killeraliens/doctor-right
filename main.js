@@ -515,8 +515,8 @@ function renderMap() {
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 33.448376, lng: -112.074036},
-    zoom: 8
+    center: {lat: paramsObj.lat, lng: paramsObj.lng},
+    zoom: paramsObj.radius
   });
 
 }
@@ -533,8 +533,7 @@ function renderDoctorMarkers(doctors) {
     doctors.forEach(doctor => {
       doctor.makeMarkers.forEach(marker => {
         marker.setMap(map);
-      })
-
+      });
     });
 }
 
