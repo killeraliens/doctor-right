@@ -206,6 +206,9 @@ i.before-content {
   /*background-color: rgba(0, 0, 0, .5);*/
 }
 
+#sort-order-form span.before-content:hover,  #sort-order-form i.before-content:hover ~ #sort-order-form label {
+  opacity: .5;
+}
 /*.fa-caret-down {
   margin-left: 5px;
 }*/
@@ -226,6 +229,7 @@ i.before-content {
   font-weight: bold;
   width: auto;
   text-align-last: center;
+  color: darkslategrey;
 }
 
 .sort-flex {
@@ -239,6 +243,7 @@ i.before-content {
 #sort-order-form label {
   display: inline-block;
   margin-right: 8px;
+  color: darkslategrey;
 }
 
 
@@ -360,7 +365,7 @@ button.submit-btn {
 
 }
 
-#step-two, #step-three {
+#step-one, #step-two, #step-three {
   /*position: absolute;*/
   -webkit-transform: translateY(150vh);
     -ms-transform: translateY(150vh);
@@ -370,7 +375,7 @@ button.submit-btn {
 
 }
 
-#step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
+#step-intro.active-fieldset, #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
     position: relative;
     /*background-color: #fefefe;*/
     z-index: 10;
@@ -386,7 +391,7 @@ button.submit-btn {
 
 }
 
-#step-one.done-fieldset, #step-two.done-fieldset, #step-three.done-fieldset {
+#step-intro.done-fieldset, #step-one.done-fieldset, #step-two.done-fieldset, #step-three.done-fieldset {
   height: 0;
   padding: 0;
 }

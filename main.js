@@ -466,7 +466,29 @@ function returnMessageString(message) {
 
 
 //Start Form Animation
+function listenToStartFormStepIntro() {
+
+  $('#start-form').on('click ', '#step-intro-btn', function(e) {
+  // $('#step-one-btn').on('click keydown', function(e) {
+
+    //console.log(e.code);
+
+
+      $('#step-intro').css({
+        transform: 'translateY(-150vh)'
+      });
+      $('#step-one').addClass('active-fieldset');
+      $('#step-one').removeAttr('disabled');
+      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+      setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 500);
+
+      listenToStartFormStepOne();
+
+  });
+}
+
 function listenToStartFormStepOne() {
+
   $('#start-form').on('click ', '#step-one-btn', function(e) {
   // $('#step-one-btn').on('click keydown', function(e) {
 
@@ -558,7 +580,7 @@ function listenToMarker(doctor, marker) {
 }
 
 
-listenToStartFormStepOne();
+listenToStartFormStepIntro();
 handleChangeSortedBy();
 
 

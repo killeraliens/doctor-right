@@ -18,9 +18,17 @@
         <form id="start-form" action="get" autocomplete="off">
           <div class="start-form-fieldset-container">
 
-            <fieldset id="step-one" class="active-fieldset">
+            <fieldset id="step-intro" class="active-fieldset">
                 <h1>Doctors Near Me</h1>
                 <h2>Find your next doctor, dentist, or medical practitioner.</h2>
+                <!-- <legend></legend> -->
+
+                <button type="button" id="step-intro-btn" class="next">start my search</button>
+            </fieldset>
+
+            <fieldset id="step-one" class="non-active" disabled>
+                <!-- <h1>Doctors Near Me</h1>
+                <h2>Find your next doctor, dentist, or medical practitioner.</h2> -->
                 <!-- <legend></legend> -->
                 <i class="fas fa-map-marker"></i>
                 <label for="location"><h3>Enter your location</h3></label>
