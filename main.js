@@ -516,8 +516,8 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: paramsObj.lat, lng: paramsObj.lng},
-    zoom: paramsObj.radius,
-    gestureHandling: 'greedy'
+    zoom: paramsObj.radius
+    // gestureHandling: 'greedy'
   });
 
 }
