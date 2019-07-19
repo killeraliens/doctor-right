@@ -120,7 +120,7 @@ async function renderResultsPage(responseJson) {
 
 
 
-  injectThisForm(returnEditSearchTermFormString());
+  renderThisForm(returnEditSearchTermFormString());
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
   handleEditSearchTermForm();
 
@@ -260,7 +260,7 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 
 
 // Nav Actions
-function injectThisForm(formString) {
+function renderThisForm(formString) {
   $('#edit-form-container').html(formString);
 }
 
@@ -271,7 +271,7 @@ function handleEditLocationButton() {
 
       $(this).toggleClass('active-edit');
 
-      injectThisForm(returnEditLocationFormString());
+      renderThisForm(returnEditLocationFormString());
 
       hideOtherEditForms('#edit-location-form', '#edit-location-btn');
       handleEditLocationForm();
@@ -317,7 +317,7 @@ function handleEditRadiusButton() {
 
       $(this).toggleClass('active-edit');
 
-      injectThisForm(returnEditRadiusFormString());
+      renderThisForm(returnEditRadiusFormString());
 
       hideOtherEditForms('#edit-radius-form', '#edit-radius-btn');
       handleEditRadiusForm();
@@ -364,7 +364,7 @@ function handleEditSearchTermButton() {
 
       $(this).toggleClass('active-edit');
 
-      injectThisForm(returnEditSearchTermFormString());
+      renderThisForm(returnEditSearchTermFormString());
 
       hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
 
