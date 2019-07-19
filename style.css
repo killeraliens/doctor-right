@@ -509,16 +509,10 @@ footer {
     width: 40%;
     height: 80vh;
     overflow: scroll;
+    margin-right: 16px;
   }
 
 
 }
-/*
-@media (min-width: 899px) {
-  #map {
-    height: 400px;
-    width: 60%;
-  }*/
 
-}
 
