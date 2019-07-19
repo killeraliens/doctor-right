@@ -111,7 +111,9 @@ function makeMarkers(practicesTrueArr) {
 
     return new google.maps.Marker({
       position: {lat: practice.lat, lng: practice.lon},
-      title: practice.name
+      title: practice.name,
+      draggable: true,
+      animation: google.maps.Animation.DROP
     });
     //console.log({position: practice.lat+ ',' + practice.lon, title: practice.name})
 

@@ -516,18 +516,11 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: paramsObj.lat, lng: paramsObj.lng},
-    zoom: paramsObj.radius
+    zoom: paramsObj.radius,
+    gestureHandling: 'greedy'
   });
 
 }
-
-// function renderDoctorMarkers(doctors) {
-//   let markers = returnAllDoctorMarkersArr(doctors);
-//   markers.forEach(marker => {
-//     marker.setMap(map);
-//   })
-// }
-
 
 function renderDoctorMarkers(doctors) {
     doctors.forEach(doctor => {

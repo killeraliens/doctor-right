@@ -13,8 +13,10 @@ body {
 
 body * {
     box-sizing: border-box;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease; /*not map!!*/
 }
+
+
 
 .container {
     max-width: 600px;
@@ -465,6 +467,10 @@ li.doctor-card {
 #map {
   height: 100%;
   width: 100%;
+}
+
+#map * {
+  transition: none;
 }
 
 #map-container {
