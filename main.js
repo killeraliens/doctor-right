@@ -533,8 +533,20 @@ function renderDoctorMarkers(doctors) {
     doctors.forEach(doctor => {
       doctor.makeMarkers.forEach(marker => {
         marker.setMap(map);
+        listenToMarker(doctor, marker);
       });
     });
+}
+
+function listenToMarker(doctor, marker) {
+  google.maps.event.addListener(marker, 'click', (function(marker) {
+    return function() {
+      // infowindow.setContent(doctor.nameTitle);
+      // infowindow.open(map, marker);
+      renderModal(returnMessageString(doctor.nameTitle));
+    }
+  })(marker));
+
 }
 
 
