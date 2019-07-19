@@ -10,6 +10,8 @@ const paramsObj = { //global default 'state' of search params referenced in all 
     sort: 'distance-asc'
 };
 
+var map;
+
 //Helpers for Fetching APIs
 function returnQueryString(params) {
     return Object.keys(params).map(key => {
@@ -148,12 +150,6 @@ function renderListDoctors(doctors) {
   $('#section-results').css('display', 'block');
 }
 
-// function renderMarkers(doctors) {
-//     doctors.forEach(doctor => {
-//       doctor.renderMarkersForPractices;
-//     });
-// }
-
 
 function listenToFormIcons() {
   const icons = $('.edit-params-form').find('span.before-content');
@@ -199,7 +195,7 @@ function selectDropdownExtension(targetSelect, targetSelectOptions) {
 function handleChangeSortedBy() {
   $('#sort-order').on('change', function(e) {
     e.preventDefault();
-    console.log(`${$(this)} #sort-order select was CHANGED, setting params and submitting form`);
+    //console.log(`${$(this)} #sort-order select was CHANGED, setting params and submitting form`);
 
     const selectEl = document.getElementById("sort-order");
     const sortMethod = selectEl.options[selectEl.selectedIndex].value;
@@ -226,7 +222,7 @@ function returnParamsNavString(formattedLocation) {
     `;
 }
 
-//Helper API Call returns city and state string for location edit nav button
+    //Helper API Call returns city and state string for location edit nav button
 function getReverseGeocode(latLngStr) {
     // console.log(`calling reverse geocode for ${latLngStr}`);
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLngStr}&key=${config.gmaps}`;
@@ -351,7 +347,7 @@ function handleEditRadiusForm() {
   listenToFormIcons();
   $('#edit-radius-form').on('submit', (e) => {
     e.preventDefault();
-    console.log(`${$(this)} #edit-radius-form was SUBMITTED, calling getbetterdoctor function`);
+    //console.log(`${$(this)} #edit-radius-form was SUBMITTED, calling getbetterdoctor function`);
 
     const selectEl = document.getElementById("edit-radius");
     const radius = selectEl.options[selectEl.selectedIndex].value;
@@ -417,14 +413,11 @@ function hideOtherEditForms(thisForm, thisBtn) {
       $(otherBtns).removeClass('active-edit');
       $(otherForms).find('input').val('');
       $(otherForms).css('display', 'none');
-      $(thisForm).slideDown(300, function() {
-        $(thisForm).find('input').val('');
-        //console.log($(thisForm).prop('id'));
-        if ($(thisForm).prop('id') == 'edit-search-term-form') {
-            //console.log('autocomplete active');
-            //autocomplete(document.getElementById("edit-search-term-input"), paramsObj.autoSearchTerms );
-        }
-      });
+      // $(thisForm).slideDown(100, function() {
+      //   $(thisForm).find('input').val('');
+      // });
+      $(thisForm).find('input').val('');
+      $(thisForm).css('display', 'block');
   }
 }
 
@@ -510,9 +503,6 @@ function renderMap() {
 
 //Map!!!!
 
-
-
-var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: paramsObj.lat, lng: paramsObj.lng},
@@ -542,32 +532,6 @@ function listenToMarker(doctor, marker) {
 
 }
 
-
-// function getMapFromGoogle() {
-
-//     const mapParams = {
-//       key: config.gmaps,
-//       callback: 'initMap'
-//     }
-
-//     const rootUrl = "http://maps.googleapis.com/maps/api/js?";
-//     const url = rootUrl + returnQueryString(mapParams);
-
-//         fetch(url, {'mode': 'no-cors'})
-//         .then(response => {
-//           if (response.ok) {
-//             return response;
-//           }
-//           throw new Error(response.statusText);
-//         })
-//         .then(responseJson => {
-//           console.log(responseJson);
-
-//         })
-//         .catch(err => {
-//           renderModal(returnMessageString(err.message));
-//         });
-// }
 
 listenToStartFormStepOne();
 handleChangeSortedBy();

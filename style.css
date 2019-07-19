@@ -16,7 +16,9 @@ body * {
     transition: all 0.5s ease; /*not map!!*/
 }
 
-
+nav {
+ /* background-color: #9da8b0;*/
+}
 
 .container {
     max-width: 600px;
@@ -53,6 +55,7 @@ button {
     outline: Transparent;
     font-size: 12px;
     display: inline-block;
+    border: transparent;
 }
 
 button:hover, button:focus {
@@ -315,7 +318,7 @@ button.submit-btn {
     display: none;
     /*opacity: 0;*/
     position: fixed;
-    z-index: 1;
+    z-index: 30;
     left: 0;
     top: 0;
     height: 100%;
@@ -488,7 +491,7 @@ footer {
   padding: 0px 120px;
   padding-top: 32px;
   padding-bottom: 38px;
-  background-color: grey;
+  background-color: #9da8b0;
   color: white;
   text-align: center;
 }
