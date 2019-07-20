@@ -65,9 +65,16 @@ button, input, select {
     cursor: pointer;
 }
 
-input:focus, select:focus {
+input, select:not(#sort-order), button:not(.params-btn) {
   box-shadow: 0 0 10px rgba(62, 88, 100, .2);
-  border: none;
+  border: none !important;
+}
+
+input:focus, select:focus {
+  /*box-shadow: 0 0 10px rgba(62, 88, 100, .2);
+  border: none;*/
+  border: 1px solid #E1EDE7 !important;
+  box-shadow: none;
 }
 
 button {
@@ -134,7 +141,7 @@ label {
 
 input, select {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     background-color: white;
     /*padding-left: 34px;*/
     padding-left: 10px;
@@ -651,12 +658,13 @@ li.doctor-card p {
 
 footer {
   display: none;
-  padding: 0px 120px;
+  padding: 0px 40px;
   padding-top: 32px;
   padding-bottom: 38px;
   background-color: #143342;
   color: white;
   text-align: center;
+  font-size: 14px;
 }
 
 
@@ -682,6 +690,12 @@ footer {
     overflow: scroll;
     /*margin-right: 16px;*/
    /* padding: 16px;*/
+  }
+
+  footer {
+    padding: 0px 120px;
+    padding-top: 32px;
+    padding-bottom: 38px;
   }
 
 
