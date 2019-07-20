@@ -496,10 +496,10 @@ function listenToStartFormStepIntro() {
 
 function listenToStartFormStepOne() {
 
-  $('#start-form').on('click ', '#step-one-btn', function(e) {
+  $('#start-form').on('click', '#step-one-btn', function(e) {
   // $('#step-one-btn').on('click keydown', function(e) {
 
-    //console.log(e.code);
+    e.preventDefault();
 
     if ( $('#location').val().length === 0 || $('#location').val() === ' ') {
       renderModal(returnMessageString('You must enter an address, city & state, or zipcode.'));
@@ -518,7 +518,8 @@ function listenToStartFormStepOne() {
 }
 
 function listenToStartFormStepTwo() {
-  $('#start-form').on('click ', '#step-two-btn', function(e) {
+  $('#start-form').on('click', '#step-two-btn', function(e) {
+
 
       $('#step-two').css({
         transform: 'translateY(-150vh)'
@@ -542,6 +543,14 @@ function listenToStartFormStepThree() {
       $('#start-form').submit();
       $(this).unbind();
     }
+  });
+
+  $('#search-term').on('keydown', function(e) {
+    if (e.keyCode == 13) {
+      e.preventDefault();
+      return false;
+    }
+
   });
 
 }
