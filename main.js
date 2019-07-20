@@ -57,6 +57,13 @@ function handleStartFormSubmit() {
         e.preventDefault();
         console.log('handling start form submit');
 
+    //     $(window).keydown(function(event){
+    // if(event.keyCode == 13) {
+    //   event.preventDefault();
+    //   return false;
+    // }
+
+
         const address = $('#location').val();
         paramsObj.usersInputLocation = $('#location').val();
         await getAndSetParamsGeocode(address);
@@ -526,7 +533,7 @@ function listenToStartFormStepTwo() {
 }
 
 function listenToStartFormStepThree() {
-  $('#start-form-submit-btn').on('click blur', function(e) {
+  $('#start-form-submit-btn').on('click', function(e) {
     e.preventDefault();
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
