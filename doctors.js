@@ -43,9 +43,7 @@ function returnListingsString(doctorsArr) {
         <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
         <h3>${doctor.nameTitle}</h3>
         <p>${doctor.specialtiesDesc}</p>
-        <h5>Total practices for this professional (${doctor.practicesArr.length})</h5>
-        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})</h5>
-        ${doctor.practicesTrueStr}
+        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})<i clase=" fa fa-caret-right"></i></h5>
         <span>${doctor.specialtiesName}</span>
       </li>
     `;

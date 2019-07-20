@@ -132,15 +132,16 @@ async function renderResultsPage(responseJson) {
   listenToOrderFormIcon();
 
 
-  $('#listings-title').text(
-    `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
-   );
+  // $('#listings-title').text(
+  //   `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
+  //  );
 
 
-  $('#listings-count-and-order-description').html(
-    `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
-    medical professionals containing the term <span>${paramsObj.term}</span> ${returnlistingsDescriptionTail()}`
-  );
+  // $('#listings-count-and-order-description').html(
+  //   `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
+  //   medical professionals containing the term <span>${paramsObj.term}</span> ${returnlistingsDescriptionTail()}`
+  // );
+  renderResultsHeader(responseJson);
 
   const doctors = generateDoctorsArr(responseJson);
   renderListDoctors(doctors);
@@ -171,7 +172,18 @@ function renderListDoctors(doctors) {
   $('#section-results').css('display', 'block');
 }
 
+function renderResultsHeader(responseJson) {
+  $('#listings-title').text(
+    `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
+   );
 
+  $('#listings-count-and-order-description').html(
+    `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
+    medical professionals containing the term <span>${paramsObj.term}</span> ${returnlistingsDescriptionTail()}`
+  );
+
+  $('#section-results-header').css('display', 'block');
+}
 
 function listenToFormIcons() {
   const icons = $('.edit-params-form').find('span.before-content');

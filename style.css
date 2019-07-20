@@ -28,7 +28,7 @@ nav {
 }
 
 a {
-    color: darkslategrey;
+    color: #3E5864;
 }
 
 span {
@@ -255,20 +255,23 @@ i.before-content {
   cursor: pointer;
   /*padding-top: 10px;*/
   text-align: right;
+  opacity: 1;
   /*background-color: rgba(0, 0, 0, .5);*/
 }
 
-#sort-order-form i.before-content:hover ~ #sort-order-form label {
+/*#sort-order-form i.before-content:hover ~ #sort-order-form label {
   opacity: .5;
-}
-/*.fa-caret-down {
-  margin-left: 5px;
 }*/
+
 
 #sort-order-form {
   max-width: 390px;
   margin: 0 auto;
 
+}
+
+#sort-order-form * {
+  color: #3E5864;
 }
 
 #sort-order-form select {
@@ -281,7 +284,6 @@ i.before-content {
   font-weight: bold;
   width: auto;
   text-align-last: center;
-  color: darkslategrey;
 }
 
 .sort-flex {
@@ -295,7 +297,6 @@ i.before-content {
 #sort-order-form label {
   display: inline-block;
   margin-right: 8px;
-  color: darkslategrey;
 }
 
 
@@ -487,7 +488,7 @@ button.submit-btn {
 
 
 button.params-btn {
-  color: darkslategrey;
+  color: #3E5864;
 }
 
 button.params-btn:focus {
@@ -510,20 +511,41 @@ i {
   text-align: center;
 }
 
-#section-results {
-  margin-top: 40px;
+
+#section-results-header {
+  display: none;
+  padding-top: 40px;
+  /*padding: 0px 20%;*/
+
 }
 
 #section-results {
   display: none;
-  padding: 0 10px;
+  /*padding: 0 10px;*/
 }
 
 @media (min-width: 599px) {
-   #section-results {
-    padding: 0 16px;
+  #section-results-header {
+    padding: 0px 20%;
+  }
+
+  #section-results {
+    /*padding: 0 16px;*/
+  }
+
+  li.doctor-card-full  {
+    margin-bottom: 40px;
+    padding: 10px;
   }
 }
+
+
+/* Doctor Listings */
+
+.avatar {
+  width: 50px;
+}
+
 
 ul.doctor-listings {
   list-style: none;
@@ -539,19 +561,30 @@ li.doctor-card {
 
 }
 
+li.doctor-card p {
+
+ /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 50px;*/
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+}
+
+
 @media (min-width: 599px) {
+
   li.doctor-card-full  {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding: 10px;
   }
 }
 
 
-/* Doctor Listings */
 
-.avatar {
-  width: 50px;
-}
 
 #map {
   height: 100%;
