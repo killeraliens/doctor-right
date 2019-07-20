@@ -43,6 +43,10 @@ h3 {
   margin-top: 0px;
 }
 
+li {
+  list-style: none;
+}
+
 button, input, select {
     height: 40px;
     outline: none;
@@ -398,6 +402,15 @@ button.submit-btn {
     padding: 20px;
     padding-top: 40px;
     width: 80%;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+@media (min-width: 599px) {
+  .modal-content {
+    max-width: 550px;
+    max-height: 80vh;
+  }
 }
 
 /*.modal-message {*/
@@ -523,7 +536,16 @@ li.doctor-card {
   padding: 10px;
   background-color: white;
   box-shadow: 0 0 16px rgba(0,0,0,.1);
+
 }
+
+@media (min-width: 599px) {
+  li.doctor-card-full  {
+    margin-bottom: 40px;
+    padding: 10px;
+  }
+}
+
 
 /* Doctor Listings */
 

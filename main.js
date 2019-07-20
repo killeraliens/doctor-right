@@ -467,6 +467,19 @@ function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
 
+function returnDoctorCardFull(doctor) {
+  return `
+      <li class="doctor-card-full">
+        <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
+        <h3>${doctor.nameTitle}</h3>
+        <p>${doctor.specialtiesDesc}</p>
+        <h5>Total practices for this professional (${doctor.practicesArr.length})</h5>
+        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})</h5>
+        ${doctor.practicesTrueStr}
+        <span>${doctor.specialtiesName}</span>
+      </li>`;
+}
+
 
 //Start Form Animation
 function listenToStartFormStepIntro() {
@@ -596,7 +609,7 @@ function listenToMarker(doctor, marker) {
     return function() {
       // infowindow.setContent(doctor.nameTitle);
       // infowindow.open(map, marker);
-      renderModal(returnMessageString(doctor.nameTitle));
+      renderModal(returnDoctorCardFull(doctor));
     }
   })(marker));
 
