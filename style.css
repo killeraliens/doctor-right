@@ -8,7 +8,7 @@ body {
     /*font-family: 'Source Sans Pro', sans-serif;*/
     font-family: 'Open Sans', sans-serif;
     /*background-color: rgba(220, 220, 220, 0.6);*/
-    background-color: #F0FDF4;
+    background-color: #F1FFF2;
     margin: 0;
     color: #143342;
 }
@@ -58,7 +58,7 @@ button {
     outline: Transparent;
     font-size: 12px;
     display: inline-block;
-    border: transparent;
+    border: none;
 }
 
 button:hover, button:focus {
@@ -165,12 +165,13 @@ input:focus, select:focus {
 h1 {
   margin-bottom: 16px;
   margin-top: 0;
-  font-size: 26px;
+  font-size: 20px;
 }
 
 #start-form h1 {
   display: inline-block;
   font-weight: lighter;
+  font-size: 26px;
 }
 
 #start-form h2 {
@@ -187,7 +188,7 @@ h1 {
 
 #start-form i {
   font-size: 26px;
-  opacity: .4;
+  /*opacity: .4;*/
 }
 
 #intro-graphic {
@@ -218,6 +219,10 @@ h1 {
   #start-form label {
     font-size: 16px;
   }
+
+  h1 {
+  font-size: 24px;
+}
 }
 
 
@@ -298,12 +303,11 @@ button.next {
 }
 
 button.next:hover, button.next:focus {
-
-
 }
 
 button.submit-btn {
-    background-color: rgb(20, 156, 111);
+    /*background-color: rgb(20, 156, 111);*/
+    background: linear-gradient(#44B3B4, #006B8F);
 }
 
 
@@ -518,7 +522,7 @@ li.doctor-card {
   margin-bottom: 40px;
   padding: 10px;
   background-color: white;
-  box-shadow: 0 0 6px #143342;
+  box-shadow: 0 0 16px rgba(0,0,0,.1);
 }
 
 /* Doctor Listings */
@@ -557,6 +561,11 @@ footer {
 }
 
 
+ ul.doctor-listings {
+    padding: 16px;
+  }
+
+
 
 @media (min-width: 599px) {
   .map-listings-wrap {
@@ -572,7 +581,8 @@ footer {
     width: 40%;
     height: 80vh;
     overflow: scroll;
-    margin-right: 16px;
+    /*margin-right: 16px;*/
+   /* padding: 16px;*/
   }
 
 

@@ -53,16 +53,9 @@ function getAndSetParamsGeocode(address) {
 }
 
 function handleStartFormSubmit() {
-    $('#start-form').on('submit', async (e) => {
+    $('#start-form').on('submit ', async (e) => {
         e.preventDefault();
         console.log('handling start form submit');
-
-    //     $(window).keydown(function(event){
-    // if(event.keyCode == 13) {
-    //   event.preventDefault();
-    //   return false;
-    // }
-
 
         const address = $('#location').val();
         paramsObj.usersInputLocation = $('#location').val();
@@ -496,7 +489,7 @@ function listenToStartFormStepIntro() {
 
 function listenToStartFormStepOne() {
 
-  $('#start-form').on('click', '#step-one-btn', function(e) {
+  $('#start-form').on('click ', '#step-one-btn', function(e) {
   // $('#step-one-btn').on('click keydown', function(e) {
 
     e.preventDefault();
@@ -534,7 +527,7 @@ function listenToStartFormStepTwo() {
 }
 
 function listenToStartFormStepThree() {
-  $('#start-form-submit-btn').on('click', function(e) {
+  $('#start-form-submit-btn').on('click ', function(e) {
     e.preventDefault();
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
