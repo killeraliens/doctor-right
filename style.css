@@ -8,7 +8,8 @@ body {
     /*font-family: 'Source Sans Pro', sans-serif;*/
     font-family: 'Open Sans', sans-serif;
     /*background-color: rgba(220, 220, 220, 0.6);*/
-    background-color: #F0FDF4;
+    /*background-color: #F0FDF4;*/
+    /*background: linear-gradient(white, #F0FDF4);*/
     margin: 0;
     color: #143342;
 }
@@ -19,7 +20,8 @@ body * {
 }
 
 nav {
-  background-color: #F0FDF4;
+  /*background-color: #F0FDF4;*/
+  background: linear-gradient(#F5FEF6, #F0FDF4);
 }
 
 .container {
@@ -29,6 +31,14 @@ nav {
 
 a {
     color: #3E5864;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a h5:hover, a h5:focus {
+    opacity: .7;
 }
 
 span {
@@ -53,6 +63,11 @@ button, input, select {
     font-size: 14px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 10px rgba(62, 88, 100, .2);
+  border: none;
 }
 
 button {
@@ -133,9 +148,6 @@ input, select {
 
 }
 
-input:focus, select:focus {
-  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
-}
 
 .edit-params-form input, .edit-params-form select{
   padding-left: 34px;
@@ -150,12 +162,16 @@ input:focus, select:focus {
 }
 
 
+/* Start Form */
+
+
 @media (min-width: 599px) {
   #start-form input, #start-form select, .edit-params-form input, .edit-params-form select, .edit-params-form .autocomplete {
     width: 390px;
   }
 
 }
+
 
 #start-form {
   text-align: center;
@@ -226,10 +242,11 @@ h1 {
 
   h1 {
   font-size: 24px;
-}
+  }
 }
 
 
+/* Params Form */
 
 span.before-content {
   line-height: 0px;
@@ -299,12 +316,28 @@ i.before-content {
   margin-right: 8px;
 }
 
+#sort-order-form fieldset {
+  margin: 0;
+}
 
+
+#step-intro-btn {
+  background: linear-gradient(#FF0052, #C00048);
+}
 
 button.next {
     /*background-color: rgb(154, 145, 169);*/
-    background: linear-gradient(#44B3B4, #006B8F);
+    /* medium */
+    background: linear-gradient(#449CA0, #006B8F);
 
+    /* light */
+    /*background: linear-gradient(#44B3B4, #449CA0);*/
+
+    /* dark */
+    /*background: linear-gradient(#006B8F, #143342);*/
+
+    /* red */
+    /*background: linear-gradient(#FF0052, #C00048);*/
 }
 
 button.next:hover, button.next:focus {
@@ -312,7 +345,8 @@ button.next:hover, button.next:focus {
 
 button.submit-btn {
     /*background-color: rgb(20, 156, 111);*/
-    background: linear-gradient(#44B3B4, #006B8F);
+    background: linear-gradient(#449CA0, #006B8F);
+
 }
 
 
@@ -400,7 +434,7 @@ button.submit-btn {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    padding: 20px;
+    padding: 16px;
     padding-top: 40px;
     width: 80%;
     max-height: 80vh;
@@ -411,6 +445,8 @@ button.submit-btn {
   .modal-content {
     max-width: 550px;
     max-height: 80vh;
+    padding: 20px;
+    padding-top: 40px;
   }
 }
 
@@ -425,6 +461,7 @@ button.submit-btn {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    background: linear-gradient(white, #F0FDF4);
 }
 
 
@@ -495,7 +532,7 @@ button.params-btn:focus {
   opacity: .4;
 }
 
-i {
+button i {
   margin-right: 3px;
 }
 
@@ -514,9 +551,11 @@ i {
 
 #section-results-header {
   display: none;
-  padding-top: 40px;
+  padding: 0px 10px;
+  padding-top: 20px;
   /*padding: 0px 20%;*/
-
+  border-bottom: 1px solid #E1EDE7;
+  background: linear-gradient(white, #F5FEF6);
 }
 
 #section-results {
@@ -527,6 +566,7 @@ i {
 @media (min-width: 599px) {
   #section-results-header {
     padding: 0px 20%;
+    padding-top: 30px;
   }
 
   #section-results {
@@ -541,6 +581,9 @@ i {
 
 
 /* Doctor Listings */
+.card i {
+  margin-left: 5px;
+}
 
 .avatar {
   width: 50px;
@@ -551,6 +594,7 @@ ul.doctor-listings {
   list-style: none;
   margin: 0;
   padding: 0;
+  background: linear-gradient(white, #F5FEF6);
 }
 
 li.doctor-card {

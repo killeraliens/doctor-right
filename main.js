@@ -123,25 +123,13 @@ async function renderResultsPage(responseJson) {
   handleEditRadiusButton();
   handleEditSearchTermButton();
 
-
-
   renderThisForm(returnEditSearchTermFormString());
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
   handleEditSearchTermForm();
 
-  listenToOrderFormIcon();
 
-
-  // $('#listings-title').text(
-  //   `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
-  //  );
-
-
-  // $('#listings-count-and-order-description').html(
-  //   `Showing <span>${responseJson.data.length}</span> out of a total of <span>${responseJson.meta.total}</span>
-  //   medical professionals containing the term <span>${paramsObj.term}</span> ${returnlistingsDescriptionTail()}`
-  // );
   renderResultsHeader(responseJson);
+  listenToOrderFormIcon();
 
   const doctors = generateDoctorsArr(responseJson);
   renderListDoctors(doctors);
@@ -161,20 +149,14 @@ function returnlistingsDescriptionTail() {
     if (paramsObj.sort == 'distance-asc') {
       return `in order of locations closest to you.`;
     } else if (paramsObj.sort == 'best-match-asc') {
-      return `in order of best match`;
+      return `in order of <span>best match</span>`;
     }
 }
 
 
-function renderListDoctors(doctors) {
-  console.log(`rendering List of doctors...`);
-  $('#list-doctors').html(returnListingsString(doctors));
-  $('#section-results').css('display', 'block');
-}
-
 function renderResultsHeader(responseJson) {
   $('#listings-title').text(
-    `"${paramsObj.term}" Doctors Found Near ${paramsObj.formattedLocation} `
+    `'${paramsObj.term}' Doctors Found Near ${paramsObj.formattedLocation} `
    );
 
   $('#listings-count-and-order-description').html(
@@ -479,14 +461,45 @@ function returnMessageString(message) {
     return `<h3 class="modal-message">${message}</h3>`;
 }
 
+function renderListDoctors(doctorsArr) {
+  console.log(`rendering List of doctors...`);
+  $('#list-doctors').html(returnListingsString(doctorsArr));
+  $('#section-results').css('display', 'block');
+  listenToCardLinks(doctorsArr);
+}
+
+function returnListingsString(doctorsArr) {
+   //console.log(`making li strings for each doctor`);
+  return doctorsArr.map((doctor) => {
+    return `
+      <li class="card doctor-card" id="${doctor.id}">
+        <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
+        <h3>${doctor.nameTitle}</h3>
+        <p>${doctor.specialtiesDesc}</p>
+        <a class="card-expand-link"><h5>Locations within your search radius (${doctor.practicesTrueArr.length})<i class=" fa fa-caret-right"></i></h5></a>
+        <span>${doctor.specialtiesName}</span>
+      </li>
+    `;
+  }).join('\n');
+}
+
+function listenToCardLinks(doctorsArr) {
+  $('.card-expand-link').on('click', function(e) {
+    // console.log(this);
+    let doctorId = $(this).closest('li').prop('id');
+    let doctor = doctorsArr.find(obj => obj.id == doctorId);
+    renderModal(returnDoctorCardFull(doctor));
+  });
+}
+
 function returnDoctorCardFull(doctor) {
   return `
-      <li class="doctor-card-full">
+      <li class="card doctor-card-full">
         <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
         <h3>${doctor.nameTitle}</h3>
         <p>${doctor.specialtiesDesc}</p>
         <h5>Total practices for this professional (${doctor.practicesArr.length})</h5>
-        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})</h5>
+        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})<i class=" fa fa-caret-down"></i></h5>
         ${doctor.practicesTrueStr}
         <span>${doctor.specialtiesName}</span>
       </li>`;
@@ -621,6 +634,7 @@ function listenToMarker(doctor, marker) {
     return function() {
       // infowindow.setContent(doctor.nameTitle);
       // infowindow.open(map, marker);
+      console.log(marker.title)
       renderModal(returnDoctorCardFull(doctor));
     }
   })(marker));

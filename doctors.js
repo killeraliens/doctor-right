@@ -1,4 +1,5 @@
-function Doctor(imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, specialtiesArr) {
+function Doctor(id, imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, specialtiesArr) {
+  this.id = id;
   this.imgUrl = imgUrl;
   this.slug = slug;
   this.nameTitle = nameTitle;
@@ -14,7 +15,7 @@ function Doctor(imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, special
 
 function generateDoctorsArr(responseJson) {
 
-  return responseJson.data.map(doctor => {
+  return responseJson.data.map((doctor, i) => {
     // console.log('making a NEW Doctor..');
     let imgUrl = doctor.profile.image_url;
     let slug = doctor.profile.slug;
@@ -24,6 +25,7 @@ function generateDoctorsArr(responseJson) {
     let specialtiesArr = doctor.specialties;
 
     return new Doctor(
+      i,
       imgUrl,
       slug,
       nameTitle,
@@ -35,20 +37,6 @@ function generateDoctorsArr(responseJson) {
   })
 }
 
-function returnListingsString(doctorsArr) {
-   //console.log(`making li strings for each doctor`);
-  return doctorsArr.map(doctor => {
-    return `
-      <li class="doctor-card">
-        <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
-        <h3>${doctor.nameTitle}</h3>
-        <p>${doctor.specialtiesDesc}</p>
-        <h5>Locations within your search radius (${doctor.practicesTrueArr.length})<i clase=" fa fa-caret-right"></i></h5>
-        <span>${doctor.specialtiesName}</span>
-      </li>
-    `;
-  }).join('\n');
-}
 
 
 
