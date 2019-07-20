@@ -54,8 +54,10 @@ function getAndSetParamsGeocode(address) {
 
 function handleStartFormSubmit() {
     $('#start-form').on('submit ', async (e) => {
+
         e.preventDefault();
         console.log('handling start form submit');
+
 
         const address = $('#location').val();
         paramsObj.usersInputLocation = $('#location').val();
@@ -114,6 +116,7 @@ async function renderResultsPage(responseJson) {
   // console.log(paramsObj);
   // console.log('responseJson at render >>>');
   // console.log(responseJson);
+  $('body').css('background-color', 'white');
 
   await renderNavParams();
   handleEditLocationButton();
@@ -511,7 +514,7 @@ function listenToStartFormStepOne() {
 }
 
 function listenToStartFormStepTwo() {
-  $('#start-form').on('click', '#step-two-btn', function(e) {
+  $('#start-form').on('click ', '#step-two-btn', function(e) {
 
 
       $('#step-two').css({
@@ -532,6 +535,18 @@ function listenToStartFormStepThree() {
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
     } else {
+
+        // var $form = $(this);
+        // $form.toggleClass('ignore');
+        //   if ($form.hasClass('ignore')) {
+        //       e.preventDefault();
+        //       $form.find('input[type=text]').blur();
+        //       setTimeout(function () {
+        //           handleStartFormSubmit();
+        //           $form.submit();
+        //       }, 0);
+        //   }
+      e.preventDefault();
       handleStartFormSubmit();
       $('#start-form').submit();
       $(this).unbind();
@@ -543,7 +558,6 @@ function listenToStartFormStepThree() {
       e.preventDefault();
       return false;
     }
-
   });
 
 }
