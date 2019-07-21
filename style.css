@@ -74,7 +74,7 @@ input:focus, select:focus, #search-radius:focus {
   /*box-shadow: 0 0 10px rgba(62, 88, 100, .2);
   border: none;*/
   border: 1px solid #C4D3D6 !important;
-  box-shadow: none !important;
+  /*box-shadow: none !important;*/
 }
 
 button {

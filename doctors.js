@@ -92,7 +92,7 @@ function returnSpecialtiesNameString(specialtiesArr) {
 }
 
 function makeMarkers(practicesTrueArr) {
-  //console.log(practicesTrueArr);
+  console.log('calling each doctor to make their practice markers');
   return practicesTrueArr.map(practice => {
 
     return new google.maps.Marker({
@@ -106,6 +106,16 @@ function makeMarkers(practicesTrueArr) {
 
   })
 
+}
+
+function makeYouMarker() {
+  return new google.maps.Marker({
+      position: {lat: paramsObj.lat, lng: paramsObj.lng},
+      title: 'You',
+      icon: './assets/dnm-logo-you.png',
+      // draggable: true,
+      animation: google.maps.Animation.DROP
+    });
 }
 
 

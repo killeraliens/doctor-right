@@ -114,6 +114,7 @@ function getBetterDoctor(form) {
 
 
 async function renderResultsPage(responseJson) {
+  console.log('rendering results');
   // console.log('global params at render>>>');
   // console.log(paramsObj);
   // console.log('responseJson at render >>>');
@@ -138,6 +139,7 @@ async function renderResultsPage(responseJson) {
 
   initMap();
   renderDoctorMarkers(doctors);
+  renderYouMarker();
 
 
 
@@ -601,6 +603,7 @@ function listenToStartFormStepThree() {
 //Map!!!!
 
 function initMap() {
+  console.log('making map');
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: paramsObj.lat, lng: paramsObj.lng},
     zoom: determineZoom()
@@ -618,12 +621,18 @@ function determineZoom() {
 }
 
 function renderDoctorMarkers(doctors) {
+
     doctors.forEach(doctor => {
       doctor.makeMarkers.forEach(marker => {
         marker.setMap(map);
         listenToMarker(doctor, marker);
       });
     });
+}
+
+function renderYouMarker() {
+  let you = makeYouMarker();
+  you.setMap(map);
 }
 
 function listenToMarker(doctor, marker) {
