@@ -54,6 +54,8 @@ function getAndSetParamsGeocode(address) {
 
 function handleStartFormSubmit() {
     $('#start-form').on('submit ', async (e) => {
+        $(this).unbind();
+        $(this).blur();
 
         e.preventDefault();
         console.log('handling start form submit');
@@ -446,7 +448,8 @@ function hideOtherEditForms(thisForm, thisBtn) {
 function renderModal(content) {
   $('#modal').css('display', 'block');
   $('#modal-content').html(
-    `<span id="modal-close" class="close">Close <i class="far fa-times-circle"></i></span>` + '\n' + content
+    // `<span id="modal-close" class="close">Close <i class="far fa-times-circle"></i></span>` + '\n' + content
+    `<span id="modal-close" class="close"> <img src="./assets/dnm-close-x.png" alt="" /> </span>` + '\n' + content
   );
   handleModalClose();
 }
@@ -473,8 +476,10 @@ function returnListingsString(doctorsArr) {
   return doctorsArr.map((doctor) => {
     return `
       <li class="card doctor-card" id="${doctor.id}">
-        <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
-        <h3>${doctor.nameTitle}</h3>
+        <div class="flex">
+          <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
+          <h3 class="card-expand-link">${doctor.nameTitle}<i class="fas fa-angle-double-right"></i></h3>
+        </div>
         <p>${doctor.specialtiesDesc}</p>
         <a class="card-expand-link"><h5>Locations within your search radius (${doctor.practicesTrueArr.length})<i class=" fa fa-caret-right"></i></h5></a>
         <span>${doctor.specialtiesName}</span>
@@ -574,19 +579,11 @@ function listenToStartFormStepThree() {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
     } else {
 
-        // var $form = $(this);
-        // $form.toggleClass('ignore');
-        //   if ($form.hasClass('ignore')) {
-        //       e.preventDefault();
-        //       $form.find('input[type=text]').blur();
-        //       setTimeout(function () {
-        //           handleStartFormSubmit();
-        //           $form.submit();
-        //       }, 0);
-        //   }
+
       e.preventDefault();
       handleStartFormSubmit();
       $('#start-form').submit();
+      $(this).blur();
       $(this).unbind();
     }
   });
@@ -616,7 +613,7 @@ function determineZoom() {
   if (Number(paramsObj.radius) <= 10 ) {
     return 11;
   } else {
-    return 9;
+    return 10;
   }
 }
 
