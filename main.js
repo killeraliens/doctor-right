@@ -632,6 +632,7 @@ function renderDoctorMarkers(doctors) {
 
 function renderYouMarker() {
   let you = makeYouMarker();
+
   you.setMap(map);
 }
 

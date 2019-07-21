@@ -600,6 +600,7 @@ button i {
 /* Doctor Listings */
 .card-expand-link {
   cursor: pointer;
+  color: #C00048;
 }
 
 .card h5 i, .card h3 i {
@@ -613,6 +614,10 @@ button i {
 li.doctor-card h3 {
   margin-bottom: 0px;
   font-size: 16px;
+}
+
+li.doctor-card h5 {
+  font-size: 13px;
 }
 
 li.doctor-card span, li.doctor-card p {
@@ -781,6 +786,10 @@ footer {
     padding: 0px 120px;
     padding-top: 32px;
     padding-bottom: 38px;
+  }
+
+  footer p {
+    font-size: 16px;
   }
 
 
