@@ -637,6 +637,14 @@ function renderYouMarker() {
 }
 
 function listenToMarker(doctor, marker) {
+  // google.maps.event.addListener(marker,'mouseover',function(){
+  //   $('img[src="'+this.icon+'"]').addClass('scale');
+  // });
+
+  // google.maps.event.addListener(marker,'mouseout',function(){
+  //   $('img[src="'+this.icon+'"]').removeClass('scale');
+  // });
+
   google.maps.event.addListener(marker, 'click', (function(marker) {
     return function() {
       // infowindow.setContent(doctor.nameTitle);

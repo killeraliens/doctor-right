@@ -8,8 +8,8 @@ body {
     /*font-family: 'Source Sans Pro', sans-serif;*/
     font-family: 'Open Sans', sans-serif;
     /*background-color: rgba(220, 220, 220, 0.6);*/
-    /*background-color: #F0FDF4;*/
-    /*background: linear-gradient(white, #F0FDF4);*/
+    /*background-color: #E7F5F5;*/
+    /*background: linear-gradient(white, #E7F5F5);*/
     margin: 0;
     color: #143342;
 }
@@ -20,8 +20,8 @@ body * {
 }
 
 nav {
-  /*background-color: #F0FDF4;*/
-  background: linear-gradient(#F5FEF6, #F0FDF4);
+  /*background-color: #E7F5F5;*/
+  background: linear-gradient(#F1F9F9, #E7F5F5);
 }
 
 .container {
@@ -475,7 +475,7 @@ button.submit-btn {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: linear-gradient(white, #F0FDF4);
+    background: linear-gradient(white, #E7F5F5);
 }
 
 
@@ -575,7 +575,7 @@ button i {
   padding-top: 20px;
   /*padding: 0px 20%;*/
   border-bottom: 1px solid #D8DFE2;
-  background: linear-gradient(white, #F5FEF6);
+  background: linear-gradient(white, #F1F9F9);
 }
 
 #section-results {
@@ -603,7 +603,7 @@ button i {
 }
 
 .card-expand-link h5 {
-  color: #C00048;
+  /*color: #C00048;*/
 }
 
 .card h5 i, .card h3 i {
@@ -637,7 +637,7 @@ ul.doctor-listings {
   list-style: none;
   margin: 0;
   padding: 0;
-  background: linear-gradient(#F5FEF6, #F0FDF4);
+  background: linear-gradient(#F1F9F9, #E7F5F5);
   /*padding: 16px;*/
 }
 
@@ -645,7 +645,7 @@ li.doctor-card {
   /*margin-bottom: 40px;*/
   padding: 20px;
   background-color: white;
-  box-shadow: inset 0px -60px 60px -60px #F5FEF6;
+  box-shadow: inset 0px -60px 60px -60px #F1F9F9;
   /*box-shadow: 0 0 16px -16px rgba(0,0,0,.1);*/
   border-bottom: 1px solid #D8DFE2;
 
@@ -750,7 +750,7 @@ li.doctor-card p {
 }
 
 #map-container {
-    height: 40vh;
+    height: 50vh;
     width: 100%;
 }
 
@@ -761,16 +761,26 @@ li.doctor-card p {
 
 footer {
   display: none;
-  padding: 0px 40px;
-  padding-top: 32px;
-  padding-bottom: 38px;
-  background-color: #143342;
+  padding: 0px 28px;
+  padding-top: 28px;
+  padding-bottom: 32px;
+  z-index: -1;
+  background-color: #3E5864;
+  /*background: linear-gradient(#143342, #3E5864);*/
   color: white;
   text-align: center;
   font-size: 14px;
 }
 
+footer a {
+  color: white;
+  opacity: .8
+  text-decoration: none;
+}
 
+footer a:hover {
+  opacity: 1;
+}
 
 
 
@@ -786,9 +796,9 @@ footer {
 
 
   footer {
-    padding: 0px 120px;
-    padding-top: 32px;
-    padding-bottom: 38px;
+    padding: 0px 80px;
+    padding-top: 28px;
+    padding-bottom: 32px;
   }
 
   footer p {
@@ -796,6 +806,11 @@ footer {
   }
 
 
+}
+
+
+.scale {
+  scale: 1.5;
 }
 
 
