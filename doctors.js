@@ -98,7 +98,7 @@ function makeMarkers(practicesTrueArr) {
     return new google.maps.Marker({
       position: {lat: practice.lat, lng: practice.lon},
       title: practice.name,
-      icon: './assets/dnm-logo-01.png',
+      icon: './assets/dnm-logo-sm.png',
       // draggable: true,
       animation: google.maps.Animation.DROP
     });

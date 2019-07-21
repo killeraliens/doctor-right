@@ -73,7 +73,7 @@ input, select:not(#sort-order), button:not(.params-btn) {
 input:focus, select:focus, #search-radius:focus {
   /*box-shadow: 0 0 10px rgba(62, 88, 100, .2);
   border: none;*/
-  border: 1px solid #E1EDE7 !important;
+  border: 1px solid #D8DFE2 !important;
   box-shadow: none;
 }
 
@@ -228,6 +228,7 @@ h1 {
 @media (min-width: 599px) {
   #start-form h1 {
     font-size: 30px;
+    /*display: inline-block;*/
   }
 
   #start-form h2 {
@@ -561,7 +562,7 @@ button i {
   padding: 0px 10px;
   padding-top: 20px;
   /*padding: 0px 20%;*/
-  border-bottom: 1px solid #E1EDE7;
+  border-bottom: 1px solid #D8DFE2;
   background: linear-gradient(white, #F5FEF6);
 }
 
