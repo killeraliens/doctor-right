@@ -600,6 +600,9 @@ button i {
 /* Doctor Listings */
 .card-expand-link {
   cursor: pointer;
+}
+
+.card-expand-link h5 {
   color: #C00048;
 }
 
