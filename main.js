@@ -7,7 +7,8 @@ const paramsObj = { //global default 'state' of search params referenced in all 
     term: "heart",
     formattedLocation: "",
     usersInputLocation: "",
-    sort: 'distance-asc'
+    sort: 'distance-asc',
+    insurance: ""
 };
 
 var map;
@@ -77,15 +78,29 @@ function handleStartFormSubmit() {
 
 function getBetterDoctor(form) {
         console.log('calling better doctor api');
-        const betterDoctorParams = {
-            query: paramsObj.term,
-            location:   paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius,
-            user_location: paramsObj.lat + ',' + paramsObj.lng,
-            sort: paramsObj.sort,
-            skip: 0,
-            limit: 30,
-            user_key: config.betterDoc
-        };
+        // const betterDoctorParams = {
+        //     query: paramsObj.term,
+        //     location:   paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius,
+        //     user_location: paramsObj.lat + ',' + paramsObj.lng,
+        //     sort: paramsObj.sort,
+        //     skip: 0,
+        //     limit: 30,
+        //     user_key: config.betterDoc
+        // };
+        const betterDoctorParams = {};
+
+        betterDoctorParams.query = paramsObj.term;
+        if (paramsObj.insurance !== '') {
+          betterDoctorParams.insurance_uid = paramsObj.insurance;
+        }
+        betterDoctorParams.location = paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius;
+        betterDoctorParams.user_location = paramsObj.lat + ',' + paramsObj.lng;
+        betterDoctorParams.sort = paramsObj.sort;
+        betterDoctorParams.skip = 0;
+        betterDoctorParams.limit = 30;
+        betterDoctorParams.user_key = config.betterDoc;
+
+
 
         const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
         const url = rootUrl + returnQueryString(betterDoctorParams);
@@ -229,6 +244,14 @@ function returnParamsNavString(formattedLocation) {
         <button id="edit-radius-btn" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
         <button id="edit-search-term-btn" class="params-btn active-edit"><i class="fas fa-search"></i>${paramsObj.term}</button>
     `;
+}
+
+    //Helper APi Call to fill insurance provider select options
+function getBetterDoctorInsurance() {
+  console.log('calling better doctor api to get insurance options');
+  const betterDoctorParams = {
+      user_key: config.betterDoc
+  };
 }
 
     //Helper API Call returns city and state string for location edit nav button
@@ -424,6 +447,53 @@ function handleEditSearchTermForm() {
     } else {
       renderModal(returnMessageString('You must enter a specialty keyword to search'));
     }
+
+  })
+}
+
+
+function handleEditInsuranceButton() {
+  $('#edit-insurance-btn').on('click', function(e) {
+    e.preventDefault();
+      //console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
+
+      $(this).toggleClass('active-edit');
+
+      renderThisForm(returnEditInsuranceFormString());
+
+      hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
+      handleEditInsuranceForm();
+  })
+}
+
+function returnEditInsuranceFormString() {
+  return `
+    <form id="edit-radius-form" class="edit-params-form ">
+      <span class="before-content">
+        <i class="far fa-dot-circle before-content"></i>
+      </span>
+      <div class="flex">
+        <select name="edit-insurance" id="edit-insurance" class="add-before insurance-input">
+          ${returnEditInsuranceOptionsString}
+        </select>
+        <button type="submit" class="submit-btn">Go</button>
+      </div>
+    </form>
+  `;
+}
+
+
+
+function handleEditInsuranceForm() {
+  listenToFormIcons();
+  $('#edit-insurance-form').on('submit', (e) => {
+    e.preventDefault();
+    //console.log(`${$(this)} #edit-insurance-form was SUBMITTED, calling getbetterdoctor function`);
+
+    const selectEl = document.getElementById("edit-insurance");
+    const insurance = selectEl.options[selectEl.selectedIndex].value;
+    paramsObj.insurance = insurance;
+    getBetterDoctor('#edit-insurance-form');
 
   })
 }
