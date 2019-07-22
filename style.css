@@ -31,10 +31,12 @@ nav {
 
 a {
     color: #63666A;
+    text-decoration: none;
 }
 
 a:hover {
   cursor: pointer;
+  opacity: .7;
 }
 
 a h5:hover, a h5:focus {
@@ -74,7 +76,7 @@ input:focus, select:focus, #search-radius:focus {
   /*box-shadow: 0 0 10px rgba(62, 88, 100, .2);
   border: none;*/
   border: 1px solid #C4D3D6 !important;
-  /*box-shadow: none !important;*/
+  box-shadow: none !important;
 }
 
 button {
@@ -758,21 +760,21 @@ footer {
   padding-top: 28px;
   padding-bottom: 32px;
   z-index: -1;
-  background-color: #63666A;
+  background-color: #FBFBFB;
   /*background: linear-gradient(#143342, #3E5864);*/
-  color: #DCDCD9;
+  /*color: #DCDCD9;*/
   text-align: center;
   font-size: 14px;
 }
 
-footer a {
+/*footer a {
   color: white;
   text-decoration: none;
 }
 
 footer a:hover {
   color: #DCDCD9;
-}
+}*/
 
 
 
