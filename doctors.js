@@ -98,7 +98,7 @@ function makeMarkers(practicesTrueArr) {
     return new google.maps.Marker({
       position: {lat: practice.lat, lng: practice.lon},
       title: practice.name,
-      icon: './assets/dnm-logo-sm.png',
+      icon: './assets/dnm-logo-sm-1.png',
       // draggable: true,
       animation: google.maps.Animation.DROP
     });
@@ -112,7 +112,7 @@ function makeYouMarker() {
   return new google.maps.Marker({
       position: {lat: paramsObj.lat, lng: paramsObj.lng},
       title: 'You',
-      icon: './assets/dnm-logo-you.png',
+      icon: './assets/dnm-logo-you-1.png',
       // draggable: true,
       animation: google.maps.Animation.DROP
     });
