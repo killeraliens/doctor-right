@@ -240,6 +240,7 @@ async function renderNavParams() {
   paramsObj.formattedLocation = formattedLocation;
   $('#nav-params').html(returnParamsNavString(formattedLocation));
   $('#nav-params').css('display', 'block');
+
 }
 
 function returnParamsNavString(formattedLocation) {
@@ -257,6 +258,15 @@ function returnPlusOrScript() {
   } else {
     return `far fa-times-circle`;
   }
+}
+
+function listenToInsuranceClose() {
+  $('#edit-insurance-btn').has('.fa-times-circle').on('click', function(e) {
+     console.log('resetting insurance');
+     paramsObj.insuranceName = 'add insurance';
+     paramsObj.insuranceUid = '';
+     $(this).html(`<i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}`);
+  });
 }
 
     //Helper APi Call to fill insurance provider select options
@@ -486,6 +496,7 @@ function handleEditSearchTermForm() {
 
 
 function handleEditInsuranceButton() {
+  listenToInsuranceClose();
   $('#edit-insurance-btn').on('click', function(e) {
     e.preventDefault();
       //console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
@@ -495,8 +506,11 @@ function handleEditInsuranceButton() {
       renderThisForm(returnEditInsuranceFormString());
 
       hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
+
+
       handleEditInsuranceInput();
       handleEditInsuranceForm();
+
   })
 }
 
