@@ -105,6 +105,7 @@ function getBetterDoctor(form) {
 
         const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
         const url = rootUrl + returnQueryString(betterDoctorParams);
+        console.log(url);
 
         fetch(url)
         .then(response => {
@@ -254,7 +255,7 @@ function returnPlusOrScript() {
   if (paramsObj.insuranceName == 'add insurance') {
     return `fas fa-plus`;
   } else {
-    return `fas fa-align-right`;
+    return `far fa-times-circle`;
   }
 }
 
@@ -494,20 +495,26 @@ function handleEditInsuranceButton() {
       renderThisForm(returnEditInsuranceFormString());
 
       hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
+      handleEditInsuranceInput();
       handleEditInsuranceForm();
   })
 }
 
 function returnEditInsuranceFormString() {
+        // <select name="edit-insurance" id="edit-insurance" class="add-before insurance-input">
+        //   ${returnEditInsuranceOptionsString()}
+        // </select>
   return `
     <form id="edit-insurance-form" class="edit-params-form ">
       <span class="before-content">
         <i class="fas fa-align-right before-content"></i>
       </span>
       <div class="flex">
-        <select name="edit-insurance" id="edit-insurance" class="add-before insurance-input">
+        <input list="insuranceList" id="edit-insurance" />
+        <datalist id="insuranceList">
           ${returnEditInsuranceOptionsString()}
-        </select>
+        </datalist>
+        <input type="hidden" name="selected" id="edit-insurance-hidden"/>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -516,27 +523,65 @@ function returnEditInsuranceFormString() {
 
 function returnEditInsuranceOptionsString() {
   console.log(`options will populate with ${paramsObj.insuranceOptions.length}`);
-  return `<option value="${paramsObj.insuranceUid}" selected="selected">${paramsObj.insuranceName}</option>`
+
+  // return `<option value="${paramsObj.insuranceUid}" selected="selected">${paramsObj.insuranceName}</option>`
+  // return `<option data-value="${paramsObj.insuranceUid}">${paramsObj.insuranceName}</option>`
+  return paramsObj.insuranceOptions.map(insObj => {
+    //get plans out of each insObj.plans array
+    return `<option data-value="${insObj.uid}">${insObj.name}</option>`
+  }).join(`\n`);
+}
+
+function handleEditInsuranceInput() {
+  document.querySelector('input[list]').addEventListener('input', function(e) {
+    const input = e.target,
+      list = input.getAttribute('list'),
+      options = document.querySelectorAll('#' + list + ' option'),
+      hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+      inputValue = input.value;
+    hiddenInput.value = inputValue;
+
+    for(let i = 0; i < options.length; i++) {
+        let option = options[i];
+
+        if(option.innerText === inputValue) {
+            hiddenInput.value = option.getAttribute('data-value');
+            break;
+        }
+    }
+
+  });
 }
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
   $('#edit-insurance-form').on('submit', (e) => {
     e.preventDefault();
+    // console.log($('#edit-insurance').val()); //Name
+    // console.log($('#edit-insurance-hidden').val()); //uid
     console.log(`${$(this)} #edit-insurance-form was SUBMITTED, calling getbetterdoctor function`);
 
-    const selectEl = document.getElementById("edit-insurance");
-    //console.log(selectEl.options[selectEl.selectedIndex].text);
-
-    if ( selectEl.options[selectEl.selectedIndex].value.length == 0) {
+    if (isIncludedInGlobalInsurance($('#edit-insurance-hidden').val()) ) {
+      console.log('yes its here');
+      paramsObj.insuranceName = $('#edit-insurance').val();
+      paramsObj.insuranceUid = $('#edit-insurance-hidden').val();
+      getBetterDoctor('#edit-insurance-form');
+    } else {
+      console.log('no its not here');
       paramsObj.insuranceName = "add insurance";
       paramsObj.insuranceUid = "";
-    } else {
-      paramsObj.insuranceName = selectEl.options[selectEl.selectedIndex].text;
-      paramsObj.insuranceUid = selectEl.options[selectEl.selectedIndex].value;
-
+      renderModal(returnMessageString(`Sorry, we couldn't find a plan named '${$('#edit-insurance').val()}'`));
+      $('#edit-insurance').val('');
     }
-    getBetterDoctor('#edit-insurance-form');
+
+    function isIncludedInGlobalInsurance(submitVal) {
+      for (let i = 0; i < paramsObj.insuranceOptions.length; i++) {
+        if (paramsObj.insuranceOptions[i].uid == submitVal ) {
+          return true;
+        }
+      }
+      return false;
+    }
 
   })
 }
@@ -549,9 +594,11 @@ function hideOtherEditForms(thisForm, thisBtn) {
       $(otherBtns).removeClass('active-edit');
       $(otherForms).find('input').val('');
       $(otherForms).css('display', 'none');
-      // $(thisForm).slideDown(100, function() {
-      //   $(thisForm).find('input').val('');
-      // });
+      // if(thisBtn == '#edit-insurance-btn') {
+      //   paramsObj.insuranceName = 'add insurance';
+      //   paramsObj.insuranceUid = '';
+      //   $(thisBtn).innerText(`<i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}`);
+      // }
       $(thisForm).find('input').val('');
       $(thisForm).css('display', 'block');
   }
