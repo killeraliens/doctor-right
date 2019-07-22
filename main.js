@@ -266,6 +266,7 @@ function listenToInsuranceClose() {
      paramsObj.insuranceName = 'add insurance';
      paramsObj.insuranceUid = '';
      $(this).html(`<i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}`);
+     getBetterDoctor('#edit-insurance-form');
   });
 }
 
@@ -287,7 +288,8 @@ function getBetterDoctorInsuranceOptions() {
     throw new Error(response.statusText);
   })
   .then(responseJson => {
-    paramsObj.insuranceOptions = responseJson.data;
+    paramsObj.insuranceOptions = setGlobalInsuranceOptions(responseJson.data);
+
     console.log(paramsObj.insuranceOptions);
 
   })
@@ -515,9 +517,7 @@ function handleEditInsuranceButton() {
 }
 
 function returnEditInsuranceFormString() {
-        // <select name="edit-insurance" id="edit-insurance" class="add-before insurance-input">
-        //   ${returnEditInsuranceOptionsString()}
-        // </select>
+  //console.log(returnEditInsuranceOptionsString());
   return `
     <form id="edit-insurance-form" class="edit-params-form ">
       <span class="before-content">
@@ -536,14 +536,15 @@ function returnEditInsuranceFormString() {
 }
 
 function returnEditInsuranceOptionsString() {
-  console.log(`options will populate with ${paramsObj.insuranceOptions.length}`);
+  //console.log(`options will populate with ${paramsObj.insuranceOptions.length}`);
+    return paramsObj.insuranceOptions.map(planObj => { return `<option data-value="${planObj.uid}">${planObj.name}</option>` }).join(`\n`);
+}
 
-  // return `<option value="${paramsObj.insuranceUid}" selected="selected">${paramsObj.insuranceName}</option>`
-  // return `<option data-value="${paramsObj.insuranceUid}">${paramsObj.insuranceName}</option>`
-  return paramsObj.insuranceOptions.map(insObj => {
-    //get plans out of each insObj.plans array
-    return `<option data-value="${insObj.uid}">${insObj.name}</option>`
-  }).join(`\n`);
+async function setGlobalInsuranceOptions(responseData) {
+  let insuranceCos = await [].concat(responseData);
+  let insurancePlanArrs = insuranceCos.map(coObj => { return coObj.plans });
+  let insurancePlans = [].concat.apply([], insurancePlanArrs);
+  paramsObj.insuranceOptions = insurancePlans;
 }
 
 function handleEditInsuranceInput() {
@@ -576,12 +577,14 @@ function handleEditInsuranceForm() {
     console.log(`${$(this)} #edit-insurance-form was SUBMITTED, calling getbetterdoctor function`);
 
     if (isIncludedInGlobalInsurance($('#edit-insurance-hidden').val()) ) {
-      console.log('yes its here');
+      //console.log('yes its here');
       paramsObj.insuranceName = $('#edit-insurance').val();
       paramsObj.insuranceUid = $('#edit-insurance-hidden').val();
       getBetterDoctor('#edit-insurance-form');
     } else {
-      console.log('no its not here');
+      //console.log('no its not here');
+      // console.log($('#edit-insurance').val());
+      //console.log($('#edit-insurance-hidden').val());
       paramsObj.insuranceName = "add insurance";
       paramsObj.insuranceUid = "";
       renderModal(returnMessageString(`Sorry, we couldn't find a plan named '${$('#edit-insurance').val()}'`));
@@ -594,6 +597,8 @@ function handleEditInsuranceForm() {
           return true;
         }
       }
+        console.log(paramsObj.insuranceOptions);
+        console.log(submitVal);
       return false;
     }
 
