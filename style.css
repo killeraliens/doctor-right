@@ -546,7 +546,7 @@ button i {
   margin-right: 3px;
 }
 
-#edit-location-form, #edit-radius-form, #edit-search-term-form {
+#edit-location-form, #edit-radius-form, #edit-search-term-form, #edit-insurance-form {
   display: none;
   padding: 0 10px;
 }

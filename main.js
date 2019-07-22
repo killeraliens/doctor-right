@@ -8,7 +8,9 @@ const paramsObj = { //global default 'state' of search params referenced in all 
     formattedLocation: "",
     usersInputLocation: "",
     sort: 'distance-asc',
-    insurance: ""
+    insuranceUid: "",
+    insuranceName: "add insurance",
+    insuranceOptions: []
 };
 
 var map;
@@ -90,8 +92,8 @@ function getBetterDoctor(form) {
         const betterDoctorParams = {};
 
         betterDoctorParams.query = paramsObj.term;
-        if (paramsObj.insurance !== '') {
-          betterDoctorParams.insurance_uid = paramsObj.insurance;
+        if (paramsObj.insuranceName !== 'add insurance') {
+          betterDoctorParams.insurance_uid = paramsObj.insuranceUid;
         }
         betterDoctorParams.location = paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius;
         betterDoctorParams.user_location = paramsObj.lat + ',' + paramsObj.lng;
@@ -99,7 +101,6 @@ function getBetterDoctor(form) {
         betterDoctorParams.skip = 0;
         betterDoctorParams.limit = 30;
         betterDoctorParams.user_key = config.betterDoc;
-
 
 
         const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
@@ -140,6 +141,8 @@ async function renderResultsPage(responseJson) {
   handleEditLocationButton();
   handleEditRadiusButton();
   handleEditSearchTermButton();
+  handleEditInsuranceButton();
+
 
   renderThisForm(returnEditSearchTermFormString());
   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
@@ -243,15 +246,44 @@ function returnParamsNavString(formattedLocation) {
         <button id="edit-location-btn" class="params-btn"><i class="fas fa-map-marker"></i>${formattedLocation}</button>
         <button id="edit-radius-btn" class="params-btn"><i class="far fa-dot-circle"></i>${paramsObj.radius} mi</button>
         <button id="edit-search-term-btn" class="params-btn active-edit"><i class="fas fa-search"></i>${paramsObj.term}</button>
+        <button id="edit-insurance-btn" class="params-btn"><i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}</button>
     `;
 }
 
+function returnPlusOrScript() {
+  if (paramsObj.insuranceName == 'add insurance') {
+    return `fas fa-plus`;
+  } else {
+    return `fas fa-align-right`;
+  }
+}
+
     //Helper APi Call to fill insurance provider select options
-function getBetterDoctorInsurance() {
+function getBetterDoctorInsuranceOptions() {
   console.log('calling better doctor api to get insurance options');
   const betterDoctorParams = {
       user_key: config.betterDoc
   };
+
+  const rootUrl = 'https://api.betterdoctor.com/2016-03-01/insurances?';
+  const url = rootUrl + returnQueryString(betterDoctorParams);
+
+  fetch(url)
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.statusText);
+  })
+  .then(responseJson => {
+    paramsObj.insuranceOptions = responseJson.data;
+    console.log(paramsObj.insuranceOptions);
+
+  })
+  .catch(err => {
+    renderModal(returnMessageString(err.message));
+  });
+
 }
 
     //Helper API Call returns city and state string for location edit nav button
@@ -468,13 +500,13 @@ function handleEditInsuranceButton() {
 
 function returnEditInsuranceFormString() {
   return `
-    <form id="edit-radius-form" class="edit-params-form ">
+    <form id="edit-insurance-form" class="edit-params-form ">
       <span class="before-content">
-        <i class="far fa-dot-circle before-content"></i>
+        <i class="fas fa-align-right before-content"></i>
       </span>
       <div class="flex">
         <select name="edit-insurance" id="edit-insurance" class="add-before insurance-input">
-          ${returnEditInsuranceOptionsString}
+          ${returnEditInsuranceOptionsString()}
         </select>
         <button type="submit" class="submit-btn">Go</button>
       </div>
@@ -482,17 +514,28 @@ function returnEditInsuranceFormString() {
   `;
 }
 
-
+function returnEditInsuranceOptionsString() {
+  console.log(`options will populate with ${paramsObj.insuranceOptions.length}`);
+  return `<option value="${paramsObj.insuranceUid}" selected="selected">${paramsObj.insuranceName}</option>`
+}
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
   $('#edit-insurance-form').on('submit', (e) => {
     e.preventDefault();
-    //console.log(`${$(this)} #edit-insurance-form was SUBMITTED, calling getbetterdoctor function`);
+    console.log(`${$(this)} #edit-insurance-form was SUBMITTED, calling getbetterdoctor function`);
 
     const selectEl = document.getElementById("edit-insurance");
-    const insurance = selectEl.options[selectEl.selectedIndex].value;
-    paramsObj.insurance = insurance;
+    //console.log(selectEl.options[selectEl.selectedIndex].text);
+
+    if ( selectEl.options[selectEl.selectedIndex].value.length == 0) {
+      paramsObj.insuranceName = "add insurance";
+      paramsObj.insuranceUid = "";
+    } else {
+      paramsObj.insuranceName = selectEl.options[selectEl.selectedIndex].text;
+      paramsObj.insuranceUid = selectEl.options[selectEl.selectedIndex].value;
+
+    }
     getBetterDoctor('#edit-insurance-form');
 
   })
@@ -727,6 +770,7 @@ function listenToMarker(doctor, marker) {
 }
 
 
+getBetterDoctorInsuranceOptions();
 listenToStartFormStepIntro();
 handleChangeSortedBy();
 
