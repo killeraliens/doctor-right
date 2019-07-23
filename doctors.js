@@ -92,7 +92,7 @@ function returnSpecialtiesNameString(specialtiesArr) {
 }
 
 function makeMarkers(practicesTrueArr) {
-  console.log('calling each doctor to make their practice markers');
+  //console.log('calling each doctor to make their practice markers'); //should log 30 times
   return practicesTrueArr.map(practice => {
 
     return new google.maps.Marker({
