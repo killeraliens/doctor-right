@@ -121,6 +121,10 @@ function getBetterDoctor(form) {
             $(`${form}`).css('display','none');
           }
           console.log(`rendering search results`);
+          // if (form.includes('#edit') == false) {
+          //   renderNavigation();
+          // }
+          // renderResultsMain(responseJson);
           renderResultsPage(responseJson);
         })
         .catch(err => {
@@ -130,13 +134,15 @@ function getBetterDoctor(form) {
 }
 
 
+
+
 async function renderResultsPage(responseJson) {
   console.log('rendering results');
   // console.log('global params at render>>>');
   // console.log(paramsObj);
   // console.log('responseJson at render >>>');
   // console.log(responseJson);
-  $('body').css('background-color', 'white');
+  //$('body').css('background-color', 'white');
 
   await renderNavParams();
   handleEditLocationButton();
@@ -160,10 +166,36 @@ async function renderResultsPage(responseJson) {
   renderDoctorMarkers(doctors);
   renderYouMarker();
 
-
-
   $('footer').css('display', 'block');
 }
+
+// async function renderNavigation() {
+//   await renderNavParams();
+//   handleEditLocationButton();
+//   handleEditRadiusButton();
+//   handleEditSearchTermButton();
+//   handleEditInsuranceButton();
+
+
+//   renderThisForm(returnEditSearchTermFormString());
+//   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
+//   handleEditSearchTermForm();
+
+// }
+
+// function renderResultsMain(responseJson) {
+//   renderResultsHeader(responseJson);
+//   listenToOrderFormIcon();
+
+//   const doctors = generateDoctorsArr(responseJson);
+//   renderListDoctors(doctors);
+
+//   initMap();
+//   renderDoctorMarkers(doctors);
+//   renderYouMarker();
+
+//   $('footer').css('display', 'block');
+// }
 
 
 // Result/Listing Components
