@@ -867,10 +867,9 @@ function listenToMarker(doctor, marker) {
 
 }
 
-$(document).on('ready', function() {
   getBetterDoctorInsuranceOptions();
   listenToStartFormStepIntro();
   handleChangeSortedBy();
-});
+
 
 
