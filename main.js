@@ -116,7 +116,7 @@ function getBetterDoctor(form) {
         })
         .then(responseJson => {
           //console.log(form);
-          if (form !== '#sort-order-form') {
+          if (form !== '#sort-order-form' || form.include('#edit')) {
             //console.log(`hiding ${form} `);
             $(`${form}`).css('display','none');
           }
