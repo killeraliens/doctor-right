@@ -63,9 +63,7 @@ button, input, select {
     cursor: pointer;
 }
 
-/*datalist select {
 
-}*/
 
 input, select:not(#sort-order), button:not(.params-btn) {
   box-shadow: 0 0 8px rgba(62, 88, 100, .2);

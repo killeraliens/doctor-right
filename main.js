@@ -104,7 +104,7 @@ function getBetterDoctor(form) {
     if (form !== '#sort-order-form') {
       $(`${form}`).css('display','none');
     }
-    console.log(`rendering search results`);
+    // console.log(`rendering search results`);
     renderResultsPage(responseJson);
   })
   .catch(err => {
@@ -476,7 +476,7 @@ function handleEditInsuranceButton() {
     hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
 
 
-    handleEditInsuranceInput();
+    handleEditInsuranceDatalistInput();
     handleEditInsuranceForm();
 
   })
@@ -513,7 +513,7 @@ async function setGlobalInsuranceOptions(responseData) {
   paramsObj.insuranceOptions = insurancePlans;
 }
 
-function handleEditInsuranceInput() {
+function handleEditInsuranceDatalistInput() {
       document.querySelector('input[list]').addEventListener('input', function(e) {
         let input = e.target,
           list = input.getAttribute('list'),
@@ -536,7 +536,7 @@ function handleEditInsuranceInput() {
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
-  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 && window.innerWidth > 599)
   {
      $('#edit-insurance').css({"display": "none"});
      $('#edit-insurance-form').on('submit', (e) => {
@@ -573,9 +573,7 @@ function handleEditInsuranceForm() {
       }
     });
   }
-
 }
-
 
 function hideOtherEditForms(thisForm, thisBtn) {
   const otherForms = $('.edit-params-form').not($(thisForm));
