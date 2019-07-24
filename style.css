@@ -393,7 +393,7 @@ button.submit-btn:hover, button.submit-btn:focus {
   position: relative;
   z-index: 10;
   margin: 0 auto;
-  top: 25%;
+  top: 20%;
   -webkit-transition-timing-function: ease;
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
@@ -412,11 +412,11 @@ button.submit-btn:hover, button.submit-btn:focus {
 
 }
 
-/*@media (min-width: 599px) {
+@media (min-width: 599px) {
   #step-intro.active-fieldset, #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
     top: 25%;
   }
-}*/
+}
 
 
 #step-intro.done-fieldset, #step-one.done-fieldset, #step-two.done-fieldset, #step-three.done-fieldset {
