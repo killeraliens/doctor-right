@@ -60,8 +60,6 @@ function handleStartFormSubmit() {
         $(this).blur();
 
         e.preventDefault();
-        console.log('handling start form submit');
-
 
         const address = $('#location').val();
         paramsObj.usersInputLocation = $('#location').val();
@@ -78,45 +76,41 @@ function handleStartFormSubmit() {
 }
 
 function getBetterDoctor(form) {
-        console.log('calling better doctor api');
-        const betterDoctorParams = {};
+  const betterDoctorParams = {};
 
-        betterDoctorParams.query = paramsObj.term;
-        if (paramsObj.insuranceName !== 'add insurance plan') {
-          betterDoctorParams.insurance_uid = paramsObj.insuranceUid;
-        }
-        betterDoctorParams.location = paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius;
-        betterDoctorParams.user_location = paramsObj.lat + ',' + paramsObj.lng;
-        betterDoctorParams.sort = paramsObj.sort;
-        betterDoctorParams.skip = 0;
-        betterDoctorParams.limit = 30;
-        betterDoctorParams.user_key = config.betterDoc;
+  betterDoctorParams.query = paramsObj.term;
+  if (paramsObj.insuranceName !== 'add insurance plan') {
+    betterDoctorParams.insurance_uid = paramsObj.insuranceUid;
+  }
+  betterDoctorParams.location = paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius;
+  betterDoctorParams.user_location = paramsObj.lat + ',' + paramsObj.lng;
+  betterDoctorParams.sort = paramsObj.sort;
+  betterDoctorParams.skip = 0;
+  betterDoctorParams.limit = 30;
+  betterDoctorParams.user_key = config.betterDoc;
 
 
-        const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
-        const url = rootUrl + returnQueryString(betterDoctorParams);
-        console.log(url);
+  const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
+  const url = rootUrl + returnQueryString(betterDoctorParams);
 
-        fetch(url)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error(response.statusText);
-        })
-        .then(responseJson => {
-          if (form !== '#sort-order-form') {
-            $(`${form}`).css('display','none');
-          }
-          console.log(`rendering search results`);
-          renderResultsPage(responseJson);
-        })
-        .catch(err => {
-          renderModal(returnMessageString(err.message));
-        })
+  fetch(url)
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.statusText);
+  })
+  .then(responseJson => {
+    if (form !== '#sort-order-form') {
+      $(`${form}`).css('display','none');
+    }
+    console.log(`rendering search results`);
+    renderResultsPage(responseJson);
+  })
+  .catch(err => {
+    renderModal(returnMessageString(err.message));
+  })
 }
-
-
 
 
 async function renderResultsPage(responseJson) {
@@ -169,48 +163,6 @@ function renderResultsHeader(responseJson) {
   $('#section-results-header').css('display', 'block');
 }
 
-function listenToFormIcons() {
-  const icons = $('.edit-params-form').find('span.before-content');
-
-  $(icons).on('click', function(e) {
-    const targetInput = $(this).closest('form').find('input');
-    targetInput.trigger('focus');
-
-    const targetSelect = $(this).closest('form').find('select');
-    const targetSelectOptions = $(this).closest('form').find('option');
-    selectDropdownExtension(targetSelect, targetSelectOptions);
-    icons.css('z-index', 22);
-  });
-}
-
-function listenToOrderFormIcon() {
-  const icons = $('#sort-order-form').find('i.before-content');
-
-  $(icons).on('click', function(e) {
-
-    const targetSelect = $(this).closest('form').find('select');
-
-    const targetSelectOptions = $(this).closest('form').find('option');
-    selectDropdownExtension(targetSelect, targetSelectOptions);
-    icons.css('z-index', 22);
-  });
-}
-
-    //Helper for select element dropdown expansion, enables input icons to be clickable.
-function selectDropdownExtension(targetSelect, targetSelectOptions) {
-  let pxHeight = (targetSelectOptions.length * 26) + 'px';
-    targetSelect.css('z-index', 22);
-    targetSelect.attr('size', targetSelectOptions.length);
-    targetSelect.css({height: pxHeight });
-    targetSelectOptions.css({padding: '4px'});
-    targetSelectOptions.on('click', function() {
-      targetSelect.attr('size', 1);
-      targetSelect.css({height: "40px"});
-      targetSelect.css('z-index', 20);
-    });
-}
-
-
 
 // Nav Components
 async function renderNavParams() {
@@ -219,7 +171,6 @@ async function renderNavParams() {
   paramsObj.formattedLocation = formattedLocation;
   $('#nav-params').html(returnParamsNavString(formattedLocation));
   $('#nav-params').css('display', 'block');
-
 }
 
 function returnParamsNavString(formattedLocation) {
@@ -251,7 +202,6 @@ function listenToInsuranceClose() {
 
     //Helper APi Call to fill insurance provider select options
 function getBetterDoctorInsuranceOptions() {
-  console.log('calling better doctor api to get insurance options');
   const betterDoctorParams = {
       user_key: config.betterDoc
   };
@@ -268,8 +218,6 @@ function getBetterDoctorInsuranceOptions() {
   })
   .then(responseJson => {
     paramsObj.insuranceOptions = setGlobalInsuranceOptions(responseJson.data);
-
-    console.log(paramsObj.insuranceOptions);
 
   })
   .catch(err => {
@@ -317,6 +265,48 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 
 
 // Nav Actions
+function listenToFormIcons() {
+  const icons = $('.edit-params-form').find('span.before-content');
+
+  $(icons).on('click', function(e) {
+    const targetInput = $(this).closest('form').find('input');
+    targetInput.trigger('focus');
+
+    const targetSelect = $(this).closest('form').find('select');
+    const targetSelectOptions = $(this).closest('form').find('option');
+    selectDropdownExtension(targetSelect, targetSelectOptions);
+    icons.css('z-index', 22);
+  });
+}
+
+function listenToOrderFormIcon() {
+  const icons = $('#sort-order-form').find('i.before-content');
+
+  $(icons).on('click', function(e) {
+
+    const targetSelect = $(this).closest('form').find('select');
+
+    const targetSelectOptions = $(this).closest('form').find('option');
+    selectDropdownExtension(targetSelect, targetSelectOptions);
+    icons.css('z-index', 22);
+  });
+}
+
+    //Helper for select element dropdown expansion, enables input icons to be clickable.
+function selectDropdownExtension(targetSelect, targetSelectOptions) {
+  let pxHeight = (targetSelectOptions.length * 26) + 'px';
+    targetSelect.css('z-index', 22);
+    targetSelect.attr('size', targetSelectOptions.length);
+    targetSelect.css({height: pxHeight });
+    targetSelectOptions.css({padding: '4px'});
+    targetSelectOptions.on('click', function() {
+      targetSelect.attr('size', 1);
+      targetSelect.css({height: "40px"});
+      targetSelect.css('z-index', 20);
+    });
+}
+
+
 function handleChangeSortedBy() {
   $('#sort-order').on('change', function(e) {
     e.preventDefault();
@@ -501,7 +491,7 @@ function returnEditInsuranceFormString() {
       <div class="flex">
         <input list="insuranceList" id="edit-insurance" />
         <datalist id="insuranceList">
-          <select>
+          <select id="edit-insurance-select">
             ${returnEditInsuranceOptionsString()}
           </select>
         </datalist>
@@ -524,52 +514,66 @@ async function setGlobalInsuranceOptions(responseData) {
 }
 
 function handleEditInsuranceInput() {
-  document.querySelector('input[list]').addEventListener('input', function(e) {
-    const input = e.target,
-      list = input.getAttribute('list'),
-      options = document.querySelectorAll('#' + list + ' option'),
-      hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
-      inputValue = input.value;
-    hiddenInput.value = inputValue;
+      document.querySelector('input[list]').addEventListener('input', function(e) {
+        let input = e.target,
+          list = input.getAttribute('list'),
+          options = document.querySelectorAll('#' + list + ' option'),
+          hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+          inputValue = input.value;
+        hiddenInput.value = inputValue;
 
-    for(let i = 0; i < options.length; i++) {
-        let option = options[i];
 
-        if(option.innerText === inputValue) {
-            hiddenInput.value = option.getAttribute('data-value');
-            break;
+        for(let i = 0; i < options.length; i++) {
+            let option = options[i];
+
+            if(option.innerText === inputValue) {
+                hiddenInput.value = option.getAttribute('data-value');
+                break;
+            }
         }
-    }
-
-  });
+      });
 }
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
-  $('#edit-insurance-form').on('submit', (e) => {
-    e.preventDefault();
-
-    if (isIncludedInGlobalInsurance($('#edit-insurance-hidden').val()) ) {
-      paramsObj.insuranceName = $('#edit-insurance').val();
-      paramsObj.insuranceUid = $('#edit-insurance-hidden').val();
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)
+  {
+     $('#edit-insurance').css({"display": "none"});
+     $('#edit-insurance-form').on('submit', (e) => {
+      e.preventDefault();
+      let selectEl = document.getElementById("edit-insurance-select");
+      paramsObj.insuranceName = selectEl.options[selectEl.selectedIndex].textContent;
+      paramsObj.insuranceUid = selectEl.options[selectEl.selectedIndex].getAttribute("data-value");
+      console.log(paramsObj.insuranceUid);
       getBetterDoctor('#edit-insurance-form');
-    } else {
-      paramsObj.insuranceName = "add insurance plan";
-      paramsObj.insuranceUid = "";
-      renderModal(returnMessageString(`Sorry, we couldn't find a plan named '${$('#edit-insurance').val()}'`));
-      $('#edit-insurance').val('');
-    }
+    });
 
-    function isIncludedInGlobalInsurance(submitVal) {
-      for (let i = 0; i < paramsObj.insuranceOptions.length; i++) {
-        if (paramsObj.insuranceOptions[i].uid == submitVal ) {
-          return true;
-        }
+  } else {
+    $('#edit-insurance-form').on('submit', (e) => {
+      e.preventDefault();
+
+      if (isIncludedInGlobalInsurance($('#edit-insurance-hidden').val()) ) {
+        paramsObj.insuranceName = $('#edit-insurance').val();
+        paramsObj.insuranceUid = $('#edit-insurance-hidden').val();
+        getBetterDoctor('#edit-insurance-form');
+      } else {
+        paramsObj.insuranceName = "add insurance plan";
+        paramsObj.insuranceUid = "";
+        renderModal(returnMessageString(`Sorry, we couldn't find a plan named '${$('#edit-insurance').val()}'`));
+        $('#edit-insurance').val('');
       }
-      return false;
-    }
 
-  })
+      function isIncludedInGlobalInsurance(submitVal) {
+        for (let i = 0; i < paramsObj.insuranceOptions.length; i++) {
+          if (paramsObj.insuranceOptions[i].uid == submitVal ) {
+            return true;
+          }
+        }
+        return false;
+      }
+    });
+  }
+
 }
 
 
