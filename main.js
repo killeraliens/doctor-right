@@ -536,19 +536,19 @@ function handleEditInsuranceDatalistInput() {
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
-  // if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 && $(window).width() > 599)
-  // {
-  //    $('#edit-insurance').css({"display": "none"});
-  //    $('#edit-insurance-form').on('submit', (e) => {
-  //     e.preventDefault();
-  //     let selectEl = document.getElementById("edit-insurance-select");
-  //     paramsObj.insuranceName = selectEl.options[selectEl.selectedIndex].textContent;
-  //     paramsObj.insuranceUid = selectEl.options[selectEl.selectedIndex].getAttribute("data-value");
-  //     console.log(paramsObj.insuranceUid);
-  //     getBetterDoctor('#edit-insurance-form');
-  //   });
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 )
+  {
+     $('#edit-insurance').css({"display": "none"});
+     $('#edit-insurance-form').on('submit', (e) => {
+      e.preventDefault();
+      let selectEl = document.getElementById("edit-insurance-select");
+      paramsObj.insuranceName = selectEl.options[selectEl.selectedIndex].textContent;
+      paramsObj.insuranceUid = selectEl.options[selectEl.selectedIndex].getAttribute("data-value");
+      console.log(paramsObj.insuranceUid);
+      getBetterDoctor('#edit-insurance-form');
+    });
 
-  // } else {
+  } else {
     $('#edit-insurance-form').on('submit', (e) => {
       e.preventDefault();
 
@@ -572,7 +572,7 @@ function handleEditInsuranceForm() {
         return false;
       }
     });
-  // }
+  }
 }
 
 function hideOtherEditForms(thisForm, thisBtn) {
