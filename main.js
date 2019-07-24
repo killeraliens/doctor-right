@@ -491,7 +491,7 @@ function returnEditInsuranceFormString() {
       <div class="flex">
         <input list="insuranceList" id="edit-insurance" />
         <datalist id="insuranceList">
-          <select id="edit-insurance-select">
+          <select >
             ${returnEditInsuranceOptionsString()}
           </select>
         </datalist>
