@@ -437,10 +437,8 @@ function returnEditSearchTermFormString() {
         <i class="fas fa-search before-content"></i>
       </span>
       <div class="flex">
-
         <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
-
-       <button type="submit" class="submit-btn">Go</button>
+        <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
   `;
@@ -489,6 +487,7 @@ function returnEditInsuranceFormString() {
         <i class="fas fa-align-right before-content"></i>
       </span>
       <div class="flex">
+       <div>
         <input list="insuranceList" id="edit-insurance" />
         <datalist id="insuranceList">
           <select id="edit-insurance-select">
@@ -496,6 +495,7 @@ function returnEditInsuranceFormString() {
           </select>
         </datalist>
         <input type="hidden" name="selected" id="edit-insurance-hidden"/>
+       </div>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -536,7 +536,7 @@ function handleEditInsuranceDatalistInput() {
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
-  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 && $(window).width() > 599)
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 )
   {
     alert('input should not show');
      $('#edit-insurance').css({"display": "none"});
