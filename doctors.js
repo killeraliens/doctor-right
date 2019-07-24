@@ -16,7 +16,6 @@ function Doctor(id, imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, spe
 function generateDoctorsArr(responseJson) {
 
   return responseJson.data.map((doctor, i) => {
-    // console.log('making a NEW Doctor..');
     let imgUrl = doctor.profile.image_url;
     let slug = doctor.profile.slug;
     let nameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
@@ -99,10 +98,8 @@ function makeMarkers(practicesTrueArr) {
       position: {lat: practice.lat, lng: practice.lon},
       title: practice.name,
       icon: './assets/dnm-logo-sm-1.png',
-      // draggable: true,
       animation: google.maps.Animation.DROP
     });
-    //console.log({position: practice.lat+ ',' + practice.lon, title: practice.name})
 
   })
 
@@ -113,7 +110,6 @@ function makeYouMarker() {
       position: {lat: paramsObj.lat, lng: paramsObj.lng},
       title: 'You',
       icon: './assets/dnm-logo-you-1.png',
-      // draggable: true,
       animation: google.maps.Animation.DROP
     });
 }

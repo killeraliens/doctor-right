@@ -9,7 +9,7 @@ const paramsObj = { //global default 'state' of search params referenced in all 
     usersInputLocation: "",
     sort: 'distance-asc',
     insuranceUid: "",
-    insuranceName: "add insurance",
+    insuranceName: "add insurance plan",
     insuranceOptions: []
 };
 
@@ -27,7 +27,6 @@ function returnQueryString(params) {
 
 // API Calls (utilize/update the global paramsObj)
 function getAndSetParamsGeocode(address) {
-    //console.log(`getting geocode for ${address}`);
     const geoCodeParams = {
         address: encodeURIComponent(address),
         key: config.gmaps
@@ -80,19 +79,10 @@ function handleStartFormSubmit() {
 
 function getBetterDoctor(form) {
         console.log('calling better doctor api');
-        // const betterDoctorParams = {
-        //     query: paramsObj.term,
-        //     location:   paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius,
-        //     user_location: paramsObj.lat + ',' + paramsObj.lng,
-        //     sort: paramsObj.sort,
-        //     skip: 0,
-        //     limit: 30,
-        //     user_key: config.betterDoc
-        // };
         const betterDoctorParams = {};
 
         betterDoctorParams.query = paramsObj.term;
-        if (paramsObj.insuranceName !== 'add insurance') {
+        if (paramsObj.insuranceName !== 'add insurance plan') {
           betterDoctorParams.insurance_uid = paramsObj.insuranceUid;
         }
         betterDoctorParams.location = paramsObj.lat + ',' + paramsObj.lng + ',' + paramsObj.radius;
@@ -115,16 +105,10 @@ function getBetterDoctor(form) {
           throw new Error(response.statusText);
         })
         .then(responseJson => {
-          //console.log(form);
-          if (form !== '#sort-order-form' || form.include('#edit')) {
-            //console.log(`hiding ${form} `);
+          if (form !== '#sort-order-form') {
             $(`${form}`).css('display','none');
           }
           console.log(`rendering search results`);
-          // if (form.includes('#edit') == false) {
-          //   renderNavigation();
-          // }
-          // renderResultsMain(responseJson);
           renderResultsPage(responseJson);
         })
         .catch(err => {
@@ -137,12 +121,6 @@ function getBetterDoctor(form) {
 
 
 async function renderResultsPage(responseJson) {
-  console.log('rendering results');
-  // console.log('global params at render>>>');
-  // console.log(paramsObj);
-  // console.log('responseJson at render >>>');
-  // console.log(responseJson);
-  //$('body').css('background-color', 'white');
 
   await renderNavParams();
   handleEditLocationButton();
@@ -169,36 +147,6 @@ async function renderResultsPage(responseJson) {
   $('footer').css('display', 'block');
 }
 
-// async function renderNavigation() {
-//   await renderNavParams();
-//   handleEditLocationButton();
-//   handleEditRadiusButton();
-//   handleEditSearchTermButton();
-//   handleEditInsuranceButton();
-
-
-//   renderThisForm(returnEditSearchTermFormString());
-//   hideOtherEditForms('#edit-search-term-form', '#edit-search-term-btn');
-//   handleEditSearchTermForm();
-
-// }
-
-// function renderResultsMain(responseJson) {
-//   renderResultsHeader(responseJson);
-//   listenToOrderFormIcon();
-
-//   const doctors = generateDoctorsArr(responseJson);
-//   renderListDoctors(doctors);
-
-//   initMap();
-//   renderDoctorMarkers(doctors);
-//   renderYouMarker();
-
-//   $('footer').css('display', 'block');
-// }
-
-
-// Result/Listing Components
 
 function returnlistingsDescriptionTail() {
     if (paramsObj.sort == 'distance-asc') {
@@ -285,7 +233,7 @@ function returnParamsNavString(formattedLocation) {
 }
 
 function returnPlusOrScript() {
-  if (paramsObj.insuranceName == 'add insurance') {
+  if (paramsObj.insuranceName == 'add insurance plan') {
     return `fas fa-plus`;
   } else {
     return `far fa-times-circle`;
@@ -295,7 +243,7 @@ function returnPlusOrScript() {
 function listenToInsuranceClose() {
   $('#edit-insurance-btn').has('.fa-times-circle').on('click', function(e) {
      console.log('resetting insurance');
-     paramsObj.insuranceName = 'add insurance';
+     paramsObj.insuranceName = 'add insurance plan';
      paramsObj.insuranceUid = '';
      $(this).html(`<i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}`);
      getBetterDoctor('#edit-insurance-form');
@@ -373,7 +321,6 @@ function findCityInReverseGeocodeResults(addressComponentArr) {
 function handleChangeSortedBy() {
   $('#sort-order').on('change', function(e) {
     e.preventDefault();
-    //console.log(`${$(this)} #sort-order select was CHANGED, setting params and submitting form`);
 
     const selectEl = document.getElementById("sort-order");
     const sortMethod = selectEl.options[selectEl.selectedIndex].value;
@@ -390,7 +337,6 @@ function renderThisForm(formString) {
 function handleEditLocationButton() {
   $('#edit-location-btn').on('click' , function(e) {
     e.preventDefault();
-    // console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
 
       $(this).toggleClass('active-edit');
 
@@ -533,17 +479,16 @@ function handleEditInsuranceButton() {
   listenToInsuranceClose();
   $('#edit-insurance-btn').on('click', function(e) {
     e.preventDefault();
-      //console.log(`${$(this).attr('id')} was CLICKED, exposing form`);
 
-      $(this).toggleClass('active-edit');
+    $(this).toggleClass('active-edit');
 
-      renderThisForm(returnEditInsuranceFormString());
+    renderThisForm(returnEditInsuranceFormString());
 
-      hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
+    hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
 
 
-      handleEditInsuranceInput();
-      handleEditInsuranceForm();
+    handleEditInsuranceInput();
+    handleEditInsuranceForm();
 
   })
 }
@@ -558,7 +503,9 @@ function returnEditInsuranceFormString() {
       <div class="flex">
         <input list="insuranceList" id="edit-insurance" />
         <datalist id="insuranceList">
-          ${returnEditInsuranceOptionsString()}
+          <select>
+            ${returnEditInsuranceOptionsString()}
+          </select>
         </datalist>
         <input type="hidden" name="selected" id="edit-insurance-hidden"/>
         <button type="submit" class="submit-btn">Go</button>
@@ -568,8 +515,8 @@ function returnEditInsuranceFormString() {
 }
 
 function returnEditInsuranceOptionsString() {
-  //console.log(`options will populate with ${paramsObj.insuranceOptions.length}`);
-    return paramsObj.insuranceOptions.map(planObj => { return `<option data-value="${planObj.uid}">${planObj.name}</option>` }).join(`\n`);
+
+  return paramsObj.insuranceOptions.map(planObj => { return `<option data-value="${planObj.uid}">${planObj.name}</option>` }).join(`\n`);
 }
 
 async function setGlobalInsuranceOptions(responseData) {
@@ -604,20 +551,13 @@ function handleEditInsuranceForm() {
   listenToFormIcons();
   $('#edit-insurance-form').on('submit', (e) => {
     e.preventDefault();
-    // console.log($('#edit-insurance').val()); //Name
-    // console.log($('#edit-insurance-hidden').val()); //uid
-    console.log(`${$(this)} #edit-insurance-form was SUBMITTED, calling getbetterdoctor function`);
 
     if (isIncludedInGlobalInsurance($('#edit-insurance-hidden').val()) ) {
-      //console.log('yes its here');
       paramsObj.insuranceName = $('#edit-insurance').val();
       paramsObj.insuranceUid = $('#edit-insurance-hidden').val();
       getBetterDoctor('#edit-insurance-form');
     } else {
-      //console.log('no its not here');
-      // console.log($('#edit-insurance').val());
-      //console.log($('#edit-insurance-hidden').val());
-      paramsObj.insuranceName = "add insurance";
+      paramsObj.insuranceName = "add insurance plan";
       paramsObj.insuranceUid = "";
       renderModal(returnMessageString(`Sorry, we couldn't find a plan named '${$('#edit-insurance').val()}'`));
       $('#edit-insurance').val('');
@@ -629,8 +569,6 @@ function handleEditInsuranceForm() {
           return true;
         }
       }
-        console.log(paramsObj.insuranceOptions);
-        console.log(submitVal);
       return false;
     }
 
@@ -645,11 +583,6 @@ function hideOtherEditForms(thisForm, thisBtn) {
       $(otherBtns).removeClass('active-edit');
       $(otherForms).find('input').val('');
       $(otherForms).css('display', 'none');
-      // if(thisBtn == '#edit-insurance-btn') {
-      //   paramsObj.insuranceName = 'add insurance';
-      //   paramsObj.insuranceUid = '';
-      //   $(thisBtn).innerText(`<i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}`);
-      // }
       $(thisForm).find('input').val('');
       $(thisForm).css('display', 'block');
   }
@@ -661,7 +594,6 @@ function hideOtherEditForms(thisForm, thisBtn) {
 function renderModal(content) {
   $('#modal').css('display', 'block');
   $('#modal-content').html(
-    // `<span id="modal-close" class="close">Close <i class="far fa-times-circle"></i></span>` + '\n' + content
     `<span id="modal-close" class="close"> <img src="./assets/dnm-close-x.png" alt="" /> </span>` + '\n' + content
   );
   handleModalClose();
@@ -685,7 +617,6 @@ function renderListDoctors(doctorsArr) {
 }
 
 function returnListingsString(doctorsArr) {
-   //console.log(`making li strings for each doctor`);
   return doctorsArr.map((doctor) => {
     return `
       <li class="card doctor-card" id="${doctor.id}">
@@ -703,7 +634,6 @@ function returnListingsString(doctorsArr) {
 
 function listenToCardLinks(doctorsArr) {
   $('.card-expand-link').on('click', function(e) {
-    // console.log(this);
     let doctorId = $(this).closest('li').prop('id');
     let doctor = doctorsArr.find(obj => obj.id == doctorId);
     renderModal(returnDoctorCardFull(doctor));
@@ -728,17 +658,13 @@ function returnDoctorCardFull(doctor) {
 function listenToStartFormStepIntro() {
 
   $('#start-form').on('click ', '#step-intro-btn', function(e) {
-  // $('#step-one-btn').on('click keydown', function(e) {
-
-    //console.log(e.code);
-
 
       $('#step-intro').css({
         transform: 'translateY(-150vh)'
       });
       $('#step-one').addClass('active-fieldset');
       $('#step-one').removeAttr('disabled');
-      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+
       setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 500);
 
       listenToStartFormStepOne();
@@ -749,8 +675,6 @@ function listenToStartFormStepIntro() {
 function listenToStartFormStepOne() {
 
   $('#start-form').on('click ', '#step-one-btn', function(e) {
-  // $('#step-one-btn').on('click keydown', function(e) {
-
     e.preventDefault();
 
     if ( $('#location').val().length === 0 || $('#location').val() === ' ') {
@@ -761,7 +685,7 @@ function listenToStartFormStepOne() {
       });
       $('#step-two').addClass('active-fieldset');
       $('#step-two').removeAttr('disabled');
-      // setTimeout(function() { $('#step-one').css({height: 0, padding: 0})}, 500);
+
       setTimeout(function() { $('#step-one').addClass('done-fieldset')}, 500);
 
       listenToStartFormStepTwo();
@@ -791,8 +715,6 @@ function listenToStartFormStepThree() {
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {
       renderModal(returnMessageString(`You must enter a search term to find the right type of medical professional.`));
     } else {
-
-
       e.preventDefault();
       handleStartFormSubmit();
       $('#start-form').submit();
@@ -811,7 +733,7 @@ function listenToStartFormStepThree() {
 }
 
 
-//Map!!!!
+//Map
 
 function initMap() {
   console.log('making map');
@@ -848,18 +770,8 @@ function renderYouMarker() {
 }
 
 function listenToMarker(doctor, marker) {
-  // google.maps.event.addListener(marker,'mouseover',function(){
-  //   $('img[src="'+this.icon+'"]').addClass('scale');
-  // });
-
-  // google.maps.event.addListener(marker,'mouseout',function(){
-  //   $('img[src="'+this.icon+'"]').removeClass('scale');
-  // });
-
   google.maps.event.addListener(marker, 'click', (function(marker) {
     return function() {
-      // infowindow.setContent(doctor.nameTitle);
-      // infowindow.open(map, marker);
       console.log(marker.title)
       renderModal(returnDoctorCardFull(doctor));
     }
@@ -867,9 +779,12 @@ function listenToMarker(doctor, marker) {
 
 }
 
+
+function startApp() {
   getBetterDoctorInsuranceOptions();
   listenToStartFormStepIntro();
   handleChangeSortedBy();
+}
 
 
-
+startApp();

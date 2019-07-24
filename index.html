@@ -22,20 +22,13 @@
                   <h1>Doctors Near Me</h1>
                   <img id="intro-graphic" src="./assets/dnm-logo-lg-1.png" alt="doctor's near me logo illustration">
                 <h2>Find your next doctor, dentist, or medical practitioner.</h2>
-                <!-- <legend></legend> -->
 
                 <button type="button" id="step-intro-btn" class="next">Start My Search</button>
             </fieldset>
 
             <fieldset id="step-one" class="non-active" disabled>
-                <!-- <h1>Doctors Near Me</h1>
-                <h2>Find your next doctor, dentist, or medical practitioner.</h2> -->
-                <!-- <legend></legend> -->
                 <i class="fas fa-map-marker-alt"></i>
                 <label for="location"><h3>Enter your location</h3></label>
-                <!-- <span class="before-content">
-                  <i class="fas fa-map-marker before-content"></i>
-                </span> -->
                   <input id="location" class="add-before" aria-label="Enter your location" type="text" placeholder="City & State, or Zipcode" required>
                   <br>
                 <button type="button" id="step-one-btn" class="next">Next</button>
@@ -46,9 +39,6 @@
             <fieldset id="step-two" class="non-active" disabled>
                 <i class="far fa-dot-circle"></i>
                 <label for="search-radius"><h3>Select a search radius</h3></label>
-                <!-- <span class="before-content">
-                  <i class="far fa-dot-circle before-content"></i>
-                </span> -->
                 <select name="search-radius" id="search-radius" class="add-before" aria-label="Select a search radius">
                     <option value="5">5 miles</option>
                     <option value="10" selected="selected">10 miles</option>
@@ -63,9 +53,6 @@
             <fieldset id="step-three" class="non-active" disabled>
               <i class="fas fa-search "></i>
               <label for="search-term"><h3>What type of doctor are you looking for?</h3>Enter a medical issue, problem area, or type of medical professional.</label>
-              <!-- <span class="before-content">
-                <i class="fas fa-search before-content"></i>
-              </span> -->
               <div class="autocomplete">
                 <input id="search-term" name="search-term" aria-label="Enter a search term for medical issue or type of medical professional" placeholder="e.g. heart, pediatrician, speech therapy" class="add-before term-input" required>
               </div>
@@ -81,7 +68,6 @@
       <section id="edit-form-container"></section>
     </nav>
     <main>
-        <!-- <section id="edit-form-container"></section> -->
         <header id="section-results-header">
             <h1 id="listings-title"></h1>
             <p id="listings-count-and-order-description"></p>
@@ -115,17 +101,14 @@
     </aside>
      <footer>
         <div id="footer-content">
-          <p>Doctor data powered by <a href="https://betterdoctor.com/partners/">Better Doctor</a>. Site by <a href="https://killeraliens.github.io/alexandra-brinn/">killeraliens</a>.<br>This site does not collect or store any of your data.</p>
+          <p>Doctor data powered by <a href="https://betterdoctor.com/partners/" target="_blank">Better Doctor</a>. Site by <a href="https://killeraliens.github.io/alexandra-brinn/" target="_blank">killeraliens</a>.<br>This site does not collect or store any of your data.</p>
         </div>
     </footer>
 
 <script type="text/javascript" src="config.js"></script>
-
 <script type="text/javascript" src="doctors.js"></script>
 <script type="text/javascript" src="main.js"></script>
-<script type="text/javascript" src="autocomplete.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw&callback=initMap"
-    async defer></script> -->
+
 </body>
 </html>
