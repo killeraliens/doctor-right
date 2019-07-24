@@ -671,6 +671,7 @@ function listenToStartFormStepIntro() {
       setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 300);
 
       listenToStartFormStepOne();
+      getBetterDoctorInsuranceOptions();
 
   });
 }
@@ -784,7 +785,7 @@ function listenToMarker(doctor, marker) {
 
 //App
 function startApp() {
-  getBetterDoctorInsuranceOptions();
+  // getBetterDoctorInsuranceOptions();
   listenToStartFormStepIntro();
   handleChangeSortedBy();
 }
