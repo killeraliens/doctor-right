@@ -539,9 +539,10 @@ function handleEditInsuranceForm() {
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 )
   {
     alert('input should not show');
-     $('#edit-insurance').css({"display": "contents"});
+     $('#edit-insurance').css({"display": "none"});
      // $('#insuranceList').css({"display": "block", "width": "100%"});
      $('#insuranceList').css({"display": "contents"});
+     $('#edit-insurance-select').css({"display": "block", "width": "100%"});
      $('#edit-insurance-form').on('submit', (e) => {
       e.preventDefault();
       let selectEl = document.getElementById("edit-insurance-select");
