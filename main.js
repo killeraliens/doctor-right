@@ -487,7 +487,7 @@ function returnEditInsuranceFormString() {
         <i class="fas fa-align-right before-content"></i>
       </span>
       <div class="flex">
-       <div>
+       <div style="width: 100%">
         <input list="insuranceList" id="edit-insurance" />
         <datalist id="insuranceList">
           <select id="edit-insurance-select">
