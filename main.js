@@ -437,9 +437,9 @@ function returnEditSearchTermFormString() {
         <i class="fas fa-search before-content"></i>
       </span>
       <div class="flex">
-        <div class="autocomplete">
-          <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
-        </div>
+
+        <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
+
        <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -538,7 +538,8 @@ function handleEditInsuranceForm() {
   listenToFormIcons();
   if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 && $(window).width() > 599)
   {
-     // $('#edit-insurance').css({"display": "none"});
+    alert('input should not show');
+     $('#edit-insurance').css({"display": "none"});
      $('#edit-insurance-form').on('submit', (e) => {
       e.preventDefault();
       let selectEl = document.getElementById("edit-insurance-select");
