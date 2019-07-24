@@ -5,7 +5,7 @@ medical professionals based on your location and search inputs.
 [https://killeraliens.github.io/doctors-near-me](https://killeraliens.github.io/doctors-near-me/)
 
 ## Screenshots & Usage
-***
+
 ### Landing
 ![Doctors Near Me Landing Screenshot](/assets/rm-landing.png)
 
@@ -25,15 +25,16 @@ Click on a card link or location pin to see a medical practioner's contact and l
 Edit details like your location, search distance, and term directly from the results page. You can also limit results to practitioners that support your insurance plan.
 ![Doctors Near Me Add Insurance Screenshot](/assets/rm-insurance.png)
 
+
 ## Features
-***
+
 * Locate medical practitioners (doctors, dentists, therapists) near you. View results in a list as well as on a map.
 * Filter results based on insurance plans accepted, location, and area of specialty.
 * View details on any practioner, including their office locations, area of specialty, and phone/fax information.
 
 
 ## Built With
-***
+
 * HTML
 * CSS
 * jQuery
