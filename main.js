@@ -114,7 +114,6 @@ function getBetterDoctor(form) {
         .catch(err => {
           renderModal(returnMessageString(err.message));
         })
-
 }
 
 
@@ -494,7 +493,6 @@ function handleEditInsuranceButton() {
 }
 
 function returnEditInsuranceFormString() {
-  //console.log(returnEditInsuranceOptionsString());
   return `
     <form id="edit-insurance-form" class="edit-params-form ">
       <span class="before-content">
@@ -515,7 +513,6 @@ function returnEditInsuranceFormString() {
 }
 
 function returnEditInsuranceOptionsString() {
-
   return paramsObj.insuranceOptions.map(planObj => { return `<option data-value="${planObj.uid}">${planObj.name}</option>` }).join(`\n`);
 }
 
@@ -734,7 +731,6 @@ function listenToStartFormStepThree() {
 
 
 //Map
-
 function initMap() {
   console.log('making map');
   map = new google.maps.Map(document.getElementById('map'), {
@@ -780,6 +776,7 @@ function listenToMarker(doctor, marker) {
 }
 
 
+//App
 function startApp() {
   getBetterDoctorInsuranceOptions();
   listenToStartFormStepIntro();
