@@ -540,6 +540,7 @@ function handleEditInsuranceForm() {
   {
     alert('input should not show');
      $('#edit-insurance').css({"display": "none"});
+     $('#insuranceList').css({"display": "block"});
      $('#edit-insurance-form').on('submit', (e) => {
       e.preventDefault();
       let selectEl = document.getElementById("edit-insurance-select");
