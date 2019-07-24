@@ -487,15 +487,15 @@ function returnEditInsuranceFormString() {
         <i class="fas fa-align-right before-content"></i>
       </span>
       <div class="flex">
-       <div style="width: 100%">
-        <input list="insuranceList" id="edit-insurance" />
-        <datalist id="insuranceList">
-          <select id="edit-insurance-select">
-            ${returnEditInsuranceOptionsString()}
-          </select>
-        </datalist>
-        <input type="hidden" name="selected" id="edit-insurance-hidden"/>
-       </div>
+        <div style="width: 100%">
+          <input list="insuranceList" id="edit-insurance" />
+          <datalist id="insuranceList">
+            <select id="edit-insurance-select">
+              ${returnEditInsuranceOptionsString()}
+            </select>
+          </datalist>
+          <input type="hidden" name="selected" id="edit-insurance-hidden"/>
+        </div>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -540,7 +540,6 @@ function handleEditInsuranceForm() {
   {
      $('#edit-insurance').css({"display": "none"});
      $('#insuranceList').css({"display": "block"});
-     //$('#edit-insurance-select').css({"display": "block"});
      $('#edit-insurance-form').on('submit', (e) => {
       e.preventDefault();
       let selectEl = document.getElementById("edit-insurance-select");
