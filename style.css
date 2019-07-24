@@ -35,7 +35,7 @@ a:hover {
   opacity: .7;
 }
 
-a h5:hover, a h5:focus {
+a:focus {
     opacity: .7;
 }
 
@@ -462,7 +462,7 @@ button.params-btn {
   color: #63666A;
 }
 
-button.params-btn:hover {
+button.params-btn:hover, button.params-btn:focus {
   opacity: .4;
 }
 
