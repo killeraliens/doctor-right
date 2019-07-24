@@ -196,7 +196,7 @@ function listenToOrderFormIcon() {
   });
 }
 
-    //Helper for select element expansion, use within event
+    //Helper for select element dropdown expansion, enables input icons to be clickable.
 function selectDropdownExtension(targetSelect, targetSelectOptions) {
   let pxHeight = (targetSelectOptions.length * 26) + 'px';
     targetSelect.css('z-index', 22);
@@ -662,7 +662,7 @@ function listenToStartFormStepIntro() {
       $('#step-one').addClass('active-fieldset');
       $('#step-one').removeAttr('disabled');
 
-      setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 500);
+      setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 300);
 
       listenToStartFormStepOne();
 
@@ -683,7 +683,7 @@ function listenToStartFormStepOne() {
       $('#step-two').addClass('active-fieldset');
       $('#step-two').removeAttr('disabled');
 
-      setTimeout(function() { $('#step-one').addClass('done-fieldset')}, 500);
+      setTimeout(function() { $('#step-one').addClass('done-fieldset')}, 300);
 
       listenToStartFormStepTwo();
     }

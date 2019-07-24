@@ -10,6 +10,9 @@ body {
 
 body * {
     box-sizing: border-box;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
     transition: all 0.4s ease; /*not map!!*/
 }
 
@@ -58,6 +61,10 @@ button, input, select {
     font-size: 14px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+datalist {
+  position: absolute;
 }
 
 input, select:not(#sort-order), button:not(.params-btn) {
@@ -386,12 +393,20 @@ button.submit-btn:hover, button.submit-btn:focus {
   position: relative;
   z-index: 10;
   margin: 0 auto;
-  top: 50%;
+  top: 30%;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
   transition-timing-function: ease;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
   transition: 1s;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
   transform: translateY(-50%);
+  -webkit-transform: translate3d(0, 0, 0);
   padding: 20px;
   padding-top: 40px;
 
