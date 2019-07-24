@@ -475,8 +475,9 @@ function handleEditInsuranceButton() {
 
     hideOtherEditForms('#edit-insurance-form', '#edit-insurance-btn');
 
-
-    handleEditInsuranceDatalistInput();
+    if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 && $(window).width() > 599) {
+      handleEditInsuranceDatalistInput();
+    }
     handleEditInsuranceForm();
 
   })
@@ -536,7 +537,7 @@ function handleEditInsuranceDatalistInput() {
 
 function handleEditInsuranceForm() {
   listenToFormIcons();
-  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 )
+  if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0 && $(window).width() > 599)
   {
      $('#edit-insurance').css({"display": "none"});
      $('#edit-insurance-form').on('submit', (e) => {

@@ -135,7 +135,7 @@ input, select {
 /* Start Form */
 
 @media (min-width: 599px) {
-  #start-form input, #start-form select, .edit-params-form input, .edit-params-form select, .edit-params-form .autocomplete {
+  #start-form input, #start-form select, .edit-params-form input, .edit-params-form select, .edit-params-form datalist {
     width: 390px;
   }
 
