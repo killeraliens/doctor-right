@@ -173,10 +173,6 @@ h1 {
   font-size: 18px;
 }
 
-#start-form h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
 #start-form i {
   font-size: 26px;
@@ -473,6 +469,16 @@ button i {
 #edit-location-form, #edit-radius-form, #edit-search-term-form, #edit-insurance-form {
   display: none;
   padding: 0 10px;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; /* added line */
 }
 
 

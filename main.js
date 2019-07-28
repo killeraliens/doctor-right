@@ -65,9 +65,9 @@ function handleStartFormSubmit() {
         paramsObj.usersInputLocation = $('#location').val();
         await getAndSetParamsGeocode(address);
 
-        const selectEl = document.getElementById("search-radius");
-        const radius = selectEl.options[selectEl.selectedIndex].value;
-        paramsObj.radius = radius;
+        // const selectEl = document.getElementById("search-radius");
+        // const radius = selectEl.options[selectEl.selectedIndex].value;
+        // paramsObj.radius = radius;
 
         paramsObj.term = $('#search-term').val();
 
@@ -343,7 +343,9 @@ function returnEditLocationFormString() {
         <i class="fas fa-map-marker before-content"></i>
       </span>
       <div class="flex">
-        <input id="edit-location-input" class="add-before location-input" aria-label="Update Location" type="text" placeholder="City & State or Zipcode" >
+        <label for="edit-location-input"><span class="visually-hidden">Edit Location</span>
+          <input id="edit-location-input" class="add-before location-input" name="edit location" type="text" placeholder="City & State or Zipcode" >
+        </label>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -389,12 +391,14 @@ function returnEditRadiusFormString() {
         <i class="far fa-dot-circle before-content"></i>
       </span>
       <div class="flex">
-        <select name="edit-radius" id="edit-radius" class="add-before radius-input">
-          <option value="5">5 miles</option>
-          <option value="10" selected="selected">10 miles</option>
-          <option value="25">25 miles</option>
-          <option value="50">50 miles</option>
-        </select>
+        <label for="edit-radius"><span class="visually-hidden">Edit Search Radius</span>
+          <select name="edit-radius" id="edit-radius" class="add-before radius-input">
+            <option value="5">5 miles</option>
+            <option value="10" selected="selected">10 miles</option>
+            <option value="25">25 miles</option>
+            <option value="50">50 miles</option>
+          </select>
+        </label>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -437,7 +441,9 @@ function returnEditSearchTermFormString() {
         <i class="fas fa-search before-content"></i>
       </span>
       <div class="flex">
-        <input id="edit-search-term-input" class="add-before term-input" aria-label="Type of doctor or area of issue" placeholder="Type of doctor or area of issue" required>
+        <label for="edit-search-term-input"><span class="visually-hidden">Edit Search Term</span>
+          <input id="edit-search-term-input" class="add-before term-input" name="edit search term" placeholder="Type of doctor or area of issue" required>
+        </label>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -488,7 +494,9 @@ function returnEditInsuranceFormString() {
       </span>
       <div class="flex">
         <div style="width: 100%">
+          <label for="edit-insurance"><span class="visually-hidden">Select Insurance with autocomplete</span></label>
           <input list="insuranceList" id="edit-insurance" />
+          <label for="edit-insurance-select"><span class="visually-hidden">Select Insurance from options</span></label>
           <datalist id="insuranceList">
             <select id="edit-insurance-select">
               ${returnEditInsuranceOptionsString()}
@@ -621,7 +629,7 @@ function returnListingsString(doctorsArr) {
     return `
       <li class="card doctor-card" id="${doctor.id}">
         <div class="flex">
-          <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}"></img>
+          <img class="avatar" src="${doctor.imgUrl}" alt="${doctor.slug}">
           <h3 class="card-expand-link">${doctor.nameTitle}<i class="fas fa-angle-double-right"></i></h3>
         </div>
         <p>${doctor.specialtiesDesc}</p>
@@ -694,23 +702,23 @@ function listenToStartFormStepOne() {
   });
 }
 
+// function listenToStartFormStepTwo() {
+//   $('#start-form').on('click ', '#step-two-btn', function(e) {
+//
+//
+//       $('#step-two').css({
+//         transform: 'translateY(-150vh)'
+//       });
+//       $('#step-three').addClass('active-fieldset');
+//       $('#step-three').removeAttr('disabled');
+//
+//       setTimeout(function() { $('#step-two').addClass('done-fieldset')}, 500);
+//
+//       listenToStartFormStepThree()
+//   });
+// }
+
 function listenToStartFormStepTwo() {
-  $('#start-form').on('click ', '#step-two-btn', function(e) {
-
-
-      $('#step-two').css({
-        transform: 'translateY(-150vh)'
-      });
-      $('#step-three').addClass('active-fieldset');
-      $('#step-three').removeAttr('disabled');
-
-      setTimeout(function() { $('#step-two').addClass('done-fieldset')}, 500);
-
-      listenToStartFormStepThree()
-  });
-}
-
-function listenToStartFormStepThree() {
   $('#start-form-submit-btn').on('click ', function(e) {
     e.preventDefault();
     if ( $('#search-term').val().length === 0 || $('#search-term').val() === ' ') {

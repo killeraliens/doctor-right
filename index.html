@@ -14,53 +14,34 @@
 </head>
 <body>
 
-
-        <form id="start-form" action="get" autocomplete="off">
+        <form id="start-form">
           <div class="start-form-fieldset-container">
 
-            <fieldset id="step-intro" class="active-fieldset">
-                  <h1>Doctors Near Me</h1>
-                  <img id="intro-graphic" src="./assets/dnm-logo-lg-1.png" alt="doctor's near me logo illustration">
+            <header id="step-intro" class="active-fieldset">
+                <h1>Doctors Near Me</h1>
+                <img id="intro-graphic" src="./assets/dnm-logo-lg-1.png" alt="doctor's near me logo illustration">
                 <h2>Find your next doctor, dentist, or medical practitioner.</h2>
-
                 <button type="button" id="step-intro-btn" class="next">Start My Search</button>
-            </fieldset>
+            </header>
+
 
             <fieldset id="step-one" class="non-active" disabled>
-                <i class="fas fa-map-marker-alt"></i>
-                <label for="location"><h3>Enter your location</h3></label>
-                  <input id="location" class="add-before" aria-label="Enter your location" type="text" placeholder="City & State, or Zipcode" required>
-                  <br>
+                <label for="location"><h3><i class="fas fa-map-marker-alt"></i><br>Enter your location</h3></label>
+                <input type="text" id="location" class="add-before" name="location" placeholder="City & State, or Zipcode" required>
+                <br>
                 <button type="button" id="step-one-btn" class="next">Next</button>
             </fieldset>
 
-
-
             <fieldset id="step-two" class="non-active" disabled>
-                <i class="far fa-dot-circle"></i>
-                <label for="search-radius"><h3>Select a search radius</h3></label>
-                <select name="search-radius" id="search-radius" class="add-before" aria-label="Select a search radius">
-                    <option value="5">5 miles</option>
-                    <option value="10" selected="selected">10 miles</option>
-                    <option value="25">25 miles</option>
-                    <option value="50">50 miles</option>
-                </select>
-                <br>
-                <button type="button" id="step-two-btn" class="next">Next</button>
-            </fieldset >
-
-
-            <fieldset id="step-three" class="non-active" disabled>
-              <i class="fas fa-search "></i>
-              <label for="search-term"><h3>What type of doctor are you looking for?</h3>Enter a medical issue, problem area, or type of medical professional.</label>
-              <div class="autocomplete">
-                <input id="search-term" name="search-term" aria-label="Enter a search term for medical issue or type of medical professional" placeholder="e.g. heart, pediatrician, speech therapy" class="add-before term-input" required>
-              </div>
+              <label for="search-term"><h3><i class="fas fa-search "></i><br>What type of doctor are you looking for?</h3>Enter a medical issue, problem area, or type of medical professional.</label>
+              <input type="text" id="search-term" name="search-term" placeholder="e.g. heart, pediatrician, speech therapy" class="add-before term-input" required>
+              <br>
               <button type="submit" id="start-form-submit-btn" class="submit-btn">Find Doctors</button>
             </fieldset>
 
           </div>
         </form>
+
 
 
     <nav>
@@ -90,9 +71,9 @@
         <section id="section-results">
             <div class="map-listings-wrap flex">
               <ul id="list-doctors" class="doctor-listings"></ul>
-              <aside id="map-container">
+              <div id="map-container">
                 <div id="map"></div>
-              </aside>
+              </div>
             </div>
         </section>
     </main>

@@ -9,7 +9,7 @@ function Doctor(id, imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, spe
 
   this.practicesTrueStr = returnLocationsString(this.practicesTrueArr);
   this.specialtiesDesc = returnSpecialtiesDescriptionString(this.specialtiesArr);
-  this.specialtiesName = returnSpecialtiesNameString(this.specialtiesArr)
+  this.specialtiesName = returnSpecialtiesNameString(this.specialtiesArr);
   this.makeMarkers = makeMarkers(this.practicesTrueArr);
 }
 
