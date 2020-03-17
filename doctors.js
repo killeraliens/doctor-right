@@ -16,7 +16,14 @@ function Doctor(id, imgUrl, slug, nameTitle, practicesArr, practicesTrueArr, spe
 function generateDoctorsArr(responseJson) {
 
   return responseJson.data.map((doctor, i) => {
-    let imgUrl = doctor.profile.image_url;
+    let regexBlankImgMan = new RegExp('general_doctor_male')
+    let regexBlankImgFem = new RegExp('general_doctor_female')
+    let patt = new RegExp(`${doctor.profile.image_url}`, "g");
+    let imgUrl = !!regexBlankImgMan.test(patt)
+      ? './assets/blank_male.png'
+      : !!regexBlankImgFem.test(patt)
+      ? './assets/blank_female.jpg'
+      : doctor.profile.image_url;
     let slug = doctor.profile.slug;
     let nameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
     let practices = removeDuplicateLocations(doctor.practices);
