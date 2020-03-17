@@ -231,7 +231,7 @@ function getBetterDoctorInsuranceOptions() {
     //Helper API Call returns city and state string for location edit nav button
 function getReverseGeocode(latLngStr) {
     // console.log(`calling reverse geocode for ${latLngStr}`);
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLngStr}&key=${config.gmaps}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLngStr}&key=${config.geocode}`;
 
     return fetch(url)
     .then(response => {
