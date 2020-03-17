@@ -38,19 +38,17 @@ function getAndSetParamsGeocode(address) {
     return fetch(url)
       .then(response => {
           if (response.ok) {
-            console.log('response is ok', response)
               return response.json();
           }
-          console.log('error in geocode fetch', response)
           throw new Error(response.statusText);
       })
       .then( responseJson => {
-          console.log('response json', responseJson)
+          // console.log('geocode response', responseJson)
           paramsObj.lat = responseJson.results[0].geometry.location.lat;
           paramsObj.lng = responseJson.results[0].geometry.location.lng;
       })
       .catch(err => {
-        console.log('error in geocode', err)
+          // console.log('error in geocode', err)
           return renderModal(returnMessageString(`
             Sorry, we are having a hard time finding a location for "${paramsObj.usersInputLocation}".
             You can re-enter your city & state or zipcode in the top menu to find doctors closest to you.
@@ -196,7 +194,7 @@ function returnPlusOrScript() {
 
 function listenToInsuranceClose() {
   $('#edit-insurance-btn').has('.fa-times-circle').on('click', function(e) {
-     console.log('resetting insurance');
+     // console.log('resetting insurance');
      paramsObj.insuranceName = 'add insurance plan';
      paramsObj.insuranceUid = '';
      $(this).html(`<i class="${returnPlusOrScript()}"></i>${paramsObj.insuranceName}`);
@@ -232,7 +230,7 @@ function getBetterDoctorInsuranceOptions() {
 
     //Helper API Call returns city and state string for location edit nav button
 function getReverseGeocode(latLngStr) {
-    console.log(`calling reverse geocode for ${latLngStr}`);
+    // console.log(`calling reverse geocode for ${latLngStr}`);
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLngStr}&key=${config.gmaps}`;
 
     return fetch(url)
@@ -240,7 +238,6 @@ function getReverseGeocode(latLngStr) {
       if (response.ok) {
         return response.json();
       }
-      console.log(response)
       throw new Error(response.statusText);
     })
     .then(responseJson => {
@@ -363,7 +360,7 @@ function handleEditLocationForm() {
     e.preventDefault();
 
 
-    console.log(`${$(this)} #edit-location-form was SUBMITTED, calling getbetterdoctor function`);
+    // console.log(`${$(this)} #edit-location-form was SUBMITTED, calling getbetterdoctor function`);
     if ($('#edit-location-input').val() !== '') {
 
       const address = $('#edit-location-input').val();
@@ -461,7 +458,7 @@ function handleEditSearchTermForm() {
     e.preventDefault();
 
     if ($('#edit-search-term').val() !== '') {
-      console.log(`${$(this)} #edit-search-term-form was SUBMITTED, calling getbetterdoctor function`);
+      // console.log(`${$(this)} #edit-search-term-form was SUBMITTED, calling getbetterdoctor function`);
 
       paramsObj.term = $('#edit-search-term-input').val();
       getBetterDoctor('#edit-search-term-form');
@@ -558,7 +555,7 @@ function handleEditInsuranceForm() {
       let selectEl = document.getElementById("edit-insurance-select");
       paramsObj.insuranceName = selectEl.options[selectEl.selectedIndex].textContent;
       paramsObj.insuranceUid = selectEl.options[selectEl.selectedIndex].getAttribute("data-value");
-      console.log(paramsObj.insuranceUid);
+      // console.log(paramsObj.insuranceUid);
       getBetterDoctor('#edit-insurance-form');
     });
 
@@ -623,7 +620,7 @@ function returnMessageString(message) {
 }
 
 function renderListDoctors(doctorsArr) {
-  console.log(`rendering List of doctors...`);
+  // console.log(`rendering List of doctors...`);
   $('#list-doctors').html(returnListingsString(doctorsArr));
   $('#section-results').css('display', 'block');
   listenToCardLinks(doctorsArr);
@@ -749,7 +746,7 @@ function listenToStartFormStepTwo() {
 
 //Map
 function initMap() {
-  console.log('making map');
+  // console.log('making map');
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: paramsObj.lat, lng: paramsObj.lng},
     zoom: determineZoom()
@@ -785,7 +782,7 @@ function renderYouMarker() {
 function listenToMarker(doctor, marker) {
   google.maps.event.addListener(marker, 'click', (function(marker) {
     return function() {
-      console.log(marker.title)
+      // console.log(marker.title)
       renderModal(returnDoctorCardFull(doctor));
     }
   })(marker));
