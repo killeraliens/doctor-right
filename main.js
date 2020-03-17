@@ -29,7 +29,7 @@ function returnQueryString(params) {
 function getAndSetParamsGeocode(address) {
     const geoCodeParams = {
         address: encodeURIComponent(address),
-        key: config.gmaps
+        key: config.geocode
     }
 
     const urlRoot = 'https://maps.googleapis.com/maps/api/geocode/json?';
