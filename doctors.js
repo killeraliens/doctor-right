@@ -22,7 +22,7 @@ function generateDoctorsArr(responseJson) {
     let imgUrl = !!regexBlankImgMan.test(patt)
       ? './assets/blank_male.png'
       : !!regexBlankImgFem.test(patt)
-      ? './assets/blank_female.jpg'
+      ? './assets/blank_female.png'
       : doctor.profile.image_url;
     let slug = doctor.profile.slug;
     let nameTitle = doctor.profile.first_name + ' ' + doctor.profile.last_name + ' ' + doctor.profile.title;
