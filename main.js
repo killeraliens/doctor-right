@@ -38,16 +38,20 @@ function getAndSetParamsGeocode(address) {
     return fetch(url)
       .then(response => {
           if (response.ok) {
+            console.log('response is ok', response)
               return response.json();
           }
+          console.log('error in geocode fetch', response)
           throw new Error(response.statusText);
       })
       .then( responseJson => {
+          console.log('response json', responseJson)
           paramsObj.lat = responseJson.results[0].geometry.location.lat;
           paramsObj.lng = responseJson.results[0].geometry.location.lng;
       })
       .catch(err => {
-          renderModal(returnMessageString(`
+        console.log('error in geocode', err)
+          return renderModal(returnMessageString(`
             Sorry, we are having a hard time finding a location for "${paramsObj.usersInputLocation}".
             You can re-enter your city & state or zipcode in the top menu to find doctors closest to you.
           `));
@@ -228,7 +232,7 @@ function getBetterDoctorInsuranceOptions() {
 
     //Helper API Call returns city and state string for location edit nav button
 function getReverseGeocode(latLngStr) {
-    // console.log(`calling reverse geocode for ${latLngStr}`);
+    console.log(`calling reverse geocode for ${latLngStr}`);
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLngStr}&key=${config.gmaps}`;
 
     return fetch(url)
@@ -236,6 +240,7 @@ function getReverseGeocode(latLngStr) {
       if (response.ok) {
         return response.json();
       }
+      console.log(response)
       throw new Error(response.statusText);
     })
     .then(responseJson => {

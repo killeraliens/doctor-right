@@ -1,5 +1,5 @@
 const config =  {
-    gmaps: 'AIzaSyBdWN8iDoGf-Hfp_MghCZB5ObUM62Jffxw',
+  gmaps: 'AIzaSyB2ihkos6RnjnqciHUfZf75C6p-UjmrAUM',
     betterDoc: '06a40d3f731a9991ee9828e17aa93395'
 }
 
