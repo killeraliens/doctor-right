@@ -169,9 +169,11 @@ function renderResultsHeader(responseJson) {
 
 // Nav Components
 function renderNavLogo() {
-  const imgString = `<img id="loaded-bar-graphic" src="./assets/dnm-logo-bar.png" alt="doctor's near me logo">`
+  const imgString = `
+    <img id="loaded-bar-graphic" src="./assets/dnm-logo-bar.png" alt="doctor's near me logo">
+  `
   $('#loaded-bar-graphic-container').html(imgString);
-  $('#loaded-bar-graphic-container').css('display', 'block');
+  $('#loaded-bar-graphic-container').css('display', 'flex');
 }
 
 async function renderNavParams() {
