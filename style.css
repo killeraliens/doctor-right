@@ -185,6 +185,18 @@ h1 {
   bottom: -6px;
 }
 
+#intro-bar-graphic {
+  width: 160px;
+  margin: 0 auto;
+  position: relative;
+}
+
+ #loaded-bar-graphic {
+  width: 120px;
+  margin: 0 auto;
+  position: relative;
+ }
+
 @media (min-width: 599px) {
   #start-form h1 {
     font-size: 30px;
@@ -289,11 +301,13 @@ i.before-content {
 
 
 button.next {
-  background-color: #6B50CC;
+  /* background-color: #6B50CC; */
+   background-color: #FF0052;
 }
 
 button.next:hover, button.next:focus {
-  background-color: #3600B5
+  /* background-color: #3600B5 */
+  background-color: #C00048;
 }
 
 button.submit-btn {
@@ -319,6 +333,14 @@ button.submit-btn:hover, button.submit-btn:focus {
   #edit-form-container {
     display: flex;
     justify-content: center;
+  }
+
+  #intro-bar-graphic {
+    width: 200px;
+  }
+
+  #loaded-bar-graphic {
+    width: 140px;
   }
 }
 
@@ -389,7 +411,7 @@ button.submit-btn:hover, button.submit-btn:focus {
   position: relative;
   z-index: 10;
   margin: 0 auto;
-  top: 20%;
+  top: 15%;
   -webkit-transition-timing-function: ease;
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
@@ -410,7 +432,7 @@ button.submit-btn:hover, button.submit-btn:focus {
 
 @media (min-width: 599px) {
   #step-intro.active-fieldset, #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
-    top: 25%;
+    top: 20%;
   }
 }
 
@@ -440,6 +462,10 @@ button.submit-btn:hover, button.submit-btn:focus {
   padding: 0 16px;
 }
 
+#loaded-bar-graphic-container {
+  display: none;
+  margin-bottom: 10px;
+}
 
 
 

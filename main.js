@@ -117,6 +117,7 @@ function getBetterDoctor(form) {
 
 async function renderResultsPage(responseJson) {
 
+  renderNavLogo()
   await renderNavParams();
   handleEditLocationButton();
   handleEditRadiusButton();
@@ -167,6 +168,12 @@ function renderResultsHeader(responseJson) {
 
 
 // Nav Components
+function renderNavLogo() {
+  const imgString = `<img id="loaded-bar-graphic" src="./assets/dnm-logo-bar.png" alt="doctor's near me logo">`
+  $('#loaded-bar-graphic-container').html(imgString);
+  $('#loaded-bar-graphic-container').css('display', 'block');
+}
+
 async function renderNavParams() {
   //console.log('rendering nav with reverse geo name');
   let formattedLocation = await getReverseGeocode(paramsObj.lat+','+paramsObj.lng);
@@ -345,9 +352,11 @@ function returnEditLocationFormString() {
         <i class="fas fa-map-marker before-content"></i>
       </span>
       <div class="flex">
-        <label for="edit-location-input"><span class="visually-hidden">Edit Location</span>
-          <input id="edit-location-input" class="add-before location-input" name="edit location" type="text" placeholder="City & State or Zipcode" >
-        </label>
+        <div style="width: 100%">
+          <label for="edit-location-input"><span class="visually-hidden">Edit Location</span>
+            <input id="edit-location-input" class="add-before location-input" name="edit location" type="text" placeholder="City & State or Zipcode" >
+          </label>
+        </div>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -393,14 +402,16 @@ function returnEditRadiusFormString() {
         <i class="far fa-dot-circle before-content"></i>
       </span>
       <div class="flex">
-        <label for="edit-radius"><span class="visually-hidden">Edit Search Radius</span>
-          <select name="edit-radius" id="edit-radius" class="add-before radius-input">
-            <option value="5">5 miles</option>
-            <option value="10" selected="selected">10 miles</option>
-            <option value="25">25 miles</option>
-            <option value="50">50 miles</option>
-          </select>
-        </label>
+        <div style="width: 100%">
+          <label for="edit-radius"><span class="visually-hidden">Edit Search Radius</span>
+            <select name="edit-radius" id="edit-radius" class="add-before radius-input">
+              <option value="5">5 miles</option>
+              <option value="10" selected="selected">10 miles</option>
+              <option value="25">25 miles</option>
+              <option value="50">50 miles</option>
+            </select>
+          </label>
+        </div>
         <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
@@ -443,10 +454,12 @@ function returnEditSearchTermFormString() {
         <i class="fas fa-search before-content"></i>
       </span>
       <div class="flex">
-        <label for="edit-search-term-input"><span class="visually-hidden">Edit Search Term</span>
-          <input id="edit-search-term-input" class="add-before term-input" name="edit search term" placeholder="Type of doctor or area of issue" required>
-        </label>
-        <button type="submit" class="submit-btn">Go</button>
+        <div style="width: 100%">
+          <label for="edit-search-term-input"><span class="visually-hidden">Edit Search Term</span>
+            <input id="edit-search-term-input" class="add-before term-input" name="edit search term" placeholder="Type of doctor or area of issue" required>
+          </label>
+          </div>
+          <button type="submit" class="submit-btn">Go</button>
       </div>
     </form>
   `;
@@ -492,7 +505,7 @@ function returnEditInsuranceFormString() {
   return `
     <form id="edit-insurance-form" class="edit-params-form ">
       <span class="before-content">
-        <i class="fas fa-align-right before-content"></i>
+        <i class="fas fa-plus before-content"></i>
       </span>
       <div class="flex">
         <div style="width: 100%">

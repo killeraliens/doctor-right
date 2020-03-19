@@ -16,12 +16,13 @@
 
         <form id="start-form">
           <div class="start-form-fieldset-container">
-
+            <img id="intro-bar-graphic" src="./assets/dnm-logo-bar.png" alt="doctor's near me logo">
             <header id="step-intro" class="active-fieldset">
-                <h1>Doctors Near Me</h1>
-                <img id="intro-graphic" src="./assets/dnm-logo-lg-1.png" alt="doctor's near me logo illustration">
-                <h2>Find your next doctor, dentist, or medical practitioner.</h2>
+              <!-- <img src="./assets/dnm-words.svg" alt="doctor's near me logo illustration"> -->
+              <!-- <div class="flex"> -->
+                <h1>Find your next doctor, dentist, or medical practitioner.</h1>
                 <button type="button" id="step-intro-btn" class="next">Start My Search</button>
+              <!-- </div> -->
             </header>
 
 
@@ -36,7 +37,7 @@
               <label for="search-term"><h3><i class="fas fa-search "></i><br>What type of doctor are you looking for?</h3>Enter a medical issue, problem area, or type of medical professional.</label>
               <input type="text" id="search-term" name="search-term" placeholder="e.g. heart, pediatrician, speech therapy" class="add-before term-input" required>
               <br>
-              <button type="submit" id="start-form-submit-btn" class="submit-btn">Find Doctors</button>
+              <button type="submit" id="start-form-submit-btn" class="next">Find Doctors</button>
             </fieldset>
 
           </div>
@@ -45,6 +46,7 @@
 
 
     <nav>
+      <section id="loaded-bar-graphic-container"></section>
       <section id="nav-params"></section>
       <section id="edit-form-container"></section>
     </nav>
