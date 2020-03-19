@@ -17,24 +17,28 @@
         <form id="start-form">
           <div class="start-form-fieldset-container">
             <img id="intro-bar-graphic" src="./assets/dnm-logo-bar.png" alt="doctor's near me logo">
-            <header id="step-intro" class="active-fieldset">
-              <!-- <img src="./assets/dnm-words.svg" alt="doctor's near me logo illustration"> -->
-              <!-- <div class="flex"> -->
+            <!-- <header id="step-intro" class="active-fieldset">
+              <img src="./assets/dnm-words.svg" alt="doctor's near me logo illustration">
+
                 <h1>Find your next doctor, dentist, or medical practitioner.</h1>
                 <button type="button" id="step-intro-btn" class="next">Start My Search</button>
-              <!-- </div> -->
-            </header>
+
+            </header> -->
 
 
-            <fieldset id="step-one" class="non-active" disabled>
-                <label for="location"><h3><i class="fas fa-map-marker-alt"></i><br>Enter your location</h3></label>
+            <fieldset id="step-one" class="active-fieldset">
+                <h1>Find your next doctor, dentist, or medical practitioner.</h1>
+                <label for="location"><h3><i class="fas fa-map-marker-alt"></i>Enter your location</h3></label>
                 <input type="text" id="location" class="add-before" name="location" placeholder="City & State, or Zipcode" required>
                 <br>
-                <button type="button" id="step-one-btn" class="next">Next</button>
+                <button type="button" id="step-one-btn" class="next">Get Started</button>
             </fieldset>
 
             <fieldset id="step-two" class="non-active" disabled>
-              <label for="search-term"><h3><i class="fas fa-search "></i><br>What type of doctor are you looking for?</h3>Enter a medical issue, problem area, or type of medical professional.</label>
+              <img src="./assets/dnm-words.svg" alt="doctor's near me logo illustration">
+              <label for="search-term"><h3><i class="fas fa-search "></i>What type of doctor are you looking for?</h3>
+                <!-- Enter a medical issue, problem area, or type of medical professional. -->
+              </label>
               <input type="text" id="search-term" name="search-term" placeholder="e.g. heart, pediatrician, speech therapy" class="add-before term-input" required>
               <br>
               <button type="submit" id="start-form-submit-btn" class="next">Find Doctors</button>

@@ -151,10 +151,6 @@ input, select {
   font-size: 14px;
 }
 
-#start-form fieldset i {
-  color: #63666A;
-}
-
 h1 {
   margin-bottom: 16px;
   margin-top: 0;
@@ -165,6 +161,8 @@ h1 {
   display: inline-block;
   font-weight: lighter;
   font-size: 26px;
+  margin-top: 20%;
+  margin-bottom: 32px;
 }
 
 #start-form h2 {
@@ -175,7 +173,9 @@ h1 {
 
 
 #start-form i {
-  font-size: 26px;
+  /* font-size: 26px; */
+  /* color: #63666A; */
+  margin-right: 8px;
 }
 
 #intro-graphic {
@@ -411,7 +411,7 @@ button.submit-btn:hover, button.submit-btn:focus {
   position: relative;
   z-index: 10;
   margin: 0 auto;
-  top: 15%;
+  top: -20px;
   -webkit-transition-timing-function: ease;
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
@@ -432,7 +432,7 @@ button.submit-btn:hover, button.submit-btn:focus {
 
 @media (min-width: 599px) {
   #step-intro.active-fieldset, #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
-    top: 20%;
+    top: -60px;
   }
 }
 

@@ -173,7 +173,7 @@ function renderNavLogo() {
     <img id="loaded-bar-graphic" src="./assets/dnm-logo-bar.png" alt="doctor's near me logo">
   `
   $('#loaded-bar-graphic-container').html(imgString);
-  $('#loaded-bar-graphic-container').css('display', 'flex');
+  $('#loaded-bar-graphic-container').css('display', 'flex ');
 }
 
 async function renderNavParams() {
@@ -680,23 +680,23 @@ function returnDoctorCardFull(doctor) {
 
 
 //Start Form Animation
-function listenToStartFormStepIntro() {
+// function listenToStartFormStepIntro() {
 
-  $('#start-form').on('click ', '#step-intro-btn', function(e) {
+//   $('#start-form').on('click ', '#step-intro-btn', function(e) {
 
-      $('#step-intro').css({
-        transform: 'translateY(-150vh)'
-      });
-      $('#step-one').addClass('active-fieldset');
-      $('#step-one').removeAttr('disabled');
+//       $('#step-intro').css({
+//         transform: 'translateY(-150vh)'
+//       });
+//       $('#step-one').addClass('active-fieldset');
+//       $('#step-one').removeAttr('disabled');
 
-      setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 300);
+//       setTimeout(function() { $('#step-intro').addClass('done-fieldset')}, 300);
 
-      listenToStartFormStepOne();
-      getBetterDoctorInsuranceOptions();
+//       listenToStartFormStepOne();
+//       getBetterDoctorInsuranceOptions();
 
-  });
-}
+//   });
+// }
 
 function listenToStartFormStepOne() {
 
@@ -808,7 +808,8 @@ function listenToMarker(doctor, marker) {
 //App
 function startApp() {
   // getBetterDoctorInsuranceOptions();
-  listenToStartFormStepIntro();
+  //listenToStartFormStepIntro();
+  listenToStartFormStepOne();
   handleChangeSortedBy();
 }
 
