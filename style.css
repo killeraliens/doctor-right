@@ -119,6 +119,8 @@ input, select {
 }
 
 
+
+
 .edit-params-form input, .edit-params-form select{
   padding-left: 34px;
   border-radius: 6px 0 0 6px;
@@ -162,7 +164,7 @@ h1 {
   font-weight: lighter;
   font-size: 26px;
   margin-top: 20%;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 #start-form h2 {
@@ -189,6 +191,26 @@ h1 {
   width: 160px;
   margin: 0 auto;
   position: relative;
+}
+
+/* .bar-logo {
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  width: fit-content;
+} */
+.search-terms-container {
+  display: flex;
+}
+
+.search-terms-container span {
+  color: rgb(169, 168, 176);
+  padding: 8px;
+  font-weight: normal;
 }
 
  #loaded-bar-graphic {
@@ -334,6 +356,10 @@ button.submit-btn:hover, button.submit-btn:focus {
     display: flex;
     justify-content: center;
   }
+
+  /* .bar-logo {
+    width: fit-content;
+  } */
 
   #intro-bar-graphic {
     width: 200px;
