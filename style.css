@@ -136,7 +136,7 @@ input, select {
 
 /* Start Form */
 
-@media (min-width: 599px) {
+@media (min-width: 399px) {
   #start-form input, #start-form select, .edit-params-form input, .edit-params-form select, .edit-params-form datalist {
     width: 390px;
   }
@@ -153,18 +153,26 @@ input, select {
   font-size: 14px;
 }
 
-h1 {
+h1:not(.intro-container h1) {
   margin-bottom: 16px;
   margin-top: 0;
   font-size: 20px;
 }
 
+#start-form .intro-container {
+  margin-top: 20%;
+  margin-bottom: 36px;
+}
+
 #start-form h1 {
   display: inline-block;
   font-weight: lighter;
-  font-size: 26px;
-  margin-top: 20%;
-  margin-bottom: 36px;
+  font-size: 20px;
+  /* margin-top: 20%;
+  margin-bottom: 36px; */
+  margin-right: 8px;
+  margin-left: 16px;
+  text-align: left;
 }
 
 #start-form h2 {
@@ -184,7 +192,8 @@ h1 {
   width: 40px;
   margin: 0 auto;
   position: relative;
-  bottom: -6px;
+  margin-bottom: 64px;
+  margin-right: 16px;
 }
 
 #intro-bar-graphic {
@@ -193,16 +202,6 @@ h1 {
   position: relative;
 }
 
-/* .bar-logo {
-  background-color: purple;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  color: white;
-  font-weight: bold;
-  padding: 20px;
-  width: fit-content;
-} */
 .search-terms-container {
   display: flex;
 }
@@ -219,18 +218,27 @@ h1 {
   position: relative;
  }
 
+@media (min-width: 360px) {
+   #start-form h1 {
+    font-size: 24px;
+    margin-right: 12px;
+    margin-left: 32px;
+  }
+
+  #intro-graphic {
+    width: 50px;
+    margin-right: 32px;
+  }
+}
+
 @media (min-width: 599px) {
   #start-form h1 {
     font-size: 30px;
+    margin-left: 80px;
   }
 
   #start-form h2 {
     font-size: 20px;
-  }
-
-  #intro-graphic {
-    width: 60px;
-    bottom: -8px;
   }
 
   #start-form label {
@@ -239,6 +247,25 @@ h1 {
 
   h1 {
   font-size: 24px;
+  }
+
+  #edit-form-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #intro-bar-graphic {
+    width: 200px;
+  }
+
+  #intro-graphic {
+    width: 60px;
+    margin-bottom: 60px;
+    margin-right: 80px;
+  }
+
+  #loaded-bar-graphic {
+    width: 140px;
   }
 }
 
@@ -349,26 +376,6 @@ button.submit-btn:hover, button.submit-btn:focus {
   flex-direction: row;
 }
 
-
-
-@media (min-width: 599px) {
-  #edit-form-container {
-    display: flex;
-    justify-content: center;
-  }
-
-  /* .bar-logo {
-    width: fit-content;
-  } */
-
-  #intro-bar-graphic {
-    width: 200px;
-  }
-
-  #loaded-bar-graphic {
-    width: 140px;
-  }
-}
 
 
 
