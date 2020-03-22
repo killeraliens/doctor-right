@@ -92,7 +92,7 @@ function getBetterDoctor(form) {
   betterDoctorParams.user_key = config.betterDoc;
 
 
-  const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
+  const rootUrl = 'https://cors-anywhere.herokuapp.com/https://api.betterdoctor.com/2016-03-01/doctors?';
   const url = rootUrl + returnQueryString(betterDoctorParams);
 
   fetch(url)
@@ -217,7 +217,7 @@ function getBetterDoctorInsuranceOptions() {
       user_key: config.betterDoc
   };
 
-  const rootUrl = 'https://api.betterdoctor.com/2016-03-01/insurances?';
+  const rootUrl = 'https://cors-anywhere.herokuapp.com/https://api.betterdoctor.com/2016-03-01/insurances?';
   const url = rootUrl + returnQueryString(betterDoctorParams);
 
   fetch(url)
