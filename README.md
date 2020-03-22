@@ -7,7 +7,10 @@ medical professionals based on your location and search inputs.
 ## Screenshots & Usage
 
 ### Landing
-![Doctors Near Me Landing Screenshot](/assets/rm-landing.png)
+
+<kbd>
+  <img src="./assets/rm-landing.png" alt="Doctors Near Me Landing Screenshot">
+<kbd>
 
 ### Intro Form
 Enter primary search details like your location and query term into the introduction form slides.
@@ -15,14 +18,17 @@ Enter primary search details like your location and query term into the introduc
 
 ### Results
 See doctors within your search area. You may also change the sort order of results displayed.
+
 ![Doctors Near Me Results Screenshot](/assets/rm-results.png)
 
 ### See Practitioner Details
 Click on a card link or location pin to see a medical practioner's contact and location info.
+
 ![Doctors Near Me Show Details Screenshot](/assets/rm-show.png)
 
 ### Refine Your Search
 Edit details like your location, search distance, and term directly from the results page. You can also limit results to practitioners that support your insurance plan.
+
 ![Doctors Near Me Add Insurance Screenshot](/assets/rm-insurance.png)
 
 
