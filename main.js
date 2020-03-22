@@ -110,10 +110,11 @@ function getBetterDoctor(form) {
     renderResultsPage(responseJson);
   })
   .catch(err => {
-    if (err.message) {
+    if (!!err.message) {
       renderModal(returnMessageString(err.message));
+    } else {
+      renderModal(returnMessageString("BetterDoctor API server error"))
     }
-    renderModal(returnMessageString("BetterDoctor API server error"))
   })
 }
 
