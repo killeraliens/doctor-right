@@ -95,9 +95,9 @@ function getBetterDoctor(form) {
   const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
   const url = rootUrl + returnQueryString(betterDoctorParams);
 
-  fetch(url, { mode: 'no-cors' })
+  fetch(url)
   .then(response => {
-    // console.log(response)
+    console.log(response)
     if (!response.ok) {
       throw new Error(response.statusText);
     }
@@ -114,7 +114,7 @@ function getBetterDoctor(form) {
     if (!!err.message) {
       renderModal(returnMessageString(err.message));
     } else {
-      renderModal(returnMessageString("BetterDoctor API server error"))
+      renderModal(returnMessageString("We could not complete your request at this time."))
     }
   })
 }
