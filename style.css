@@ -160,8 +160,8 @@ h1:not(.intro-container h1) {
 }
 
 #start-form .intro-container {
-  margin-top: 20%;
-  margin-bottom: 36px;
+  margin-top: 10%;
+  margin-bottom: 15px;
 }
 
 #start-form h1 {
@@ -266,6 +266,12 @@ h1:not(.intro-container h1) {
 
   #loaded-bar-graphic {
     width: 140px;
+  }
+}
+
+@media (min-width: 799px) {
+  #start-form h1 {
+    text-align: center;
   }
 }
 
@@ -444,7 +450,7 @@ button.submit-btn:hover, button.submit-btn:focus {
   position: relative;
   z-index: 10;
   margin: 0 auto;
-  top: -20px;
+  /* top: -2%; */
   -webkit-transition-timing-function: ease;
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
@@ -460,12 +466,39 @@ button.submit-btn:hover, button.submit-btn:focus {
   -webkit-transform: translate3d(0, 0, 0);
   padding: 20px;
   padding-top: 40px;
+}
 
+#step-two.active-fieldset {
+    top: -6%;
+  }
+
+#words-graphic {
+  margin-bottom: 18px;
+  position: relative;
+  width: 110%;
+  left: -5%;
 }
 
 @media (min-width: 599px) {
-  #step-intro.active-fieldset, #step-one.active-fieldset, #step-two.active-fieldset, #step-three.active-fieldset {
-    top: -60px;
+  #step-two.active-fieldset {
+    top: -12%;
+  }
+
+  #words-graphic {
+    width: 100%;
+    left: 0;
+  }
+}
+
+@media (min-width: 799px) {
+   #step-two.active-fieldset {
+    top: -18%;
+  }
+}
+
+@media (min-width: 999px) {
+   #step-two.active-fieldset {
+    top: -20%;
   }
 }
 
