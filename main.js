@@ -97,13 +97,10 @@ function getBetterDoctor(form) {
 
   fetch(url, { mode: 'no-cors' })
   .then(response => {
-    if (response.ok) {
-      return response.json();
+    if (!response.ok) {
+      throw new Error(response.statusText);
     }
-    if ( response.status === 504 ) {
-      throw new Error("BetterDoctor server error.");
-    }
-    throw new Error(response.statusText);
+    return response.json();
   })
   .then(responseJson => {
     if (form !== '#sort-order-form') {
