@@ -162,6 +162,7 @@ h1:not(.intro-h1) {
 #start-form .intro-container {
   margin-top: 4%;
   margin-bottom: 16px;
+  max-height: 22vh;
 }
 
 h1.intro-h1 {
@@ -228,6 +229,12 @@ h1.intro-h1 {
   #intro-graphic {
     width: 50px;
     margin-right: 32px;
+  }
+
+  #start-form .intro-container {
+    margin-top: 4%;
+    margin-bottom: 16px;
+    max-height: none;
   }
 }
 
