@@ -14,7 +14,10 @@ medical professionals based on your location and search inputs.
 
 ### Intro Form
 Enter primary search details like your location and query term into the introduction form slides.
-![Doctors Near Me Intro Screenshot](/assets/rm-intro.png)
+
+<kbd>
+  <img src="./assets/rm-intro.png" alt="Doctors Near Me Intro Screenshot">
+</kbd>
 
 ### Results
 See doctors within your search area. You may also change the sort order of results displayed.
