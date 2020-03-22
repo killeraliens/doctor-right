@@ -95,8 +95,9 @@ function getBetterDoctor(form) {
   const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
   const url = rootUrl + returnQueryString(betterDoctorParams);
 
-  fetch(url)
+  fetch(url, { mode: 'no-cors' })
   .then(response => {
+    // console.log(response)
     if (!response.ok) {
       throw new Error(response.statusText);
     }
