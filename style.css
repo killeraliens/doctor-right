@@ -469,7 +469,7 @@ button.submit-btn:hover, button.submit-btn:focus {
 }
 
 #step-two.active-fieldset {
-    top: -6%;
+    top: -8%;
   }
 
 #words-graphic {
@@ -487,19 +487,20 @@ button.submit-btn:hover, button.submit-btn:focus {
   #words-graphic {
     width: 100%;
     left: 0;
+    max-height: 60vh;
   }
 }
 
 @media (min-width: 799px) {
    #step-two.active-fieldset {
-    top: -18%;
+    top: -16%;
   }
 }
 
 @media (min-width: 999px) {
-   #step-two.active-fieldset {
+   /* #step-two.active-fieldset {
     top: -20%;
-  }
+  } */
 }
 
 
