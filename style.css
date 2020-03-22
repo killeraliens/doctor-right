@@ -153,18 +153,18 @@ input, select {
   font-size: 14px;
 }
 
-h1:not(.intro-container h1) {
+h1:not(.intro-h1) {
   margin-bottom: 16px;
   margin-top: 0;
   font-size: 20px;
 }
 
 #start-form .intro-container {
-  margin-top: 0;
-  margin-bottom: 8px;
+  margin-top: 4%;
+  margin-bottom: 16px;
 }
 
-#start-form h1 {
+h1.intro-h1 {
   display: inline-block;
   font-weight: lighter;
   font-size: 20px;
