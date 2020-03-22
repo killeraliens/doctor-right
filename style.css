@@ -160,8 +160,8 @@ h1:not(.intro-container h1) {
 }
 
 #start-form .intro-container {
-  margin-top: 10%;
-  margin-bottom: 15px;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
 #start-form h1 {
