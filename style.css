@@ -160,6 +160,7 @@ h1:not(.intro-h1) {
 }
 
 #start-form .intro-container {
+  margin: 0 auto;
   margin-top: 4%;
   margin-bottom: 16px;
   max-height: 22vh;
@@ -223,12 +224,12 @@ h1.intro-h1 {
    #start-form h1 {
     font-size: 24px;
     margin-right: 12px;
-    margin-left: 32px;
+    /* margin-left: 32px; */
   }
 
   #intro-graphic {
     width: 50px;
-    margin-right: 32px;
+    /* margin-right: 32px; */
   }
 
   #start-form .intro-container {
@@ -241,7 +242,7 @@ h1.intro-h1 {
 @media (min-width: 599px) {
   #start-form h1 {
     font-size: 30px;
-    margin-left: 80px;
+    margin-left: 10%;
   }
 
   #start-form h2 {
@@ -268,7 +269,7 @@ h1.intro-h1 {
   #intro-graphic {
     width: 60px;
     margin-bottom: 60px;
-    margin-right: 80px;
+    margin-right: 10%;
   }
 
   #loaded-bar-graphic {
