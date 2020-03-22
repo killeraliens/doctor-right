@@ -95,7 +95,7 @@ function getBetterDoctor(form) {
   const rootUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?';
   const url = rootUrl + returnQueryString(betterDoctorParams);
 
-  fetch(url, { mode: 'no-cors' })
+  fetch(url)
   .then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -110,7 +110,10 @@ function getBetterDoctor(form) {
     renderResultsPage(responseJson);
   })
   .catch(err => {
-    renderModal(returnMessageString(err.message));
+    if (err.message) {
+      renderModal(returnMessageString(err.message));
+    }
+    renderModal(returnMessageString("BetterDoctor API server error"))
   })
 }
 
@@ -220,7 +223,7 @@ function getBetterDoctorInsuranceOptions() {
   const rootUrl = 'https://api.betterdoctor.com/2016-03-01/insurances?';
   const url = rootUrl + returnQueryString(betterDoctorParams);
 
-  fetch(url, { mode: 'no-cors' })
+  fetch(url)
   .then(response => {
     if (response.ok) {
       return response.json();
