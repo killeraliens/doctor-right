@@ -111,8 +111,15 @@ function getBetterDoctor(form) {
     renderResultsPage(responseJson);
   })
   .catch(err => {
-    if (!!err.message) {
+    if (!!err.message && err.message !== 'Internal Server Error') {
       renderModal(returnMessageString(err.message));
+    } else if (!!err.message && err.message == 'Internal Server Error') {
+      renderModal(returnMessageString(`
+        <a href="https://developer.betterdoctor.com/error-codes" target="_blank">
+          Better Doctor server error (500)
+        </a>
+        . Please try again later.
+      `));
     } else {
       renderModal(returnMessageString("We could not complete your request at this time."))
     }
