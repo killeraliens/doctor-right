@@ -97,9 +97,8 @@ function getBetterDoctor(form) {
 
   fetch(url)
   .then(response => {
-    console.log(response)
     if (!response.ok) {
-      throw new Error(response.statusText);
+      throw response;
     }
     return response.json();
   })
@@ -111,9 +110,10 @@ function getBetterDoctor(form) {
     renderResultsPage(responseJson);
   })
   .catch(err => {
-    if (!!err.message && err.message !== 'Internal Server Error') {
+    console.log(err)
+    if (!!err.message && (!!err.status && err.status !== 500)) {
       renderModal(returnMessageString(err.message));
-    } else if (!!err.message && err.message == 'Internal Server Error') {
+    } else if ((!!err.status && err.status === 500)) {
       renderModal(returnMessageString(`
         <a href="https://developer.betterdoctor.com/error-codes" target="_blank">
           Better Doctor server error (500)
